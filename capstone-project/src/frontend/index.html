@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SignUp/SignIn with Cognito</title>
+  <script src="https://cdn.jsdelivr.net/npm/amazon-cognito-identity-js@5.0.3/dist/amazon-cognito-identity.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/aws-sdk/2.1041.0/aws-sdk.min.js"></script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 20px;
+      background: #1E2A47; /* Dark blue background */
+    }
+    .container {
+      max-width: 480px; /* Increased container width */
+      margin: 100px auto; /* Centered container */
+      background: #D1D3D8; /* Grey background for the form */
+      padding: 30px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    h1 {
+      text-align: center;
+      font-size: 28px; /* Increased font size */
+      color: #1E2A47;
+    }
+    label {
+      font-weight: bold;
+      display: block;
+      margin-bottom: 8px;
+      color: #333;
+    }
+    input {
+      width: 100%;
+      padding: 12px; /* Adjusted padding */
+      margin-bottom: 20px; /* Increased bottom margin */
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      box-sizing: border-box; /* Ensure padding doesn't stretch the input */
+    }
+    button {
+      background: #0056b3; /* Dark blue button */
+      color: white;
+      padding: 15px; /* Increased padding for bigger button */
+      border: none;
+      border-radius: 4px;
+      width: 100%;
+      cursor: pointer;
+      font-size: 16px;
+      transition: background 0.3s ease;
+    }
+    button:hover {
+      background: #004080; /* Slightly darker blue on hover */
+    }
+    .button-container {
+      text-align: center; /* Centered the buttons */
+      margin-top: 20px;
+    }
+    .button-container button {
+      width: auto;
+      padding: 15px;
+      font-size: 16px;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <h1>Login</h1>
+
+  <!-- Login Form -->
+  <div id="login">
+    <label for="login-email">Email</label>
+    <input type="email" id="login-email" required placeholder="Enter your email">
+    
+    <label for="login-password">Password</label>
+    <input type="password" id="login-password" required placeholder="Enter your password">
+    
+    <button onclick="signIn()">Login</button>
+  </div>
+
+  <!-- Sign Up Button -->
+  <div class="button-container">
+    <button onclick="showSignUp()">Go to Sign Up</button>
+  </div>
+</div>
+
+<script>
+  const poolData = {
+    UserPoolId: 'us-east-1_VQPagobtn', // Replace with your actual Cognito User Pool ID
+    ClientId: '47tdqrjp3l8pmdvrev4i7nk6qi' // Replace with your actual Cognito User Pool Client ID
+  };
+  const userPool = new AmazonCognitoIdentity.CognitoUserPool(poolData);
+
+  function signIn() {
+    const email = document.getElementById('login-email').value;
+    const password = document.getElementById('login-password').value;
+
+    const authenticationData = {
+      Username: email,
+      Password: password
+    };
+    const authenticationDetails = new AmazonCognitoIdentity.AuthenticationDetails(authenticationData);
+
+    const userData = {
+      Username: email,
+      Pool: userPool
+    };
+    const cognitoUser = new AmazonCognitoIdentity.CognitoUser(userData);
+
+    cognitoUser.authenticateUser(authenticationDetails, {
+      onSuccess: function(result) {
+        alert('Sign-in successful!');
+        // Redirect to the landing page upon successful login
+        window.location.href = 'landingPage.html'; // Redirect to landing page
+      },
+      onFailure: function(err) {
+        alert('Error signing in: ' + err.message || JSON.stringify(err));
+      }
+    });
+  }
+
+  function showSignUp() {
+    window.location.href = 'signup.html'; // Redirect to sign-up page
+  }
+</script>
+
+</body>
+</html>

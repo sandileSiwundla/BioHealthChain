@@ -1,0 +1,176 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Resources:
+  # Define the API Gateway
+  StorageApi:
+    Type: AWS::ApiGateway::RestApi
+    Properties:
+      Name: "SelfStorageAPI"
+      Description: "API for managing self-storage units"
+      FailOnWarnings: true
+
+  # Define Cognito User Pool (for authentication)
+  UserPool:
+    Type: AWS::Cognito::UserPool
+    Properties:
+      PoolName: "SelfStorageUserPool"
+      AutoVerifiedAttributes:
+        - email
+      MfaConfiguration: OFF
+
+  # Define Cognito Identity Pool (for temporary AWS credentials)
+  IdentityPool:
+    Type: AWS::Cognito::IdentityPool
+    Properties:
+      IdentityPoolName: "SelfStorageIdentityPool"
+      AllowUnauthenticatedIdentities: false
+      CognitoIdentityProviders:
+        - ClientId: !Ref CognitoClient
+          ProviderName: !GetAtt UserPool.ProviderName
+
+  # Cognito User Pool Client
+  CognitoClient:
+    Type: AWS::Cognito::UserPoolClient
+    Properties:
+      ClientName: "SelfStorageClient"
+      UserPoolId: !Ref UserPool
+      GenerateSecret: false
+
+  # Define Lambda Function for Booking a Unit (example)
+  BookUnitFunction:
+    Type: AWS::Lambda::Function
+    Properties:
+      Handler: "index.book_unit"
+      Role: !GetAtt LambdaExecutionRole.Arn
+      FunctionName: "BookUnit"
+      Runtime: python3.8
+      Code:
+        S3Bucket: !Ref LambdaCodeBucket  # Reference to the Lambda code S3 bucket
+        S3Key: "book_unit.zip"
+      Timeout: 30
+
+  # Define Lambda Execution Role
+  LambdaExecutionRole:
+    Type: AWS::IAM::Role
+    Properties:
+      AssumeRolePolicyDocument:
+        Version: "2012-10-17"
+        Statement:
+          - Action: "sts:AssumeRole"
+            Effect: "Allow"
+            Principal:
+              Service: "lambda.amazonaws.com"
+      Policies:
+        - PolicyName: "LambdaAPIAccessPolicy"
+          PolicyDocument:
+            Version: "2012-10-17"
+            Statement:
+              - Action:
+                  - "dynamodb:*"
+                  - "s3:*"
+                  - "sns:*"
+                Effect: "Allow"
+                Resource: "*"
+
+  # Define API Gateway Resources (endpoints)
+  FacilitiesResource:
+    Type: AWS::ApiGateway::Resource
+    Properties:
+      ParentId: !GetAtt StorageApi.RootResourceId
+      PathPart: facilities
+      RestApiId: !Ref StorageApi
+
+  BookUnitResource:
+    Type: AWS::ApiGateway::Resource
+    Properties:
+      ParentId: !Ref FacilitiesResource
+      PathPart: book
+      RestApiId: !Ref StorageApi
+
+  # Define API Methods for booking units
+  BookUnitMethod:
+    Type: AWS::ApiGateway::Method
+    Properties:
+      AuthorizationType: COGNITO_USER_POOLS
+      AuthorizerId: !Ref CognitoAuthorizer
+      HttpMethod: POST
+      ResourceId: !Ref BookUnitResource
+      RestApiId: !Ref StorageApi
+      Integration:
+        IntegrationHttpMethod: POST
+        Type: AWS_PROXY
+        Uri: arn:aws:apigateway:region:lambda:path/2015-03-31/functions/arn:aws:lambda:region:account-id:function:BookUnit/invocations
+
+  # Define Cognito Authorizer
+  CognitoAuthorizer:
+    Type: AWS::ApiGateway::Authorizer
+    Properties:
+      Name: "CognitoAuthorizer"
+      Type: COGNITO_USER_POOLS
+      RestApiId: !Ref StorageApi
+      IdentitySource: "method.request.header.Authorization"
+      ProviderARNs:
+        - !GetAtt UserPool.Arn
+
+  # Define Lambda Function for Retrieving Facilities (example)
+  GetFacilitiesFunction:
+    Type: AWS::Lambda::Function
+    Properties:
+      Handler: "index.get_facilities"
+      Role: !GetAtt LambdaExecutionRole.Arn
+      FunctionName: "GetFacilities"
+      Runtime: python3.8
+      Code:
+        S3Bucket: !Ref LambdaCodeBucket  # Reference to the Lambda code S3 bucket
+        S3Key: "get_facilities.zip"
+      Timeout: 30
+
+  # Define the method for the /facilities endpoint (GET)
+  GetFacilitiesMethod:
+    Type: AWS::ApiGateway::Method
+    Properties:
+      AuthorizationType: COGNITO_USER_POOLS
+      AuthorizerId: !Ref CognitoAuthorizer
+      HttpMethod: GET
+      ResourceId: !Ref FacilitiesResource
+      RestApiId: !Ref StorageApi
+      Integration:
+        IntegrationHttpMethod: GET
+        Type: AWS_PROXY
+        Uri: arn:aws:apigateway:region:lambda:path/2015-03-31/functions/arn:aws:lambda:region:account-id:function:GetFacilities/invocations
+
+  # Define CloudFront Distribution for Static Web App (S3 hosting)
+  StaticWebAppDistribution:
+    Type: AWS::CloudFront::Distribution
+    Properties:
+      Origins:
+        - DomainName: !Sub "${WebAppS3Bucket}.s3.amazonaws.com"
+          Id: S3Origin
+          S3OriginConfig:
+            OriginAccessIdentity: ""
+      Enabled: true
+      DefaultCacheBehavior:
+        TargetOriginId: S3Origin
+        ViewerProtocolPolicy: redirect-to-https
+        AllowedMethods:
+          CachedMethods:
+            - GET
+            - HEAD
+          Quantity: 2
+          Items:
+            - GET
+            - HEAD
+      DefaultRootObject: "index.html"
+
+  # Define S3 Bucket for Hosting Web App
+  WebAppS3Bucket:
+    Type: AWS::S3::Bucket
+    Properties:
+      WebsiteConfiguration:
+        IndexDocument: "index.html"
+        ErrorDocument: "error.html"
+
+  # Define S3 Bucket for Lambda Code
+  LambdaCodeBucket:
+    Type: AWS::S3::Bucket
+    Properties:
+      BucketName: "self-storage-lambda-code-bucket"

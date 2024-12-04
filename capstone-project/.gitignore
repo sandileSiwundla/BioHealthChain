@@ -1,0 +1,32 @@
+# Ignore Python virtual environment
+myenv/
+
+# Ignore AWS SAM/CLI-related files
+.aws-sam/
+.aws/
+
+# Ignore IDE/editor-specific files
+.vscode/
+.idea/
+
+# Ignore system files
+.DS_Store
+Thumbs.db
+
+# Ignore Node modules
+node_modules/
+
+# Ignore other unnecessary files or directories
+.cache/
+.config/
+.cookiecutter_replay/
+.cookiecutters/
+.dotnet/
+.python_history
+.npm/
+.nvm/
+.ssh/
+.profile
+*.zip
+*.log
+.env
