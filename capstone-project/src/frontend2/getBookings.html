@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Bookings</title>
+
+    <!-- Prevent the favicon request -->
+    <link rel="icon" href="data:,">  <!-- Empty favicon -->
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #2C3E50; /* Dark Blue Background */
+            color: #ecf0f1; /* Light Grey Text */
+        }
+        header {
+            background-color: #34495E; /* Darker Blue for header */
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+        }
+        h1 {
+            font-size: 36px;
+            margin-bottom: 20px;
+        }
+        p {
+            font-size: 18px;
+            line-height: 1.6;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        table, th, td {
+            border: 1px solid #7f8c8d; /* Light Grey Borders */
+        }
+        th, td {
+            padding: 12px;
+            text-align: left;
+        }
+        th {
+            background-color: #2C3E50; /* Dark Blue for table header */
+            color: #ecf0f1;
+        }
+        td {
+            background-color: #34495E; /* Slightly darker blue for table rows */
+        }
+        #errorMessage {
+            color: #e74c3c; /* Red error message */
+            text-align: center;
+            margin-top: 20px;
+            display: none;
+        }
+        button {
+            background-color: #1abc9c; /* Greenish for buttons */
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            margin: 10px;
+        }
+        button:hover {
+            background-color: #16a085; /* Darker green on hover */
+        }
+        input {
+            padding: 8px;
+            font-size: 14px;
+            margin-right: 10px;
+            border: none;
+            border-radius: 5px;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Your Bookings</h1>
+    <p>Enter your User ID below to view your booking details.</p>
+</header>
+
+<!-- Field to enter the User ID -->
+<div>
+    <label for="manualUserId">Enter User ID: </label>
+    <input type="text" id="manualUserId" placeholder="Enter User ID">
+    <button onclick="fetchBookingsByUserId()">Fetch Bookings</button>
+</div>
+
+<!-- Table to display booking details -->
+<table id="bookingsTable">
+    <thead>
+        <tr>
+            <th>Booking ID</th>
+            <th>Price</th>
+            <th>Start Date</th>
+            <th>Status</th>
+        </tr>
+    </thead>
+    <tbody>
+        <!-- Data rows will be inserted here -->
+    </tbody>
+</table>
+
+<!-- Error message -->
+<p id="errorMessage">Error fetching booking details. Please try again later.</p>
+
+<script>
+    // Function to fetch booking details based on User ID input
+    function fetchBookingsByUserId() {
+        const userId = document.getElementById('manualUserId').value;
+
+        if (!userId) {
+            alert('Please enter a User ID.');
+            return;
+        }
+
+        const apiUrl = `https://nuna5gxshc.execute-api.us-east-1.amazonaws.com/production/fetch`; // API URL
+
+        // Simulating the fetched data (normally, you would use the actual API endpoint)
+        const response = {
+            "bookings": [
+                {"UnitID": "1", "UserID": "3223", "BookingId": 387439.0, "Price": 22.0, "StartDate": "2024-12-11", "Status": "Pending"},
+                {"UnitID": "1", "UserID": "3223", "BookingId": 927031.0, "Price": 22.0, "StartDate": "2024-12-11", "Status": "Pending"},
+                {"UnitID": "1", "UserID": "007", "BookingId": 584325.0, "Price": "value1", "StartDate": "09/12/2024", "Status": "Pending"},
+                {"UnitID": "1", "UserID": "3223", "BookingId": 204536.0, "Price": 22.0, "StartDate": "2024-12-11", "Status": "Pending"},
+                {"UnitID": "1", "UserID": "3223", "BookingId": 818045.0, "Price": 22.0, "StartDate": "2024-12-11", "Status": "Pending"},
+                {"UnitID": "unit123", "UserID": "user456", "BookingId": 520.0, "Price": 150.0, "StartDate": "2024-12-01", "Status": "Pending"},
+                {"UnitID": "1", "UserID": "3223", "BookingId": 529402.0, "Price": 22.0, "StartDate": "2024-12-11", "Status": "Pending"},
+                {"UnitID": "1", "UserID": "3223", "BookingId": 140334.0, "Price": 22.0, "StartDate": "2024-12-11", "Status": "Pending"},
+                {"UnitID": "1", "UserID": "user456", "BookingId": 128.0, "Price": "150.0", "StartDate": "2024-12-01", "Status": "Pending"},
+                {"UnitID": "1", "UserID": "3223", "BookingId": 919426.0, "Price": 22.0, "StartDate": "2024-12-11", "Status": "Pending"},
+                {"UnitID": "1", "UserID": "3223", "BookingId": 157776.0, "Price": 22.0, "StartDate": "2024-12-11", "Status": "Pending"},
+                {"UnitID": "1", "UserID": "3223", "BookingId": 847224.0, "Price": 22.0, "StartDate": "2024-12-11", "Status": "Pending"},
+                {"UnitID": "1", "UserID": "user456", "BookingId": 177.0, "Price": 150.0, "StartDate": "2024-12-15", "Status": "Confirmed"},
+                {"UnitID": "1", "UserID": "3223", "BookingId": 897397.0, "Price": 22.0, "StartDate": "2024-12-11", "Status": "Pending"}
+            ]
+        };
+
+        // Filter the bookings by UserID entered
+        const filteredBookings = response.bookings.filter(booking => booking.UserID === userId);
+
+        if (filteredBookings.length > 0) {
+            displayBookings(filteredBookings);  // Display filtered bookings
+            document.getElementById('errorMessage').style.display = 'none'; // Hide error message
+        } else {
+            showError('No bookings found for this User ID.');  // If no bookings match the User ID
+        }
+    }
+
+    // Function to display the fetched bookings in the table
+    function displayBookings(bookings) {
+        const tableBody = document.getElementById('bookingsTable').getElementsByTagName('tbody')[0];
+        
+        // Clear any previous rows
+        tableBody.innerHTML = '';
+        
+        // Loop through the bookings and add rows to the table
+        bookings.forEach(booking => {
+            const row = tableBody.insertRow();
+
+            const bookingIdCell = row.insertCell(0);
+            const priceCell = row.insertCell(1);
+            const startDateCell = row.insertCell(2);
+            const statusCell = row.insertCell(3);
+
+            bookingIdCell.textContent = booking.BookingId;
+            priceCell.textContent = booking.Price;
+            startDateCell.textContent = booking.StartDate;
+            statusCell.textContent = booking.Status;
+        });
+    }
+
+    // Function to display error message
+    function showError(message) {
+        const errorMessage = document.getElementById('errorMessage');
+        errorMessage.textContent = message;
+        errorMessage.style.display = 'block'; // Show error message
+    }
+</script>
+
+</body>
+</html>

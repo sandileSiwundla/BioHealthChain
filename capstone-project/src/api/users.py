@@ -1,150 +1,108 @@
 import json
-import uuid
-import os
+import random
 import boto3
 from datetime import datetime
+import logging
 
-# Get environment variables
-USER_POOL_ID = os.getenv('USER_POOL_ID', None)
-USER_POOL_CLIENT_ID = os.getenv('USER_POOL_CLIENT_ID', None)
-USERS_TABLE = os.getenv('USERS_TABLE', None)
+logger = logging.getLogger()
+logger.setLevel(logging.INFO)
+
 dynamodb = boto3.resource('dynamodb')
-cognito_client = boto3.client('cognito-idp')
+booking_table = dynamodb.Table('BookingTable')
+units_table = dynamodb.Table('listUnits')
 
-ddbTable = dynamodb.Table(USERS_TABLE)
+def generate_booking_id():
+    return random.randint(100000, 999999)
+
+def update_unit_status_to_reserved(unit_id):
+    try:
+        units_table.update_item(
+            Key={'UnitID': unit_id},
+            UpdateExpression="SET #status = :reserved",
+            ExpressionAttributeNames={'#status': 'Status'},
+            ExpressionAttributeValues={':reserved': 'reserved'}
+        )
+        logger.info(f"Status updated to 'reserved' for UnitID: {unit_id}")
+    except Exception as e:
+        logger.error(f"Error updating status for UnitID {unit_id}: {e}")
+        raise
+
+def check_double_booking(unit_id, start_date, end_date):
+    try:
+        response = booking_table.query(
+            IndexName='UnitID-StartDate-EndDate-index',
+            KeyConditionExpression="UnitID = :unit_id and StartDate < :end_date and EndDate > :start_date",
+            ExpressionAttributeValues={
+                ":unit_id": unit_id,
+                ":start_date": start_date,
+                ":end_date": end_date
+            }
+        )
+        return response['Items']
+    except Exception as e:
+        logger.error(f"Error checking for double booking: {e}")
+        raise
 
 def lambda_handler(event, context):
-    route_key = f"{event['httpMethod']} {event['resource']}"
+    logger.info(f"Received event: {json.dumps(event)}")
 
-    # Set default response, override with data from DynamoDB if any
-    response_body = {'Message': 'Unsupported route'}
-    status_code = 400
-    headers = {
-        'Content-Type': 'application/json',
-        'Access-Control-Allow-Origin': '*'
-    }
+    booking_id = generate_booking_id()
+
+    unit_id = event.get('UnitID')
+    if not unit_id:
+        return {
+            'statusCode': 400,
+            'body': json.dumps({'message': 'UnitID is required'})
+        }
+
+    price = event.get('Price', 240.0)
+    type_ = event.get('Type', 'Locker')
+    user_id = event.get('UserID', 'Anonymous')
+    billing_option = event.get('BillingOption', 'Standard')
+    end_date = event.get('EndDate', str(datetime.now().date()))
+    payment_method = event.get('PaymentMethod', 'Credit Card')
+    start_date = event.get('StartDate', str(datetime.now().date()))
+    status = event.get('Status', 'Pending')
+    unlocked = event.get('Unlocked', False)
+    authorized_user = event.get('AuthorizedUser', '-')  # Default value is '-'
+
+    logger.info(f"Booking data: BookingId={booking_id}, UnitID={unit_id}, Price={price}, Type={type_}, UserID={user_id}")
+
+    double_bookings = check_double_booking(unit_id, start_date, end_date)
+    if double_bookings:
+        return {
+            'statusCode': 400,
+            'body': json.dumps({'message': 'Unit is already booked for the selected dates'})
+        }
 
     try:
-        # Get a list of all Users (from DynamoDB)
-        if route_key == 'GET /users':
-            ddb_response = ddbTable.scan(Select='ALL_ATTRIBUTES')
-            response_body = ddb_response['Items']
-            status_code = 200
-
-        # CRUD operations for a single User
-
-        # Read a user by ID (from DynamoDB)
-        if route_key == 'GET /users/{userid}':
-            ddb_response = ddbTable.get_item(
-                Key={'userid': event['pathParameters']['userid']}
-            )
-            if 'Item' in ddb_response:
-                response_body = ddb_response['Item']
-            else:
-                response_body = {}
-            status_code = 200
-
-        # Delete a user by ID (from DynamoDB)
-        if route_key == 'DELETE /users/{userid}':
-            ddbTable.delete_item(
-                Key={'userid': event['pathParameters']['userid']}
-            )
-            response_body = {}
-            status_code = 200
-
-        # Create a new user via Cognito (extended schema with phone number, address, etc.)
-        if route_key == 'POST /users':
-            request_json = json.loads(event['body'])
-
-            # Ensure all necessary fields are in the request
-            if not request_json.get('email') or not request_json.get('password'):
-                raise ValueError('Email and password are required fields.')
-
-            # Assign default user attributes
-            user_attributes = [
-                {'Name': 'email', 'Value': request_json['email']},
-                {'Name': 'name', 'Value': request_json['name']},
-                {'Name': 'phone_number', 'Value': request_json.get('phone_number', '')},
-                {'Name': 'address', 'Value': request_json.get('address', '')},
-                {'Name': 'birthdate', 'Value': request_json.get('birthdate', '')},
-            ]
-
-            # Sign up the user in Cognito
-            cognito_response = cognito_client.sign_up(
-                ClientId=USER_POOL_CLIENT_ID,
-                Username=request_json['email'],
-                Password=request_json['password'],
-                UserAttributes=user_attributes
-            )
-
-            # Store additional user info in DynamoDB (this could include metadata or other info)
-            request_json['timestamp'] = datetime.now().isoformat()
-            request_json['userid'] = str(uuid.uuid1())  # Generate a unique user ID
-            ddbTable.put_item(Item=request_json)
-
-            response_body = {'message': 'User created successfully'}
-            status_code = 200
-
-        # Update a specific user (from DynamoDB)
-        if route_key == 'PUT /users/{userid}':
-            request_json = json.loads(event['body'])
-            request_json['timestamp'] = datetime.now().isoformat()
-            request_json['userid'] = event['pathParameters']['userid']
-            ddbTable.put_item(Item=request_json)
-            response_body = request_json
-            status_code = 200
-
-        # Login a user (authenticate via Cognito)
-        if route_key == 'POST /login':
-            response = login_user(event, context)
-            return response
-
-    except Exception as err:
-        status_code = 400
-        response_body = {'Error': str(err)}
-        print(str(err))
-
-    return {
-        'statusCode': status_code,
-        'body': json.dumps(response_body),
-        'headers': headers
-    }
-
-def login_user(event, context):
-    """Handles user login via Cognito"""
-    try:
-        # Get the email and password from the request
-        request_json = json.loads(event['body'])
-        email = request_json['email']
-        password = request_json['password']
-
-        # Authenticate using Cognito
-        response = cognito_client.initiate_auth(
-            ClientId=USER_POOL_CLIENT_ID,
-            AuthFlow='USER_PASSWORD_AUTH',
-            AuthParameters={
-                'USERNAME': email,
-                'PASSWORD': password
+        booking_table.put_item(
+            Item={
+                'BookingId': int(booking_id),
+                'BillingOption': billing_option,
+                'EndDate': end_date,
+                'PaymentMethod': payment_method,
+                'Price': price,
+                'StartDate': start_date,
+                'Status': status,
+                'Type': type_,
+                'UnitID': unit_id,
+                'Unlocked': unlocked,
+                'UserID': user_id,
+                'AuthorizedUser': authorized_user  # Added AuthorizedUser field
             }
         )
 
-        # Return the authentication token
+        update_unit_status_to_reserved(unit_id)
+
         return {
             'statusCode': 200,
-            'body': json.dumps({'id_token': response['AuthenticationResult']['IdToken']}),
-            'headers': {'Content-Type': 'application/json'}
+            'body': json.dumps({'message': 'Booking created successfully', 'BookingId': booking_id, 'UnitID': unit_id})
         }
-    
-    except cognito_client.exceptions.NotAuthorizedException:
-        return {
-            'statusCode': 400,
-            'body': json.dumps({'message': 'Invalid credentials'}),
-            'headers': {'Content-Type': 'application/json'}
-        }
-    
+
     except Exception as e:
+        logger.error(f"Error creating booking: {e}")
         return {
             'statusCode': 500,
-            'body': json.dumps({'message': 'Internal Server Error', 'error': str(e)}),
-            'headers': {'Content-Type': 'application/json'}
+            'body': json.dumps({'message': 'Error creating booking', 'error': str(e)})
         }

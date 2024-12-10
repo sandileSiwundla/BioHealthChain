@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Booking</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #2C3E50; /* Dark Blue Background */
+            color: #ecf0f1; /* Light Grey Text */
+        }
+        header {
+            background-color: #34495E; /* Darker Blue for header */
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+        }
+        h1 {
+            font-size: 36px;
+            margin-bottom: 20px;
+        }
+        p {
+            font-size: 18px;
+            line-height: 1.6;
+        }
+        input, select {
+            padding: 10px;
+            font-size: 14px;
+            margin-right: 10px;
+            border: 1px solid #7f8c8d;
+            border-radius: 5px;
+            background-color: #34495E;
+            color: #ecf0f1;
+            margin-bottom: 15px;
+            width: 100%;
+        }
+        button {
+            background-color: #1abc9c; /* Green for add button */
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        button:hover {
+            background-color: #16a085; /* Darker green on hover */
+        }
+        #errorMessage {
+            color: #e74c3c; /* Red error message */
+            text-align: center;
+            margin-top: 20px;
+            display: none;
+        }
+        #successMessage {
+            color: #2ecc71; /* Green success message */
+            text-align: center;
+            margin-top: 20px;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Add Booking</h1>
+    <p>Enter the details below to add a new booking.</p>
+</header>
+
+<h2>Create a New Booking</h2>
+<p>Enter the required details:</p>
+
+<!-- Input fields for the booking information -->
+<input type="text" id="userId" placeholder="User ID" />
+<input type="number" id="unitId" placeholder="Unit ID" />
+<input type="text" id="billingOption" placeholder="Billing Option" />
+<input type="date" id="startDate" placeholder="Start Date" />
+<input type="date" id="endDate" placeholder="End Date" />
+<input type="text" id="paymentMethod" placeholder="Payment Method" />
+<input type="number" id="price" placeholder="Price" />
+
+<button onclick="addBooking()">Add Booking</button>
+
+<!-- Error and Success messages -->
+<p id="errorMessage">Error adding booking. Please try again later.</p>
+<p id="successMessage">Booking added successfully!</p>
+
+<script>
+    // Function to add a new booking
+    function addBooking() {
+        // Get values from the input fields
+        const userId = document.getElementById('userId').value;
+        const unitId = document.getElementById('unitId').value;
+        const billingOption = document.getElementById('billingOption').value;
+        const startDate = document.getElementById('startDate').value;
+        const endDate = document.getElementById('endDate').value;
+        const paymentMethod = document.getElementById('paymentMethod').value;
+        const price = document.getElementById('price').value;
+
+        // Check if all required fields are filled
+        if (!userId || !unitId || !billingOption || !startDate || !endDate || !paymentMethod || !price) {
+            alert('Please fill in all fields.');
+            return;
+        }
+
+        // Prepare the request body to send to the Lambda function
+        const body = {
+            UserID: userId,
+            UnitID: unitId,
+            BillingOption: billingOption,
+            StartDate: startDate,
+            EndDate: endDate,
+            PaymentMethod: paymentMethod,
+            Price: parseFloat(price) // Ensure price is a number
+        };
+
+        const apiUrl = 'https://nuna5gxshc.execute-api.us-east-1.amazonaws.com/production/addBooking';  // Replace with your actual API URL
+
+        // Send a POST request to add the booking
+        fetch(apiUrl, {
+            method: 'POST', // Use POST method to add new booking
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(body)
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                // Show success message
+                document.getElementById('errorMessage').style.display = 'none';
+                document.getElementById('successMessage').style.display = 'block';
+            } else {
+                // Show error message if not successful
+                showError('Failed to add booking.');
+            }
+        })
+        .catch(error => {
+            console.error('Error adding booking:', error);
+            showError('Error adding booking. ' + error.message);
+        });
+    }
+
+    // Function to show error message
+    function showError(message) {
+        document.getElementById('errorMessage').textContent = message;
+        document.getElementById('errorMessage').style.display = 'block';
+        document.getElementById('successMessage').style.display = 'none';
+    }
+</script>
+
+</body>
+</html>

@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Delete Booking</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #2C3E50; /* Dark Blue Background */
+            color: #ecf0f1; /* Light Grey Text */
+        }
+        header {
+            background-color: #34495E; /* Darker Blue for header */
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+        }
+        h1 {
+            font-size: 36px;
+            margin-bottom: 20px;
+        }
+        p {
+            font-size: 18px;
+            line-height: 1.6;
+        }
+        input {
+            padding: 10px;
+            font-size: 14px;
+            margin-right: 10px;
+            border: 1px solid #7f8c8d;
+            border-radius: 5px;
+            background-color: #34495E;
+            color: #ecf0f1;
+        }
+        button {
+            background-color: #e74c3c; /* Red for delete button */
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-top: 10px;
+        }
+        button:hover {
+            background-color: #c0392b; /* Darker red on hover */
+        }
+        #errorMessage {
+            color: #e74c3c; /* Red error message */
+            text-align: center;
+            margin-top: 20px;
+            display: none;
+        }
+        #successMessage {
+            color: #2ecc71; /* Green success message */
+            text-align: center;
+            margin-top: 20px;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Delete Booking</h1>
+    <p>Enter the Booking ID to delete a booking.</p>
+</header>
+
+<h2>Delete Booking</h2>
+<p>Enter the Booking ID below:</p>
+
+<input type="text" id="bookingId" placeholder="Booking ID">
+<button onclick="deleteBooking()">Delete Booking</button>
+
+<!-- Error and Success messages -->
+<p id="errorMessage">Error deleting booking. Please try again later.</p>
+<p id="successMessage">Booking deleted successfully.</p>
+
+<script>
+    // Function to delete booking
+    function deleteBooking() {
+        const bookingId = document.getElementById('bookingId').value;
+
+        if (!bookingId) {
+            alert('Please enter a Booking ID.');
+            return;
+        }
+
+        const apiUrl = `https://your-api-id.execute-api.us-east-1.amazonaws.com/prod/delete-booking?BookingId=${bookingId}`;  // Replace with your actual API URL
+
+        fetch(apiUrl, {
+            method: 'DELETE', // Using DELETE method
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok ' + response.statusText);
+            }
+            return response.json();
+        })
+        .then(data => {
+            if (data.success) {
+                document.getElementById('errorMessage').style.display = 'none';
+                document.getElementById('successMessage').style.display = 'block';
+            } else {
+                showError('Failed to delete booking.');
+            }
+        })
+        .catch(error => {
+            console.error('Error deleting booking:', error);
+            showError('Error deleting booking. ' + error.message);
+        });
+    }
+
+    // Function to show error message
+    function showError(message) {
+        document.getElementById('errorMessage').textContent = message;
+        document.getElementById('errorMessage').style.display = 'block';
+        document.getElementById('successMessage').style.display = 'none';
+    }
+</script>
+
+</body>
+</html>

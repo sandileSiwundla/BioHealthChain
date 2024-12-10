@@ -126,8 +126,8 @@
 
 <script>
   const poolData = {
-    UserPoolId: 'us-east-1_VQPagobtn', // Replace with your actual Cognito User Pool ID
-    ClientId: '47tdqrjp3l8pmdvrev4i7nk6qi' // Replace with your actual Cognito User Pool Client ID
+    UserPoolId: 'us-east-1_SeeG97ZPU', // Replace with your actual Cognito User Pool ID
+    ClientId: '1hjt9dof8qd66mshlqclooohba' // Replace with your actual Cognito User Pool Client ID
   };
   const userPool = new AmazonCognitoIdentity.CognitoUserPool(poolData);
 
@@ -192,7 +192,7 @@
       alert('Email verified successfully!');
       closePopup();  // Close the popup on success
       // Redirect to the landing page after successful verification
-      window.location.href = "landingPage.html"; // Change this URL to your landing page
+      window.location.href = "listUnits.html"; // Change this URL to your landing page
     });
   }
 
