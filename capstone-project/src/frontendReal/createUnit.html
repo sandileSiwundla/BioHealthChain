@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unit Data Input</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #2C3E50; /* Dark Blue Background */
+            color: #ecf0f1; /* Light Grey Text */
+        }
+        header {
+            background-color: #34495E; /* Darker Blue for header */
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+        }
+        h1, h2 {
+            font-size: 36px;
+            margin-bottom: 20px;
+        }
+        p {
+            font-size: 18px;
+            line-height: 1.6;
+        }
+        label {
+            display: block;
+            margin-bottom: 8px;
+        }
+        input {
+            margin-bottom: 15px;
+            padding: 10px;
+            font-size: 14px;
+            width: 300px;
+            border-radius: 5px;
+            border: 1px solid #7f8c8d; /* Light grey border */
+            background-color: #34495E; /* Dark blue background for inputs */
+            color: #ecf0f1; /* Light grey text */
+        }
+        button {
+            padding: 10px 15px;
+            background-color: #1abc9c; /* Greenish for buttons */
+            color: white;
+            font-size: 14px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #16a085; /* Darker green on hover */
+        }
+        #result {
+            margin-top: 20px;
+            background-color: #34495E; /* Slightly darker blue for result container */
+            padding: 20px;
+            border-radius: 5px;
+            color: #ecf0f1;
+        }
+        #errorMessage {
+            color: #e74c3c; /* Red error message */
+            text-align: center;
+            margin-top: 20px;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>SafeSpace</h1>
+    <p>Your Self-Storage Solution in the Digital Age</p>
+</header>
+
+<h2>Enter Unit Details</h2>
+
+<p>Please fill in the details for the new unit:</p>
+
+<form id="unitForm">
+    <label for="price">Price (e.g. R500):</label>
+    <input type="text" id="price" name="price" required>
+    
+    <label for="status">Status (e.g. Available, Reserved):</label>
+    <input type="text" id="status" name="status" required>
+    
+    <label for="type">Unit Type (e.g. Locker, Single Garage, Double Garage):</label>
+    <input type="text" id="type" name="type" required>
+
+    <button type="submit">Generate and Upload Unit</button>
+</form>
+
+<div id="result"></div>
+
+<script>
+    // Handle form submission
+    document.getElementById('unitForm').addEventListener('submit', function(event) {
+        event.preventDefault();
+
+        // Get the form values
+        const price = document.getElementById('price').value;
+        const status = document.getElementById('status').value;
+        const type = document.getElementById('type').value;
+
+        // Log values for debugging purposes
+        console.log('Price:', price);
+        console.log('Status:', status);
+        console.log('Type:', type);
+
+        // Construct the API Gateway URL for invoking the Lambda function
+        const apiGatewayUrl = 'https://nuna5gxshc.execute-api.us-east-1.amazonaws.com/production/makeunit';  // Replace with your actual API Gateway URL
+
+        // Data to send to your API
+        const data = {
+            Price: price,
+            Status: status,
+            Type: type
+        };
+
+        // Use Fetch API to send data to your API Gateway (Lambda function)
+        fetch(apiGatewayUrl, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',  // Ensure this header is set
+            },
+            body: JSON.stringify(data),  // Send data as JSON string
+        })
+        .then(response => response.json())
+        .then(result => {
+            // Show success message with the returned unit data
+            document.getElementById('result').innerHTML = `
+                <h3>Success:</h3>
+                <p>Unit created successfully!</p>
+                <pre>${JSON.stringify(result, null, 2)}</pre>
+            `;
+        })
+        .catch(error => {
+            // Show error message
+            document.getElementById('result').innerHTML = `
+                <h3>Error:</h3>
+                <p>There was an error creating the unit.</p>
+                <pre>${error}</pre>
+            `;
+        });
+    });
+</script>
+
+
+</body>
+</html>

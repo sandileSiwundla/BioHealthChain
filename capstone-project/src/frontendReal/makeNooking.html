@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Booking</title>
+
+    <!-- Prevent the favicon request -->
+    <link rel="icon" href="data:,"> <!-- Empty favicon -->
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #2C3E50; /* Dark Blue Background */
+            color: #ecf0f1; /* Light Grey Text */
+        }
+        header {
+            background-color: #34495E; /* Darker Blue for header */
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+        }
+        h1 {
+            font-size: 36px;
+            margin-bottom: 20px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        table, th, td {
+            border: 1px solid #7f8c8d; /* Light Grey Borders */
+        }
+        th, td {
+            padding: 12px;
+            text-align: left;
+        }
+        th {
+            background-color: #2C3E50; /* Dark Blue for table header */
+            color: #ecf0f1;
+        }
+        td {
+            background-color: #34495E; /* Slightly darker blue for table rows */
+        }
+        #errorMessage {
+            color: #e74c3c; /* Red error message */
+            text-align: center;
+            margin-top: 20px;
+            display: none;
+        }
+        button {
+            background-color: #1abc9c; /* Greenish for buttons */
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            margin: 10px;
+        }
+        button:hover {
+            background-color: #16a085; /* Darker green on hover */
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>SafeSpace</h1>
+    <p>Your Self-Storage Solution in the Digital Age</p>
+</header>
+
+<h1>Create Booking</h1>
+<p>Fill out the form below to create a booking.</p>
+
+<!-- Booking Form -->
+<form id="bookingForm">
+    <label for="unitId">Unit ID:</label>
+    <input type="text" id="unitId" name="unitId" required><br><br>
+
+    <label for="userId">User ID:</label>
+    <input type="text" id="userId" name="userId" required><br><br>
+
+    <label for="billingOption">Billing Option:</label>
+    <select id="billingOption" name="billingOption" required>
+        <option value="card">Card</option>
+        <option value="paypal">PayPal</option>
+    </select><br><br>
+
+    <label for="startDate">Start Date:</label>
+    <input type="date" id="startDate" name="startDate" required><br><br>
+
+    <label for="endDate">End Date:</label>
+    <input type="date" id="endDate" name="endDate" required><br><br>
+
+    <label for="price">Price:</label>
+    <input type="number" id="price" name="price" required><br><br>
+
+    <label for="paymentMethod">Payment Method:</label>
+    <select id="paymentMethod" name="paymentMethod" required>
+        <option value="monthly">Monthly</option>
+        <option value="one-time">One-Time</option>
+    </select><br><br>
+
+    <label for="status">Status:</label>
+    <select id="status" name="status" required>
+        <option value="Pending">Pending</option>
+        <option value="Confirmed">Confirmed</option>
+        <option value="Cancelled">Cancelled</option>
+    </select><br><br>
+
+    <button type="submit">Create Booking</button>
+</form>
+
+<!-- Error message -->
+<p id="errorMessage">Error creating booking. Please try again later.</p>
+
+<h2>Bookings</h2>
+
+<!-- Booking Table -->
+<table id="bookingTable">
+    <thead>
+        <tr>
+            <th>Booking ID</th>
+            <th>User ID</th>
+            <th>Unit ID</th>
+            <th>Billing Option</th>
+            <th>Start Date</th>
+            <th>End Date</th>
+            <th>Price</th>
+            <th>Payment Method</th>
+            <th>Status</th>
+        </tr>
+    </thead>
+    <tbody>
+        <!-- Booking rows will be inserted here -->
+    </tbody>
+</table>
+
+<script>
+    // Function to generate a unique Booking ID (using current timestamp)
+    function generateBookingId() {
+        return Date.now(); // Generate a unique Booking ID using timestamp
+    }
+
+    // Function to handle the form submission and create a booking
+    document.getElementById('bookingForm').addEventListener('submit', function (event) {
+        event.preventDefault();  // Prevent the form from reloading the page
+
+        // Collect form data
+        const unitId = document.getElementById('unitId').value;
+        const userId = document.getElementById('userId').value;
+        const billingOption = document.getElementById('billingOption').value;
+        const startDate = document.getElementById('startDate').value;
+        const endDate = document.getElementById('endDate').value;
+        const price = parseFloat(document.getElementById('price').value);
+        const paymentMethod = document.getElementById('paymentMethod').value;
+        const status = document.getElementById('status').value;
+
+        // Auto-generate Booking ID
+        const bookingId = generateBookingId();
+
+        // Create the booking object
+        const bookingData = {
+            BookingId: bookingId,
+            UserID: userId,
+            UnitID: unitId,
+            BillingOption: billingOption,
+            StartDate: startDate,
+            EndDate: endDate,
+            Price: price,
+            PaymentMethod: paymentMethod,
+            Status: status,
+            Unlocked: false
+        };
+
+        // Simulate sending the booking data to the backend (using a dummy API)
+        console.log("Booking Created:", bookingData);
+
+        // Add the booking data to the table
+        addBookingToTable(bookingData);
+
+        // Optionally, show a success message or save to the database
+        document.getElementById('errorMessage').style.display = 'none';
+    });
+
+    // Function to add a booking to the table
+    function addBookingToTable(bookingData) {
+        const tableBody = document.getElementById('bookingTable').getElementsByTagName('tbody')[0];
+        const row = tableBody.insertRow();
+
+        row.insertCell(0).textContent = bookingData.BookingId;
+        row.insertCell(1).textContent = bookingData.UserID;
+        row.insertCell(2).textContent = bookingData.UnitID;
+        row.insertCell(3).textContent = bookingData.BillingOption;
+        row.insertCell(4).textContent = bookingData.StartDate;
+        row.insertCell(5).textContent = bookingData.EndDate;
+        row.insertCell(6).textContent = bookingData.Price;
+        row.insertCell(7).textContent = bookingData.PaymentMethod;
+        row.insertCell(8).textContent = bookingData.Status;
+    }
+</script>
+
+</body>
+</html>

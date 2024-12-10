@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Delete Booking</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #2c3e50; /* Dark Blue */
+            color: white;
+        }
+        h1 {
+            color: #ecf0f1; /* Light grey for text */
+        }
+        form {
+            background-color: #34495e; /* Grey background */
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+            width: 300px;
+            margin: auto;
+        }
+        label {
+            display: block;
+            margin: 10px 0 5px;
+            color: #ecf0f1;
+        }
+        input[type="text"], input[type="number"] {
+            width: 100%;
+            padding: 10px;
+            margin: 5px 0 15px;
+            border: 1px solid #7f8c8d;
+            border-radius: 4px;
+            background-color: #2c3e50; /* Dark Blue background for input */
+            color: white;
+        }
+        button {
+            background-color: #2980b9; /* Dark blue button */
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            width: 100%;
+        }
+        button:hover {
+            background-color: #3498db; /* Lighter blue when hovering */
+        }
+        .response {
+            margin-top: 20px;
+            padding: 10px;
+            border-radius: 4px;
+            background-color: #ecf0f1; /* Light Grey */
+            color: #2c3e50; /* Dark Blue Text */
+            display: none; /* Initially hidden */
+        }
+    </style>
+</head>
+<body>
+    <h1>Delete a Booking</h1>
+    <form id="deleteBookingForm">
+        <label for="bookingId">Booking ID:</label>
+        <input type="number" id="bookingId" name="bookingId" required>
+
+        <button type="submit">Delete Booking</button>
+    </form>
+
+    <div class="response" id="responseMessage"></div>
+
+    <script>
+        // Get the form and response message div
+        const deleteBookingForm = document.getElementById('deleteBookingForm');
+        const responseMessage = document.getElementById('responseMessage');
+
+        // API endpoint (replace with your API Gateway endpoint URL)
+        const apiEndpoint = 'https://nuna5gxshc.execute-api.us-east-1.amazonaws.com/production/booking';
+
+        // Handle form submission
+        deleteBookingForm.addEventListener('submit', async (e) => {
+            e.preventDefault(); // Prevent form from submitting the default way
+
+            // Get the BookingId from the form
+            const bookingId = document.getElementById('bookingId').value;
+
+            try {
+                // Make a DELETE request to the API
+                const response = await fetch(apiEndpoint, {
+                    method: 'DELETE',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ BookingId: bookingId }), // Send the BookingId in the request body
+                });
+
+                const data = await response.json();
+
+                // Check if the booking was deleted successfully
+                if (response.ok) {
+                    responseMessage.style.backgroundColor = '#d4edda'; // Green for success
+                    responseMessage.style.color = '#155724'; // Dark Green text
+                    responseMessage.style.display = 'block'; // Show the response message
+                    responseMessage.innerHTML = `Booking ID ${bookingId} successfully deleted.`;
+                } else {
+                    responseMessage.style.backgroundColor = '#f8d7da'; // Red for error
+                    responseMessage.style.color = '#721c24'; // Dark Red text
+                    responseMessage.style.display = 'block'; // Show the response message
+                    responseMessage.innerHTML = `Error: ${data.body || 'Unable to delete booking'}`;
+                }
+            } catch (error) {
+                // Handle any errors during the fetch
+                responseMessage.style.backgroundColor = '#f8d7da'; // Red for error
+                responseMessage.style.color = '#721c24'; // Dark Red text
+                responseMessage.style.display = 'block'; // Show the response message
+                responseMessage.innerHTML = `Error: ${error.message}`;
+            }
+        });
+    </script>
+</body>
+</html>

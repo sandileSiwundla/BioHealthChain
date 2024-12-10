@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Display API Data</title>
+
+    <!-- Prevent the favicon request -->
+    <link rel="icon" href="data:,"> <!-- Empty favicon -->
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #2C3E50; /* Dark Blue Background */
+            color: #ecf0f1; /* Light Grey Text */
+        }
+        header {
+            background-color: #34495E; /* Darker Blue for header */
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+        }
+        h1 {
+            font-size: 36px;
+            margin-bottom: 20px;
+        }
+        p {
+            font-size: 18px;
+            line-height: 1.6;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        table, th, td {
+            border: 1px solid #7f8c8d; /* Light Grey Borders */
+        }
+        th, td {
+            padding: 12px;
+            text-align: left;
+        }
+        th {
+            background-color: #2C3E50; /* Dark Blue for table header */
+            color: #ecf0f1;
+        }
+        td {
+            background-color: #34495E; /* Slightly darker blue for table rows */
+        }
+        #errorMessage {
+            color: #e74c3c; /* Red error message */
+            text-align: center;
+            margin-top: 20px;
+            display: none;
+        }
+        button {
+            background-color: #1abc9c; /* Greenish for buttons */
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            margin: 10px;
+        }
+        button:hover {
+            background-color: #16a085; /* Darker green on hover */
+        }
+        select {
+            padding: 8px;
+            font-size: 14px;
+            margin-right: 10px;
+            border: none;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>SafeSpace</h1>
+    <p>Your Self-Storage Solution in the Digital Age</p>
+</header>
+
+<h1>Units Information</h1>
+<p>This page displays the unit data retrieved from the API.</p>
+
+<!-- Dropdown to filter units by status -->
+<label for="statusFilter">Filter by Status: </label>
+<select id="statusFilter" onchange="filterUnitsByStatus()">
+    <option value="All">All</option>
+    <option value="Available">Available</option>
+    <option value="Reserved">Reserved</option>
+    <option value="Unavailable">Unavailable</option>
+    <option value="Canceled">Canceled</option>
+</select>
+
+<!-- Button to fetch data -->
+<button onclick="fetchData()">Load Units</button>
+
+<!-- Buttons for Admin and Non-Admin Actions -->
+<button id="createUnitButton" onclick="createUnit()" style="display: none;">Create Unit</button>
+<button id="deleteUnitButton" onclick="deleteUnit()" style="display: none;">Delete Unit</button>
+<button id="createBookingButton" onclick="createBooking()" style="display: inline-block;">Create Booking</button>
+<button id="showBookingButton" onclick="showBooking()" style="display: inline-block;">Show Booking</button>
+<button id="deleteBookingButton" onclick="deleteBooking()" style="display: inline-block;">Delete Booking</button>
+
+<!-- Table to display units -->
+<table id="unitsTable">
+    <thead>
+        <tr>
+            <th>Unit ID</th>
+            <th>Price</th>
+            <th>Status</th>
+            <th>Type</th>
+        </tr>
+    </thead>
+    <tbody>
+        <!-- Data rows will be inserted here -->
+    </tbody>
+</table>
+
+<!-- Error message -->
+<p id="errorMessage">Error fetching data. Please try again later.</p>
+
+<script src="https://cdn.jsdelivr.net/npm/amazon-cognito-identity-js@5.0.3/dist/amazon-cognito-identity.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/aws-sdk/2.1041.0/aws-sdk.min.js"></script>
+
+<script>
+    let allUnitsData = [];  // Store all the fetched data
+
+    const poolData = {
+        UserPoolId: 'us-east-1_SeeG97ZPU', // Replace with your actual Cognito User Pool ID
+        ClientId: '1hjt9dof8qd66mshlqclooohba' // Replace with your actual Cognito User Pool Client ID
+    };
+    
+    const userPool = new AmazonCognitoIdentity.CognitoUserPool(poolData);
+
+    // Function to check if the user is part of the Admin group
+    function checkUserGroup() {
+        const cognitoUser = userPool.getCurrentUser();
+    
+        if (!cognitoUser) {
+            // If user is not logged in, redirect to the login page
+            window.location.href = 'login.html'; // Replace with your actual login page URL
+            return;
+        }
+    
+        cognitoUser.getSession(function(err, session) {
+            if (err) {
+                alert(err.message || JSON.stringify(err));
+                return;
+            }
+    
+            cognitoUser.getUserAttributes(function(err, attributes) {
+                if (err) {
+                    alert(err.message || JSON.stringify(err));
+                    return;
+                }
+    
+                // Check the groups the user is part of
+                const groupsAttribute = attributes.find(attr => attr.Name === 'cognito:groups');
+                const userGroups = groupsAttribute ? groupsAttribute.Value.split(',') : [];
+    
+                if (userGroups.includes('Admins')) {
+                    // If user is an admin, show admin buttons
+                    document.getElementById('createUnitButton').style.display = 'inline-block';
+                    document.getElementById('deleteUnitButton').style.display = 'inline-block';
+                } else {
+                    // If not admin, hide admin buttons
+                    document.getElementById('createUnitButton').style.display = 'none';
+                    document.getElementById('deleteUnitButton').style.display = 'none';
+                }
+            });
+        });
+    }
+
+    // Function to fetch data from the API Gateway
+    function fetchData() {
+        const apiUrl = 'https://nuna5gxshc.execute-api.us-east-1.amazonaws.com/production/units';
+
+        fetch(apiUrl)
+            .then(response => response.json())  // Parse JSON from response
+            .then(data => {
+                if (data.units && data.units.Items) {
+                    allUnitsData = data.units.Items;
+                    displayUnits(allUnitsData);
+                    document.getElementById('errorMessage').style.display = 'none';
+                } else {
+                    showError('Invalid data structure received.');
+                }
+            })
+            .catch(error => {
+                showError('Failed to fetch data from the API.');
+            });
+    }
+
+    // Function to display an error message
+    function showError(message) {
+        const errorMessage = document.getElementById('errorMessage');
+        errorMessage.textContent = message;
+        errorMessage.style.display = 'block';
+    }
+
+    // Function to display units in the table
+    function displayUnits(units) {
+        const tableBody = document.getElementById('unitsTable').getElementsByTagName('tbody')[0];
+        tableBody.innerHTML = '';
+
+        units.forEach(item => {
+            const row = tableBody.insertRow();
+            const unitIdCell = row.insertCell(0);
+            const priceCell = row.insertCell(1);
+            const statusCell = row.insertCell(2);
+            const typeCell = row.insertCell(3);
+
+            unitIdCell.textContent = item.UnitID;
+            priceCell.textContent = item.Price;
+            statusCell.textContent = item.Status;
+            typeCell.textContent = item.Type;
+        });
+    }
+
+    // Function to create a unit
+    function createUnit() {
+        window.open('createUnit.html', '_blank');
+    }
+
+    // Function to delete a unit
+    function deleteUnit() {
+        window.open('deleteUnit.html', '_blank');
+    }
+
+    // Function to create a booking
+    function createBooking() {
+        window.open('createBooking.html', '_blank');
+    }
+
+    // Function to show a booking
+    function showBooking() {
+        window.open('getBookings.html', '_blank');
+    }
+
+    // Function to delete a booking
+    function deleteBooking() {
+        window.open('deleteBooking.html', '_blank');
+    }
+
+    // Ensure the user group is checked on page load
+    window.onload = function() {
+        checkUserGroup();
+    };
+</script>
+
+</body>
+</html>
