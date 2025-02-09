@@ -1,0 +1,66 @@
+import React, { useState, useEffect } from 'react';
+import './buy.css'; // Make sure to import the relevant CSS if needed
+
+const Buy = () => {
+  const [currentStep, setCurrentStep] = useState(1);
+
+  // Function to handle step progression
+  useEffect(() => {
+    const interval = setInterval(() => {
+      if (currentStep < 1) {
+        setCurrentStep((prevStep) => prevStep + 1);
+      }
+    }, 1000); // Progress every 1 second
+
+    // Cleanup the interval on component unmount
+    return () => clearInterval(interval);
+  }, [currentStep]);
+
+  // Function to handle Buy Button click
+  const handleBuyButtonClick = () => {
+    alert('Buy button clicked!');
+    // You can perform any action here like navigating, making a purchase, etc.
+  };
+  // Function to handle Buy Button click
+  const handleSellButtonClick = () => {
+    alert('Buy button clicked!');
+    // You can perform any action here like navigating, making a purchase, etc.
+  };
+    // Function to handle Buy Button click
+    const handleGoBackButtonClick = () => {
+        alert('Buy button clicked!');
+        // You can perform any action here like navigating, making a purchase, etc.
+      };
+  return (
+    <div className="modal-overlay">
+      <div className="buy"></div>
+
+      <button className="buyLowerButton" onClick={handleBuyButtonClick}></button>
+      <button className="sellLowerButton" onClick={handleSellButtonClick}></button>
+      <button className="goback" onClick={handleGoBackButtonClick}></button>
+      
+      <div className="modal-content">
+        <div className="progress-bar">
+          <div className={`step ${currentStep >= 1 ? 'completed' : ''} ${currentStep === 1 ? 'current' : ''}`}>
+            <div className="circle">1</div>
+            <div className="label">Amount</div>
+          </div>
+          <div className={`step ${currentStep >= 2 ? 'completed' : ''} ${currentStep === 2 ? 'current' : ''}`}>
+            <div className="circle">2</div>
+            <div className="label">Wallet</div>
+          </div>
+          <div className={`step ${currentStep >= 3 ? 'completed' : ''} ${currentStep === 3 ? 'current' : ''}`}>
+            <div className="circle">3</div>
+            <div className="label">Verify</div>
+          </div>
+          <div className={`step ${currentStep >= 4 ? 'completed' : ''} ${currentStep === 4 ? 'current' : ''}`}>
+            <div className="circle">4</div>
+            <div className="label">Order</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default Buy;

@@ -1,0 +1,257 @@
+/* Main container styling */
+.app {
+    text-align: center;
+    padding: 50px;
+    height: 100vh;  /* Full viewport height */
+    background-image: url('./assets/background.png'); /* Add your background image here */
+    background-size: cover;  /* Ensure it covers the whole background */
+    background-position: center;  /* Center the image */
+    background-repeat: no-repeat; /* Avoid repeating the image */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  /* Modal overlay (background that darkens the page) */
+  .modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;  /* Full width of the viewport */
+    height: 100vh; /* Full height of the viewport */
+    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;  /* Ensure it's on top of other content */
+  }
+  
+  /* Modal content (the box that holds the actual content) */
+  .modal-content {
+    width: 525px; /* Adjust width (30% smaller) */
+    height: 534px; /* Adjust height (30% smaller) */
+    background: rgba(104, 190, 255, 0.25);  /* Background color with transparency */
+    border: 1px solid #039FFF; /* Blue border */
+    border-radius: 14px;     /* Rounded corners */
+    backdrop-filter: blur(12px); /* Apply a blur effect to the background */
+    padding: 20px;
+    box-sizing: border-box;   /* Include padding in the element's total size */
+    text-align: center;
+    position: relative;  /* Allows positioning of the progress bar */
+  }
+  
+  /* Progress bar container */
+  .progress-bar {
+    position: absolute;
+    top: 1cm;  /* Position 1 cm below the top of the modal */
+    left: 2.5cm;  /* 2.5 cm from the left edge */
+    right: 2.5cm; /* 2.5 cm from the right edge */
+    display: flex;
+    justify-content: space-between;
+    width: calc(100% - 5cm);  /* Ensure it’s centered with left and right padding */
+    margin-top: 1cm;  /* Adds space between the top of the modal and the progress bar */
+    padding: 10px 0;
+  }
+  
+  /* Each step */
+  .step {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    flex: 1;
+    /* Ensuring the steps do not overlap */
+    padding: 0 5px;
+    width: 100%;
+    justify-content: space-evenly;
+  }
+  
+  /* The circle (adjusted size, transparency, and line spacing) */
+  .circle {
+    width: 30px; /* Smaller circle size */
+    height: 30px; /* Smaller circle size */
+    border-radius: 50%;
+    background-color: transparent; /* Make the circle transparent */
+    border: 2px solid #ddd; /* Light border for visibility */
+    color: black; /* Change text color to black */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 14px; /* Adjust font size */
+    font-weight: bold;
+    transition: background-color 0.3s, border-color 0.3s; /* Transition for color changes */
+  }
+
+  /* Step completed style */
+  .step.completed .circle {
+    background-color: rgba(104, 190, 255, 0.25); /* Blue color for completed step */
+    border-color: #039FFF; /* Blue border for completed step */
+    color: black; /* Keep the number black */
+  }
+  
+  /* Current step style */
+  .step.current .circle {
+    background-color: rgba(104, 190, 255, 0.25); /* Light blue color for the current step */
+    border-color: #039FFF; /* Light blue border for current step */
+    color: black; /* Keep the number black */
+  }
+
+  /* Logo as background image at the bottom right */
+.logo {
+    position: fixed;  /* Position it relative to the viewport */
+    bottom: 1cm;     /* 2.5 cm from the bottom */
+    right: 1cm;      /* 2.5 cm from the right edge */
+    width: 1cm;      /* Set the width to 2.5 cm */
+    height: 1cm;     /* Set the height to 2.5 cm to maintain aspect ratio */
+    background-image: url('./assets/logo.png');  /* Import the logo image */
+    background-size: cover;  /* Ensure it covers the space */
+    background-position: center;  /* Center the image within the element */
+    background-repeat: no-repeat;  /* Avoid repeating the image */
+  }
+
+.universal {
+    position: fixed;  /* Fixes it relative to the viewport */
+    top: -1cm;         /* 1 cm from the top */
+    left: 50%;        /* Center the logo horizontally */
+    transform: translateX(-50%);  /* Adjust position to make it perfectly centered */
+    width: 3.6cm;     /* Set the width to 3.6 cm (3 times bigger) */
+    height: 3.6cm;    /* Set the height to 3.6 cm (3 times bigger) */
+    background-image: url('./assets/universal.png');  /* Import the logo image */
+    background-size: contain;  /* Ensure the image is contained within the box */
+    background-position: center;  /* Center the image within the element */
+    background-repeat: no-repeat;  /* Avoid repeating the image */
+  }
+  
+
+  .kotani {
+    position: fixed;  /* Fixes it relative to the viewport */
+    top: 0cm;         /* 1 cm from the top */
+    left: 55%;        /* Center the logo horizontally */
+    transform: translateX(-50%);  /* Adjust position to make it perfectly centered */
+    width: 3.6cm;     /* Set the width to 3.6 cm (3 times bigger) */
+    height: 3.6cm;    /* Set the height to 3.6 cm (3 times bigger) */
+    background-image: url('./assets/kotanipayLogo.png');  /* Import the logo image */
+    background-size: contain;  /* Ensure the image is contained within the box */
+    background-position: center;  /* Center the image within the element */
+    background-repeat: no-repeat;  /* Avoid repeating the image */
+  }
+  
+  .poweredby {
+    position: fixed;  /* Fixes it relative to the viewport */
+    top: 0.6cm;       /* 1 cm from the top */
+    left: 47%;        /* Center the logo horizontally */
+    transform: translateX(-50%);  /* Adjust position to make it perfectly centered */
+    width: 2.4cm;     /* Set the width */
+    height: 2.4cm;    /* Set the height */
+    background-image: url('./assets/poweredby.png');  /* Import the logo image */
+    background-size: contain;  /* Ensure the image is contained within the box */
+    background-position: center;  /* Center the image within the element */
+    background-repeat: no-repeat;  /* Avoid repeating the image */
+    border: none;  /* Remove borders */
+    background-color: transparent;  /* Remove any background color (white, etc.) */
+    outline: none;  /* Remove the outline on focus */
+  }
+  
+  .sell {
+    position: fixed;  /* Fixes it relative to the viewport */
+    top: 0.6cm;         /* 1 cm from the top */
+    left: 47%;        /* Center the logo horizontally */
+    transform: translateX(-50%);  /* Adjust position to make it perfectly centered */
+    width: 2.4cm;     /* Set the width to 3.6 cm (3 times bigger) */
+    height: 2.4cm;    /* Set the height to 3.6 cm (3 times bigger) */
+    background-image: url('./assets/sellButton.png');  /* Import the logo image */
+    background-size: contain;  /* Ensure the image is contained within the box */
+    background-position: center;  /* Center the image within the element */
+    background-repeat: no-repeat;  /* Avoid repeating the image */
+  }
+
+
+  .sellLowerButton {
+    position: fixed;  /* Fixes it relative to the viewport */
+    top: 0.6cm;         /* 1 cm from the top */
+    left: 47%;        /* Center the logo horizontally */
+    transform: translateX(-50%);  /* Adjust position to make it perfectly centered */
+    width: 2.4cm;     /* Set the width to 3.6 cm (3 times bigger) */
+    height: 2.4cm;    /* Set the height to 3.6 cm (3 times bigger) */
+    background-image: url('./assets/poweredby.png');  /* Import the logo image */
+    background-size: contain;  /* Ensure the image is contained within the box */
+    background-position: center;  /* Center the image within the element */
+    background-repeat: no-repeat;  /* Avoid repeating the image */
+  }
+
+
+  .currency-dropdowns {
+    position: fixed;   /* Fix position relative to viewport */
+    top: 2.8cm;        /* Adjust vertical position */
+    left: 50%;         /* Center horizontally */
+    transform: translateX(-50%); /* Centering */
+    z-index: 1000;     /* Make sure dropdowns appear on top */
+  }
+  
+  .currency-dropdown {
+    display: block;
+    width: 12cm;       /* Adjust the width as needed */
+    height: 2.5em;
+    margin-bottom: 1cm; /* 1 cm gap between dropdowns */
+    padding: 0.5em;
+    font-size: 1em;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  .currency-dropdown option {
+    padding: 0.5em;
+  }
+  
+  /* Optional: Add some hover effect to dropdown */
+  .currency-dropdown:hover {
+    border-color: #007bff;
+  }
+  /* Ensure the body and HTML elements fill the viewport and prevent overflow */
+html, body {
+  height: 100%;      /* Ensure full height of the screen */
+  margin: 0;         /* Remove default margins */
+  padding: 0;        /* Remove default padding */
+  overflow: hidden;  /* Prevent the page from overflowing */
+}
+
+/* Modal overlay to cover the entire screen */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;     /* Full height of the viewport */
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+/* Modal content to stay within bounds of the screen */
+.modal-content {
+  width: 525px;
+  max-height: 90vh;   /* Ensure the modal doesn’t exceed 90% of the viewport height */
+  background: rgba(104, 190, 255, 0.25);
+  border: 1px solid #039FFF;
+  border-radius: 14px;
+  backdrop-filter: blur(12px);
+  padding: 20px;
+  box-sizing: border-box;
+  text-align: center;
+  position: relative;
+  overflow-y: auto;   /* Allow scrolling if content overflows */
+}
+
+/* If you have large images or content, make sure they fit inside the modal */
+img, .back, .transferFunds, .buyLowerButton, .sellLowerButton {
+  max-width: 100%;    /* Ensure the images do not overflow horizontally */
+  max-height: 100%;   /* Ensure the images do not overflow vertically */
+}
+
+/* Optional: If you want to allow scrolling for the entire page */
+body {
+  overflow-y: scroll;   /* Allow the page to scroll if necessary */
+}

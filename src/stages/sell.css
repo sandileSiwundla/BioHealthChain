@@ -1,0 +1,202 @@
+/* Example modal and progress bar styling */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+  }
+  
+  .modal-content {
+    width: 525px;
+    height: 534px;
+    background: rgba(104, 190, 255, 0.25);
+    border: 1px solid #039FFF;
+    border-radius: 14px;
+    backdrop-filter: blur(12px);
+    padding: 20px;
+    box-sizing: border-box;
+    text-align: center;
+    position: relative;
+  }
+  .progress-bar {
+    position: absolute;
+    top: 1cm;
+    left: 2.5cm;
+    right: 2.5cm;
+    display: flex;
+    justify-content: space-between;
+    width: calc(100% - 5cm);
+    margin-top: 1cm;
+    padding: 10px 0;
+  }
+  
+  .step {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    flex: 1;
+  }
+  
+  .circle {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background-color: transparent;
+    border: 2px solid #ddd;
+    color: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 14px;
+    font-weight: bold;
+    transition: background-color 0.3s, border-color 0.3s;
+  }
+  
+  .step.completed .circle {
+    background-color: rgba(104, 190, 255, 0.25);
+    border-color: 1px solid #039FFF;
+  }
+  
+  .step.current .circle {
+    background-color: rgba(104, 190, 255, 0.25);
+    border-color: 1px solid #039FFF;
+  }
+
+  
+  .buyLowerButton {
+    position: fixed;  /* Fixes it relative to the viewport */
+    top: 17cm;         /* 1 cm from the top */
+    left: 62%;        /* Center the logo horizontally */
+    transform: translateX(-50%);  /* Adjust position to make it perfectly centered */
+    width: 2.4cm;     /* Set the width to 3.6 cm (3 times bigger) */
+    height: 2.4cm;    /* Set the height to 3.6 cm (3 times bigger) */
+    background-image: url('./src/assets/buyButton.png');  /* Import the logo image */
+    background-size: contain;  /* Ensure the image is contained within the box */
+    background-position: center;  /* Center the image within the element */
+    background-repeat: no-repeat;  /* Avoid repeating the image */
+    z-index: 2000;     /* Set a higher z-index to ensure it appears on top of the modal */
+    background-color: transparent;  /* Ensure no background color */
+    border: none; /* Remove default button border */
+    padding: 0; /* Remove any padding */
+
+  }
+
+  .buyLowerButton:focus {
+    outline: none; /* Remove the outline when focused */
+  }
+  
+  .buyLowerButton:hover {
+    opacity: 0.8; /* Change opacity when hovering for effect */
+  }
+  
+
+  .buy {
+    position: fixed;  /* Fixes it relative to the viewport */
+    top: 0px;  /* Temporarily test with 0px to bring it into view */
+    left: 50%;        /* Center the logo horizontally */
+    transform: translateX(-50%);  /* Adjust position to make it perfectly centered */
+    width: 2.4cm;     /* Set the width to 3.6 cm (3 times bigger) */
+    height: 2.4cm;    /* Set the height to 3.6 cm (3 times bigger) */
+    background-image: url('./src/assets/sellButton.png');  /* Import the logo image */
+    background-size: contain;  /* Ensure the image is contained within the box */
+    background-position: center;  /* Center the image within the element */
+    background-repeat: no-repeat;  /* Avoid repeating the image */
+    z-index: 2000;     /* Set a higher z-index to ensure it appears on top of the modal */
+  
+}
+    
+/* Connecting line between the circles */
+.step:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    top: 18px;  /* Adjust the position to align with the circles */
+    left:100%;  /* Position it centrally */
+    transform: translateX(-50%);  /* Ensure the line is centered */
+    width: calc(30px + 0.5cm);  /* Extend the width by half a centimeter */
+    height: 2px;
+    background-color: #0f0d0d;
+  }
+  
+
+  
+  /* Label for each step */
+  .label {
+    margin-top: 8px;
+    font-size: 14px;
+    color: #171414;
+  }
+  
+  .sellLowerButton {
+    position: fixed;  /* Fixes it relative to the viewport */
+    top: 17cm;         /* 1 cm from the top */
+    left: 70%;        /* Center the logo horizontally */
+    transform: translateX(-50%);  /* Adjust position to make it perfectly centered */
+    width: 2.4cm;     /* Set the width to 3.6 cm (3 times bigger) */
+    height: 2.4cm;    /* Set the height to 3.6 cm (3 times bigger) */
+    background-image: url('./src/assets/sellButton.png');  /* Import the logo image */
+    background-size: contain;  /* Ensure the image is contained within the box */
+    background-position: center;  /* Center the image within the element */
+    background-repeat: no-repeat;  /* Avoid repeating the image */
+    z-index: 2000;     /* Set a higher z-index to ensure it appears on top of the modal */
+    background-color: transparent;  /* Ensure no background color */
+    border: none; /* Remove default button border */
+    padding: 0; /* Remove any padding */
+
+  }
+
+  .sellLowerButton:focus {
+    outline: none; /* Remove the outline when focused */
+  }
+  
+  .sellLowerButton:hover {
+    opacity: 0.8; /* Change opacity when hovering for effect */
+  }
+  
+
+  .goback {
+    position: fixed;  /* Fixes it relative to the viewport */
+    top: 16.8cm;         /* 1 cm from the top */
+    left: 53%;        /* Center the logo horizontally */
+    transform: translateX(-50%);  /* Adjust position to make it perfectly centered */
+    width: 2.9cm;     /* Set the width to 3.6 cm (3 times bigger) */
+    height: 2.9cm;    /* Set the height to 3.6 cm (3 times bigger) */
+    background-image: url('./src/assets/goback.png');  /* Import the logo image */
+    background-size: contain;  /* Ensure the image is contained within the box */
+    background-position: center;  /* Center the image within the element */
+    background-repeat: no-repeat;  /* Avoid repeating the image */
+    z-index: 2000;     /* Set a higher z-index to ensure it appears on top of the modal */
+    background-color: transparent;  /* Ensure no background color */
+    border: none; /* Remove default button border */
+    padding: 0; /* Remove any padding */
+
+  }
+
+  .goback:focus {
+    outline: none; /* Remove the outline when focused */
+  }
+  
+  .goback:hover {
+    opacity: 0.8; /* Change opacity when hovering for effect */
+  }
+  
+  .sell {
+    position: fixed;  /* Fixes it relative to the viewport */
+    top: 2.9cm;         /* 1 cm from the top */
+    left: 50%;        /* Center the logo horizontally */
+    transform: translateX(-50%);  /* Adjust position to make it perfectly centered */
+    width: 2.4cm;     /* Set the width to 3.6 cm (3 times bigger) */
+    height: 2.4cm;    /* Set the height to 3.6 cm (3 times bigger) */
+    background-image: url('./src/assets/sell.png');  /* Import the logo image */
+    background-size: contain;  /* Ensure the image is contained within the box */
+    background-position: center;  /* Center the image within the element */
+    background-repeat: no-repeat;  /* Avoid repeating the image */
+    z-index: 2000;     /* Set a higher z-index to ensure it appears on top of the modal */
+
+  }
