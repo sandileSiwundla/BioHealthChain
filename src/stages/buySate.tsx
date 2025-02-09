@@ -37,6 +37,7 @@ const Buy = () => {
     <div className="modal-overlay">
       <div className="buy"></div>
       <div className="currency-label">Currency</div>
+      <div className="Chain-label">Chain</div>
       <DropDown/>
       <button className="buyLowerButton" onClick={handleBuyButtonClick}></button>
       <button className="sellLowerButton" onClick={handleSellButtonClick}></button>

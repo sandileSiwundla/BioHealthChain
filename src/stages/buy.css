@@ -194,8 +194,21 @@
     text-align: center; /* Center the text horizontally */
     position: relative; /* Allows for positioning manipulation */
     top: -2.3cm; /* Adjust this value to move it vertically (2cm down) */
-    left: 8%; /* Centers it horizontally */
+    left: 12%; /* Centers it horizontally */
     transform: translateX(-50%); /* Ensures exact centering */
     z-index: 2000;     /* Set a higher z-index to ensure it appears on top of the modal */
+
+}
+
+.Chain-label {
+  font-size: -1cm;  /* Adjust font size to 1.2cm */
+  font-weight: bold; /* Optional, makes the text bold */
+  margin-bottom: 0.5cm; /* Space below the "Currency" text in centimeters */
+  text-align: center; /* Center the text horizontally */
+  position: relative; /* Allows for positioning manipulation */
+  top: -2.3cm; /* Adjust this value to move it vertically (2cm down) */
+  left: 18%; /* Centers it horizontally */
+  transform: translateX(-50%); /* Ensures exact centering */
+  z-index: 2000;     /* Set a higher z-index to ensure it appears on top of the modal */
 
 }
