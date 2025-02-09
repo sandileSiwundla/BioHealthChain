@@ -7,28 +7,35 @@ import Wallet from './wallet';
 import VerifyOTP from './verifyOTP'; 
 
 const DynamicContentLoader = () => {
-  const [currentPage, setCurrentPage] = useState(0); // Track current page
-
-  // Function to handle Buy Button click and navigate to the next page
-  const handleBuyButtonClick = () => {
-    setCurrentPage(1); // Transition to next page, for example Sell
+    const [currentPage, setCurrentPage] = useState(0); // Track the current page
+  
+    // Function to handle "Next" Button click and move to the next page
+    const handleNextButtonClick = () => {
+      if (currentPage < contentArray.length - 1) {
+        setCurrentPage((prevPage) => prevPage + 1); // Move to the next page
+      }
+    };
+  
+    // Function to handle "Go Back" Button click and move to the previous page
+    const handleGoBackButtonClick = () => {
+      setCurrentPage((prevPage) => (prevPage > 0 ? prevPage - 1 : 0)); // Decrease page index, but don't go below 0
+    };
+  
+    const contentArray = [
+      <Buy onBuyButtonClick={handleNextButtonClick} onGoBackButtonClick={handleGoBackButtonClick} />,
+      <Sell onBuyButtonClick={handleNextButtonClick} onGoBackButtonClick={handleGoBackButtonClick} />,
+      <Transfer onBuyButtonClick={handleNextButtonClick} onGoBackButtonClick={handleGoBackButtonClick} />,
+      <Verify onBuyButtonClick={handleNextButtonClick} onGoBackButtonClick={handleGoBackButtonClick} />,
+      <Wallet oonBuyButtonClick={handleNextButtonClick} onGoBackButtonClick={handleGoBackButtonClick} />,
+      <VerifyOTP oonBuyButtonClick={handleNextButtonClick} onGoBackButtonClick={handleGoBackButtonClick} />,
+    ];
+  
+    return (
+      <div>
+        {/* Render the current page based on currentPage state */}
+        {contentArray[currentPage]}
+      </div>
+    );
   };
-
-  const contentArray = [
-    <Buy onBuyButtonClick={handleBuyButtonClick} />, // Pass the function here
-    <Sell />,
-    <Transfer />,
-    <Verify />,
-    <Wallet />,
-    <VerifyOTP />,
-  ];
-
-  return (
-    <div>
-      {/* Render the current page based on currentPage state */}
-      {contentArray[currentPage]}
-    </div>
-  );
-};
-
-export default DynamicContentLoader;
+  
+  export default DynamicContentLoader;

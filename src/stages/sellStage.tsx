@@ -1,7 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import './sell.css'; // Ensure the CSS path is correct
+interface SellProps {
+  onBuyButtonClick: () => void;
+  onGoBackButtonClick: () => void; 
+}
 
-const Sell = () => {
+
+const Sell: React.FC<SellProps>= ({ onBuyButtonClick, onGoBackButtonClick }) => {
   const [currentStep, setCurrentStep] = useState(1); // Start at step 1
 
   // Function to handle step progression
@@ -25,9 +30,6 @@ const Sell = () => {
     alert('Sell button clicked!');
   };
 
-  const handleGoBackButtonClick = () => {
-    alert('Go Back button clicked!');
-  };
 
   return (
     <div className="modal-overlay">
@@ -35,7 +37,7 @@ const Sell = () => {
 
       <button className="buyLowerButton" onClick={handleBuyButtonClick}></button>
       <button className="sellLowerButton" onClick={handleSellButtonClick}></button>
-      <button className="goback" onClick={handleGoBackButtonClick}></button>
+      <button className="goback" onClick={onGoBackButtonClick}></button>
 
       {/* Progress Bar */}
       <div className="modal-content">

@@ -4,12 +4,13 @@ import DropDown from './dropDownList';
 import Chain from './ChainDropDown';  
 
 interface BuyProps {
-  onBuyButtonClick: () => void; // Function passed from DynamicContentLoader to switch steps
+  onBuyButtonClick: () => void;
+  onGoBackButtonClick: () => void; 
 }
 
-const Buy: React.FC<BuyProps> = ({ onBuyButtonClick }) => {
+const Buy: React.FC<BuyProps> = ({ onBuyButtonClick, onGoBackButtonClick }) => {
   const [currentStep, setCurrentStep] = useState(1);
-
+  
   // Function to handle step progression
   useEffect(() => {
     const interval = setInterval(() => {
@@ -34,11 +35,8 @@ const Buy: React.FC<BuyProps> = ({ onBuyButtonClick }) => {
     // You can also update the parent state here to trigger the next component if needed.
   };
 
-  // Function to handle Go Back Button click
-  const handleGoBackButtonClick = () => {
-    alert('Go Back button clicked!');
-    // Handle your back logic here
-  };
+  
+
 
   return (
     <div className="modal-overlay">
@@ -69,7 +67,7 @@ const Buy: React.FC<BuyProps> = ({ onBuyButtonClick }) => {
       {/* Existing Buttons */}
       <button className="sellLowerButton" onClick={handleSellButtonClick}></button>
       <button className="buyLowerButton" onClick={handleBuyButtonClick}></button>
-      <button className="goback" onClick={handleGoBackButtonClick}></button>
+      <button className="goback" onClick={onGoBackButtonClick}></button>
 
       <div className="modal-content">
         <div className="progress-bar">
