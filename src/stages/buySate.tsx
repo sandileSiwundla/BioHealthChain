@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import './buy.css'; // Make sure to import the relevant CSS if needed
+import './buy.css';
+import DropDown from './dropDownList';  
+
 
 const Buy = () => {
   const [currentStep, setCurrentStep] = useState(1);
@@ -34,7 +36,8 @@ const Buy = () => {
   return (
     <div className="modal-overlay">
       <div className="buy"></div>
-
+      <div className="currency-label">Currency</div>
+      <DropDown/>
       <button className="buyLowerButton" onClick={handleBuyButtonClick}></button>
       <button className="sellLowerButton" onClick={handleSellButtonClick}></button>
       <button className="goback" onClick={handleGoBackButtonClick}></button>

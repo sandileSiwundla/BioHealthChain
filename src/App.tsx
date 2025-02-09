@@ -23,7 +23,6 @@ function App() {
       {/* <Verify/> */}
       {/* <Wallet/> */}
       {/* <VerifyOTP/> */}
-      
     </div>
   );
 }
