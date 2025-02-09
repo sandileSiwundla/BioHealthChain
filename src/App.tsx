@@ -5,7 +5,7 @@ import Transfer from './stages/transfer';
 import Verify from './stages/verify';  
 import Wallet from './stages/wallet';  
 import VerifyOTP from './stages/verifyOTP';  
-
+import DynamicContainerLoader from './stages/DynamicContainerLoader'; // Import the dynamic loader component
 
 
 function App() {
@@ -17,7 +17,8 @@ function App() {
       <div className="universal"></div>
       <div className="kotani"></div>
       <div className="poweredby"></div> 
-      <Buy />
+      {/* <Buy /> */}
+      <DynamicContainerLoader/>
       {/* <Sell/> */}
       {/* <Transfer/> */}
       {/* <Verify/> */}
