@@ -17,9 +17,9 @@ function App() {
       <div className="universal"></div>
       <div className="kotani"></div>
       <div className="poweredby"></div> 
-      {/* <Buy /> */}
+      <Buy />
       {/* <Sell/> */}
-      <Transfer/>
+      {/* <Transfer/> */}
       {/* <Verify/> */}
       {/* <Wallet/> */}
       {/* <VerifyOTP/> */}

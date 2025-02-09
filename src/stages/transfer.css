@@ -186,11 +186,11 @@
 
   .back {
     position: fixed;  /* Fixes it relative to the viewport */
-    top: 14cm;         /* 1 cm from the top */
+    top: 14.4cm;         /* 1 cm from the top */
     left: 40%;        /* Center the logo horizontally */
     transform: translateX(-50%);  /* Adjust position to make it perfectly centered */
-    width: 2.9cm;     /* Set the width to 3.6 cm (3 times bigger) */
-    height: 2.9cm;    /* Set the height to 3.6 cm (3 times bigger) */
+    width: 2.4cm;     /* Set the width to 3.6 cm (3 times bigger) */
+    height: 2.4cm;    /* Set the height to 3.6 cm (3 times bigger) */
     background-image: url('./src/assets/back.png');  /* Import the logo image */
     background-size: contain;  /* Ensure the image is contained within the box */
     background-position: center;  /* Center the image within the element */
@@ -216,9 +216,9 @@
     position: fixed;  /* Fixes it relative to the viewport */
     top: 13.3cm;         /* 1 cm from the top */
     left: 60%;        /* Center the logo horizontally */
-    transform: translateX(-50%);  /* Adjust position to make it perfectly centered */
-    width: 3.9cm;     /* Set the width to 3.6 cm (3 times bigger) */
-    height: 4.5cm;    /* Set the height to 3.6 cm (3 times bigger) */
+    transform: translateX(-45%);  /* Adjust position to make it perfectly centered */
+    width: 4.1cm;     /* Set the width to 3.6 cm (3 times bigger) */
+    height: 4.6cm;    /* Set the height to 3.6 cm (3 times bigger) */
     background-image: url('./src/assets/transferfunds.png');  /* Import the logo image */
     background-size: contain;  /* Ensure the image is contained within the box */
     background-position: center;  /* Center the image within the element */
