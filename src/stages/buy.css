@@ -12,18 +12,18 @@
     z-index: 1000;
   }
   
-  .modal-content {
-    width: 525px;
-    height: 534px;
-    background: rgba(104, 190, 255, 0.25);
-    border: 1px solid #039FFF;
-    border-radius: 14px;
-    backdrop-filter: blur(12px);
-    padding: 20px;
-    box-sizing: border-box;
-    text-align: center;
-    position: relative;
-  }
+/* Line inside the modal */
+.modal-content::before {
+  content: ''; /* This is required to create a pseudo-element */
+  position: absolute;
+  top: 12cm; /* Adjust top position as needed */
+  left: 1cm; /* 1cm from the left edge */
+  width: calc(100% - 2cm); /* Full width minus 1cm on each side */
+  height: 2px; /* Thickness of the line */
+  background-color: #039FFF; /* Line color (adjust as needed) */
+  z-index: 1000; /* Ensure the line is on top of other elements */
+}
+
   
   .progress-bar {
     position: absolute;
@@ -211,4 +211,92 @@
   transform: translateX(-50%); /* Ensures exact centering */
   z-index: 2000;     /* Set a higher z-index to ensure it appears on top of the modal */
 
+}
+/* You Buy label */
+.you-buy {
+  font-size: -1cm; /* Adjust font size */
+  font-weight: bold;
+  text-align: center;
+  position: absolute;
+  top: 9.9cm; /* Adjust top position as per your layout */
+  left: 40%; /* Center the label horizontally */
+  transform: translateX(-50%); /* Center it precisely */
+  z-index: 2000; /* Ensure it appears on top of the modal */
+}
+
+/* You Receive label */
+.You-Receive {
+  font-size: -1cm; /* Adjust font size */
+  font-weight: bold;
+  text-align: center;
+  position: absolute;
+  top: 12cm; /* Adjust top position to avoid overlap with other elements */
+  left: 41%; /* Center the label horizontally */
+  transform: translateX(-50%); /* Center it precisely */
+  z-index: 2000; /* Ensure it appears on top of the modal */
+}
+
+/* You Receive label */
+.Total-Fee {
+  font-size: -1cm; /* Adjust font size */
+  font-weight: bold;
+  text-align: center;
+  position: absolute;
+  top: 15cm; /* Adjust top position to avoid overlap with other elements */
+  left: 40%; /* Center the label horizontally */
+  transform: translateX(-50%); /* Center it precisely */
+  z-index: 2000; /* Ensure it appears on top of the modal */
+}
+
+/* Content box at the top of the modal */
+.top-content-box {
+  position: absolute; /* Position it at the top of the modal */
+  top: 15.5cm; /* Adjust the top positioning as needed */
+  left: 15cm; /* Start 2cm from the left side */
+  right: 12cm; /* Keep 2cm space on the right */
+  padding: 10px; /* Add some padding around the content */
+  background-color: rgba(192, 213, 218, 0.49); /* Background color for the content box */
+  border-radius: 8px; /* Rounded corners for the content box */
+  text-align: right; /* Align text to the right */
+  font-size: 14px; /* Adjust the font size */
+  color: #04000080; /* Text color */
+  z-index: 1000; /* Ensure it appears on top */
+  box-sizing: border-box; /* Ensure padding is included in width calculation */
+  height: 1cm; /* Set the height to match the desired size */
+}
+
+/* Content box for "You Buy" text input */
+.you-buy-box input {
+  position: absolute;
+  top: 10.5cm; /* Adjust the top positioning as needed */
+  left: 15cm; /* Start 2cm from the left side */
+  right: 12cm; /* Keep 2cm space on the right */
+  padding: 10px; /* Add some padding around the content */
+  background-color: rgba(192, 213, 218, 0.49); /* Background color for the content box */
+  border: none; /* Remove border */
+  border-radius: 8px; /* Rounded corners for the content box */
+  font-size: 15px; /* Increase the font size */
+  color: #04000080; /* Text color */
+  z-index: 1000; /* Ensure it appears on top */
+  box-sizing: border-box; /* Ensure padding is included in width calculation */
+  height: 1.2cm; /* Set the height to match the desired size */
+  text-align: left; /* Align text to the left */
+}
+
+/* Content box for "You Receive" text input */
+.you-receive-box input {
+  position: absolute;
+  top: 12.5cm; /* Adjust the top positioning as needed */
+  left: 15cm; /* Start 2cm from the left side */
+  right: 12cm; /* Keep 2cm space on the right */
+  padding: 10px; /* Add some padding around the content */
+  background-color: rgba(192, 213, 218, 0.49); /* Background color for the content box */
+  border: none; /* Remove border */
+  border-radius: 8px; /* Rounded corners for the content box */
+  font-size: 15px; /* Increase the font size */
+  color: #04000080; /* Text color */
+  z-index: 1000; /* Ensure it appears on top */
+  box-sizing: border-box; /* Ensure padding is included in width calculation */
+  height: 1.2cm; /* Set the height to match the desired size */
+  text-align: left; /* Align text to the left */
 }
