@@ -151,33 +151,6 @@
     background-color: transparent;  /* Remove any background color (white, etc.) */
     outline: none;  /* Remove the outline on focus */
   }
-  
-  .sell {
-    position: fixed;  /* Fixes it relative to the viewport */
-    top: 0.6cm;         /* 1 cm from the top */
-    left: 47%;        /* Center the logo horizontally */
-    transform: translateX(-50%);  /* Adjust position to make it perfectly centered */
-    width: 2.4cm;     /* Set the width to 3.6 cm (3 times bigger) */
-    height: 2.4cm;    /* Set the height to 3.6 cm (3 times bigger) */
-    background-image: url('./assets/sellButton.png');  /* Import the logo image */
-    background-size: contain;  /* Ensure the image is contained within the box */
-    background-position: center;  /* Center the image within the element */
-    background-repeat: no-repeat;  /* Avoid repeating the image */
-  }
-
-
-  .sellLowerButton {
-    position: fixed;  /* Fixes it relative to the viewport */
-    top: 0.6cm;         /* 1 cm from the top */
-    left: 47%;        /* Center the logo horizontally */
-    transform: translateX(-50%);  /* Adjust position to make it perfectly centered */
-    width: 2.4cm;     /* Set the width to 3.6 cm (3 times bigger) */
-    height: 2.4cm;    /* Set the height to 3.6 cm (3 times bigger) */
-    background-image: url('./assets/poweredby.png');  /* Import the logo image */
-    background-size: contain;  /* Ensure the image is contained within the box */
-    background-position: center;  /* Center the image within the element */
-    background-repeat: no-repeat;  /* Avoid repeating the image */
-  }
 
 
   .currency-dropdowns {
@@ -245,13 +218,3 @@ html, body {
   overflow-y: auto;   /* Allow scrolling if content overflows */
 }
 
-/* If you have large images or content, make sure they fit inside the modal */
-img, .back, .transferFunds, .buyLowerButton, .sellLowerButton {
-  max-width: 100%;    /* Ensure the images do not overflow horizontally */
-  max-height: 100%;   /* Ensure the images do not overflow vertically */
-}
-
-/* Optional: If you want to allow scrolling for the entire page */
-body {
-  overflow-y: scroll;   /* Allow the page to scroll if necessary */
-}

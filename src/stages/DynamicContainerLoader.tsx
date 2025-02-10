@@ -77,10 +77,6 @@ const DynamicContentLoader = () => {
     <div>
       {/* Render the current page based on currentPage state */}
       {contentArray[currentPage]}
-      
-      {/* Optional buttons for navigation */}
-      <button onClick={handleGoBackButtonClick}>Go Back</button>
-      <button onClick={() => setCurrentPage(currentPage + 1)}>Next</button>
     </div>
   );
 };

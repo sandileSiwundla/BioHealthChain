@@ -42,12 +42,17 @@ const Buy: React.FC<BuyProps> = ({ onBuyButtonClick, onGoBackButtonClick, onNext
     // You can also update the parent state here to trigger the next component if needed.
   };
 
+  // Function to handle Sell Button click (for dynamic content navigation)
+  const handlesOnBuyLogoButtonClick = () => {
+    alert('Already on Buy page');
+    // You can also update the parent state here to trigger the next component if needed.
+  };
+
   
 
 
   return (
     <div className="modal-overlay">
-      <div className="buy"></div>
 
       {/* Existing Currency and Chain labels */}
       <div className="currency-label">Currency</div>
@@ -76,6 +81,7 @@ const Buy: React.FC<BuyProps> = ({ onBuyButtonClick, onGoBackButtonClick, onNext
       <button className="sellLowerButton" onClick={handleSellButtonClick}></button>
       <button className="buyLowerButton" onClick={handleBuyButtonClick}></button>
       <button className="goback" onClick={onGoBackButtonClick}></button>
+      <button className="buyLogo" onClick={handlesOnBuyLogoButtonClick}></button>
 
       <div className="modal-content">
         <div className="progress-bar">

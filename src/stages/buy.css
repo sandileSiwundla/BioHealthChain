@@ -71,35 +71,10 @@
   }
 
   
-  .buyLowerButton {
-    position: absolute; /* Already absolute */
-    top: 17cm;         /* 1 cm from the top */
-    left: 62%;        /* Center the logo horizontally */
-    transform: translateX(-50%);  /* Adjust position to make it perfectly centered */
-    width: 2.4cm;     /* Set the width to 3.6 cm (3 times bigger) */
-    height: 2.4cm;    /* Set the height to 3.6 cm (3 times bigger) */
-    background-image: url('./src/assets/buyButton.png');  /* Import the logo image */
-    background-size: contain;  /* Ensure the image is contained within the box */
-    background-position: center;  /* Center the image within the element */
-    background-repeat: no-repeat;  /* Avoid repeating the image */
-    z-index: 2000;     /* Set a higher z-index to ensure it appears on top of the modal */
-    background-color: transparent;  /* Ensure no background color */
-    border: none; /* Remove default button border */
-    padding: 0; /* Remove any padding */
-
-  }
-
-  .buyLowerButton:focus {
-    outline: none; /* Remove the outline when focused */
-  }
-  
-  .buyLowerButton:hover {
-    opacity: 0.8; /* Change opacity when hovering for effect */
-  }
-  
+ 
 
   .buy {
-    position: absolute; /* Already absolute */
+
     top: 2.7cm;  /* Temporarily test with 0px to bring it into view */
     left: 52%;        /* Center the logo horizontally */
     transform: translateX(-50%);  /* Adjust position to make it perfectly centered */
@@ -308,6 +283,24 @@
   width: 2.4cm;     /* Set the width to 3.6 cm (3 times bigger) */
   height: 2.4cm;    /* Set the height to 3.6 cm (3 times bigger) */
   background-image: url('./src/assets/buyChain.png');  /* Import the logo image */
+  background-size: contain;  /* Ensure the image is contained within the box */
+  background-position: center;  /* Center the image within the element */
+  background-repeat: no-repeat;  /* Avoid repeating the image */
+  z-index: 2000;     /* Set a higher z-index to ensure it appears on top of the modal */
+  border: none; /* Remove default button border */
+  padding: 0; /* Remove any padding */
+  background-color: transparent;  /* Ensure there is no background color */
+
+}
+
+.buyLogo {
+  position: absolute; /* Already absolute */
+  top: 2.4cm;  /* Temporarily test with 0px to bring it into view */
+  left: 50%;        /* Center the logo horizontally */
+  transform: translateX(-50%);  /* Adjust position to make it perfectly centered */
+  width: 2.4cm;     /* Set the width to 3.6 cm (3 times bigger) */
+  height: 2.4cm;    /* Set the height to 3.6 cm (3 times bigger) */
+  background-image: url('./src/assets/buyButton.png');  /* Import the logo image */
   background-size: contain;  /* Ensure the image is contained within the box */
   background-position: center;  /* Center the image within the element */
   background-repeat: no-repeat;  /* Avoid repeating the image */
