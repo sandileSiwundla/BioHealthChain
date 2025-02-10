@@ -33,6 +33,11 @@ const DynamicContentLoader = () => {
    const handleGoBackToBuyClick = () => {
     setCurrentPage(0); // Set to Sell page (you can adjust the page number)
   };
+
+  // Function to switch to Sell page
+  const handleGoToOtherButtonClick = () => {
+    setCurrentPage(2); // Set to Sell page (you can adjust the page number)
+  };
   // Function to handle "Go Back" Button click and move to the previous page
   const handleGoBackButtonClick = () => {
     setCurrentPage((prevPage) => (prevPage > 0 ? prevPage - 1 : 0)); // Decrease page index, but don't go below 0
@@ -54,7 +59,10 @@ const DynamicContentLoader = () => {
     onGoBackButtonClick={handleGoBackButtonClick}
     onGoToVerifyOTPClick={handleGoToVerifyOTPClick} 
     onGoBackToBuyButtonClick={handleGoBackToBuyClick} />,
-    <VerifyOTP onBuyButtonClick={handleBuyButtonClick} onGoBackButtonClick={handleGoBackButtonClick} />,
+    <VerifyOTP onBuyButtonClick={handleBuyButtonClick} 
+    onGoBackButtonClick={handleGoBackButtonClick}
+    onGoToOtherButtonClick={handleGoToOtherButtonClick}
+     />,
   ];
 
   return (

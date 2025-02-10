@@ -47,7 +47,7 @@ const Transfer: React.FC<TransferProps> = ({ onBuyButtonClick, onSellButtonClick
       {/* Buttons for Buy, Sell, Go Back, Transfer Funds */}
       <button className="buyLowerButton" onClick={onBuyButtonClick}></button>
       <button className="sellLowerButton" onClick={onSellButtonClick}></button>
-      <button className="back" onClick={handleBackButtonClick}>Go Back</button>
+      <button className="back" onClick={handleBackButtonClick}></button>
       <button className="transferFunds" onClick={handleTransferFundsButtonClick}></button>
 
       {/* Display Copy component */}

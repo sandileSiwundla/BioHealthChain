@@ -1,9 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import './verifyOTP.css';
+import Verify from './verify';
 
+interface VerifyOTPPros {
+  onBuyButtonClick: () => void;
+  onGoBackButtonClick: () => void; 
+  onGoToOtherButtonClick: () => void;
+}
 
-const VerifyOTP = () => {
-  const [currentStep, setCurrentStep] = useState(1); // Start at step 1
+const VerifyOTP: React.FC<VerifyOTPPros> = ({ onBuyButtonClick, onGoBackButtonClick, onGoToOtherButtonClick }) => {
+  const [currentStep, setCurrentStep] = useState(1);
+  
 
   // Function to handle step progression
   useEffect(() => {
@@ -31,7 +38,7 @@ const VerifyOTP = () => {
   };
 
   const handleVerifyOTPButtonClick = () => {
-    alert('goes back');
+    onGoToOtherButtonClick();
   };
 
   return (
