@@ -25,14 +25,20 @@ const DynamicContentLoader = () => {
   };
 
   // Function to switch to Sell page
-  const handleGoToVerifyOTPClick = () => {
-    setCurrentPage(5); // Set to Sell page (you can adjust the page number)
+  const handleGoToVerifyEmailClick = () => {
+    setCurrentPage(3); // Set to Sell page (you can adjust the page number)
   };
 
    // Function to switch to Sell page
    const handleGoBackToBuyClick = () => {
     setCurrentPage(0); // Set to Sell page (you can adjust the page number)
   };
+
+  // Function to switch to Sell page
+  const handleGoToVerifyOTPButtonClick = () => {
+    setCurrentPage(5); // Set to Sell page (you can adjust the page number)
+  };
+
 
   // Function to switch to Sell page
   const handleGoToOtherButtonClick = () => {
@@ -54,10 +60,12 @@ const DynamicContentLoader = () => {
       onSellButtonClick={handleSellButtonClick} 
       onGoBackButtonClick={handleGoBackButtonClick} 
     />,
-    <Verify onBuyButtonClick={handleBuyButtonClick} onGoBackButtonClick={handleGoBackButtonClick} />,
+    <Verify onBuyButtonClick={handleBuyButtonClick} 
+    onGoBackButtonClick={handleGoBackButtonClick} 
+    onGoToVerifyOTPClick={handleGoToVerifyOTPButtonClick}/>,
     <Wallet onBuyButtonClick={handleBuyButtonClick} 
     onGoBackButtonClick={handleGoBackButtonClick}
-    onGoToVerifyOTPClick={handleGoToVerifyOTPClick} 
+    onGoToVerifyEmailClick={handleGoToVerifyEmailClick} 
     onGoBackToBuyButtonClick={handleGoBackToBuyClick} />,
     <VerifyOTP onBuyButtonClick={handleBuyButtonClick} 
     onGoBackButtonClick={handleGoBackButtonClick}

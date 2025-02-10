@@ -18,7 +18,7 @@ const VerifyOTP: React.FC<VerifyOTPPros> = ({ onBuyButtonClick, onGoBackButtonCl
       if (currentStep < 3) {  // Only go up to stage 2
         setCurrentStep((prevStep) => prevStep + 1);
       }
-    }, 1000); // Progress every 1 second
+    }, 1); // Progress every 1 second
 
     // Cleanup the interval on component unmount
     return () => clearInterval(interval);

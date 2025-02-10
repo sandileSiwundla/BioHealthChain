@@ -18,7 +18,7 @@ const Buy: React.FC<BuyProps> = ({ onBuyButtonClick, onGoBackButtonClick, onNext
       if (currentStep < 1) {
         setCurrentStep((prevStep) => prevStep + 1);
       }
-    }, 1000); // Progress every 1 second
+    }, 1); // Progress every 1 second
 
     // Cleanup the interval on component unmount
     return () => clearInterval(interval);

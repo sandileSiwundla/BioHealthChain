@@ -17,7 +17,7 @@ const Transfer: React.FC<TransferProps> = ({ onBuyButtonClick, onSellButtonClick
       if (currentStep < 4) {  // Only go up to stage 4
         setCurrentStep((prevStep) => prevStep + 1);
       }
-    }, 1000); // Progress every 1 second
+    }, 1); // Progress every 1 second
 
     // Cleanup the interval on component unmount
     return () => clearInterval(interval);

@@ -1,9 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import './verify.css';
 
+interface VerifyPros {
+  onBuyButtonClick: () => void;
+  onGoBackButtonClick: () => void; 
+  onGoToVerifyOTPClick: () => void;
+  onGoBackToBuyButtonClick: () => void;
+}
 
-const Verify = () => {
-  const [currentStep, setCurrentStep] = useState(1); // Start at step 1
+const Verify: React.FC<VerifyPros> = ({ onBuyButtonClick, onGoBackButtonClick, 
+  onGoToVerifyOTPClick, onGoBackToBuyButtonClick }) => {
+  const [currentStep, setCurrentStep] = useState(1);
 
   // Function to handle step progression
   useEffect(() => {
@@ -11,7 +18,7 @@ const Verify = () => {
       if (currentStep < 3) {  // Only go up to stage 2
         setCurrentStep((prevStep) => prevStep + 1);
       }
-    }, 1000); // Progress every 1 second
+    }, 1); // Progress every 1 second
 
     // Cleanup the interval on component unmount
     return () => clearInterval(interval);
@@ -31,7 +38,7 @@ const Verify = () => {
   };
 
   const handleVerifyEmailButtonClick = () => {
-    alert('goes back');
+    onGoToVerifyOTPClick();
   };
 
   return (

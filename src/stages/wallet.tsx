@@ -4,12 +4,12 @@ import './wallet.css';
 interface WalletPros {
   onBuyButtonClick: () => void;
   onGoBackButtonClick: () => void; 
-  onGoToVerifyOTPClick: () => void;
+  onGoToVerifyEmailClick: () => void;
   onGoBackToBuyButtonClick: () => void;
 }
 
 const Wallet: React.FC<WalletPros> = ({ onBuyButtonClick, onGoBackButtonClick, 
-  onGoToVerifyOTPClick, onGoBackToBuyButtonClick }) => {
+  onGoToVerifyEmailClick, onGoBackToBuyButtonClick }) => {
   const [currentStep, setCurrentStep] = useState(1);
 
 
@@ -19,7 +19,7 @@ const Wallet: React.FC<WalletPros> = ({ onBuyButtonClick, onGoBackButtonClick,
       if (currentStep < 2) {
         setCurrentStep((prevStep) => prevStep + 1);
       }
-    }, 1000); // Progress every 1 second
+    }, 1); // Progress every 1 second
 
     // Cleanup the interval on component unmount
     return () => clearInterval(interval);
@@ -41,7 +41,7 @@ const Wallet: React.FC<WalletPros> = ({ onBuyButtonClick, onGoBackButtonClick,
   };
 
   const handleNextClick = () => {
-    onGoToVerifyOTPClick();
+    onGoToVerifyEmailClick();
   };
 
   return (

@@ -15,7 +15,7 @@ const Sell: React.FC<SellProps>= ({ onBuyButtonClick, onGoBackButtonClick }) => 
       if (currentStep < 1) {  // Only go up to stage 2
         setCurrentStep((prevStep) => prevStep + 1);
       }
-    }, 1000); // Progress every 1 second
+    }, 1); // Progress every 1 second
 
     // Cleanup the interval on component unmount
     return () => clearInterval(interval);
