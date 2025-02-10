@@ -6,9 +6,10 @@ import Chain from './ChainDropDown';
 interface BuyProps {
   onBuyButtonClick: () => void;
   onGoBackButtonClick: () => void; 
+  onNextButtonClick: () => void;
 }
 
-const Buy: React.FC<BuyProps> = ({ onBuyButtonClick, onGoBackButtonClick }) => {
+const Buy: React.FC<BuyProps> = ({ onBuyButtonClick, onGoBackButtonClick, onNextButtonClick }) => {
   const [currentStep, setCurrentStep] = useState(1);
   
   // Function to handle step progression
@@ -32,6 +33,12 @@ const Buy: React.FC<BuyProps> = ({ onBuyButtonClick, onGoBackButtonClick }) => {
   // Function to handle Sell Button click (for dynamic content navigation)
   const handleSellButtonClick = () => {
     alert('Sell button clicked!');
+    // You can also update the parent state here to trigger the next component if needed.
+  };
+
+  // Function to handle Sell Button click (for dynamic content navigation)
+  const handlesBuyChainButtonClick = () => {
+    onNextButtonClick();
     // You can also update the parent state here to trigger the next component if needed.
   };
 
@@ -65,6 +72,7 @@ const Buy: React.FC<BuyProps> = ({ onBuyButtonClick, onGoBackButtonClick }) => {
       {/* <Chain /> */}
 
       {/* Existing Buttons */}
+      <button className="buyChain" onClick={handlesBuyChainButtonClick}></button>
       <button className="sellLowerButton" onClick={handleSellButtonClick}></button>
       <button className="buyLowerButton" onClick={handleBuyButtonClick}></button>
       <button className="goback" onClick={onGoBackButtonClick}></button>

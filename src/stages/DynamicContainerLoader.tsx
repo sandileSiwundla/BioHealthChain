@@ -18,14 +18,31 @@ const DynamicContentLoader = () => {
   const handleSellButtonClick = () => {
     setCurrentPage(2); // Set to Sell page (you can adjust the page number)
   };
+ 
+   // Function to switch to Sell page
+   const handleNextButtonOnBuyClick = () => {
+    setCurrentPage(4); // Set to Sell page (you can adjust the page number)
+  };
 
+  // Function to switch to Sell page
+  const handleGoToVerifyOTPClick = () => {
+    setCurrentPage(5); // Set to Sell page (you can adjust the page number)
+  };
+
+   // Function to switch to Sell page
+   const handleGoBackToBuyClick = () => {
+    setCurrentPage(0); // Set to Sell page (you can adjust the page number)
+  };
   // Function to handle "Go Back" Button click and move to the previous page
   const handleGoBackButtonClick = () => {
     setCurrentPage((prevPage) => (prevPage > 0 ? prevPage - 1 : 0)); // Decrease page index, but don't go below 0
   };
 
   const contentArray = [
-    <Buy onBuyButtonClick={handleBuyButtonClick} onGoBackButtonClick={handleGoBackButtonClick} />,
+    <Buy onBuyButtonClick={handleBuyButtonClick}
+     onGoBackButtonClick={handleGoBackButtonClick}
+     onNextButtonClick={handleNextButtonOnBuyClick}
+     />,
     <Sell onBuyButtonClick={handleBuyButtonClick} onGoBackButtonClick={handleGoBackButtonClick} />,
     <Transfer 
       onBuyButtonClick={handleBuyButtonClick} 
@@ -33,7 +50,10 @@ const DynamicContentLoader = () => {
       onGoBackButtonClick={handleGoBackButtonClick} 
     />,
     <Verify onBuyButtonClick={handleBuyButtonClick} onGoBackButtonClick={handleGoBackButtonClick} />,
-    <Wallet onBuyButtonClick={handleBuyButtonClick} onGoBackButtonClick={handleGoBackButtonClick} />,
+    <Wallet onBuyButtonClick={handleBuyButtonClick} 
+    onGoBackButtonClick={handleGoBackButtonClick}
+    onGoToVerifyOTPClick={handleGoToVerifyOTPClick} 
+    onGoBackToBuyButtonClick={handleGoBackToBuyClick} />,
     <VerifyOTP onBuyButtonClick={handleBuyButtonClick} onGoBackButtonClick={handleGoBackButtonClick} />,
   ];
 

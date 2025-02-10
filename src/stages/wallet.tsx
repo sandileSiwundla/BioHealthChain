@@ -1,14 +1,22 @@
 import React, { useState, useEffect } from 'react';
 import './wallet.css';
 
+interface WalletPros {
+  onBuyButtonClick: () => void;
+  onGoBackButtonClick: () => void; 
+  onGoToVerifyOTPClick: () => void;
+  onGoBackToBuyButtonClick: () => void;
+}
 
-const Wallet = () => {
-  const [currentStep, setCurrentStep] = useState(1); // Start at step 1
+const Wallet: React.FC<WalletPros> = ({ onBuyButtonClick, onGoBackButtonClick, 
+  onGoToVerifyOTPClick, onGoBackToBuyButtonClick }) => {
+  const [currentStep, setCurrentStep] = useState(1);
+
 
   // Function to handle step progression
   useEffect(() => {
     const interval = setInterval(() => {
-      if (currentStep < 2) {  // Only go up to stage 2
+      if (currentStep < 2) {
         setCurrentStep((prevStep) => prevStep + 1);
       }
     }, 1000); // Progress every 1 second
@@ -16,6 +24,8 @@ const Wallet = () => {
     // Cleanup the interval on component unmount
     return () => clearInterval(interval);
   }, [currentStep]);
+
+  
 
   // Button click handlers
   const handleBuyButtonClick = () => {
@@ -27,11 +37,11 @@ const Wallet = () => {
   };
 
   const handleBackButtonClick = () => {
-    alert('goes back');
+    onGoBackToBuyButtonClick();
   };
 
   const handleNextClick = () => {
-    alert('goes back');
+    onGoToVerifyOTPClick();
   };
 
   return (

@@ -45,8 +45,8 @@ const Transfer: React.FC<TransferProps> = ({ onBuyButtonClick, onSellButtonClick
     <div className="modal-overlay">
   
       {/* Buttons for Buy, Sell, Go Back, Transfer Funds */}
-      <button className="buyLowerButton" onClick={handleBuyButtonClick}></button>
-      <button className="sellLowerButton" onClick={handleSellButtonClick}></button>
+      <button className="buyLowerButton" onClick={onBuyButtonClick}></button>
+      <button className="sellLowerButton" onClick={onSellButtonClick}></button>
       <button className="back" onClick={handleBackButtonClick}>Go Back</button>
       <button className="transferFunds" onClick={handleTransferFundsButtonClick}></button>
 

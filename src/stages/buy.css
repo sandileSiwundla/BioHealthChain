@@ -1,6 +1,6 @@
 /* Example modal and progress bar styling */
 .modal-overlay {
-    position: fixed;
+    position: absolute; /* Already absolute */
     top: 0;
     left: 0;
     width: 100vw;
@@ -41,7 +41,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    position: relative;
+    position: absolute; /* Already absolute */
     flex: 1;
   }
   
@@ -72,7 +72,7 @@
 
   
   .buyLowerButton {
-    position: fixed;  /* Fixes it relative to the viewport */
+    position: absolute; /* Already absolute */
     top: 17cm;         /* 1 cm from the top */
     left: 62%;        /* Center the logo horizontally */
     transform: translateX(-50%);  /* Adjust position to make it perfectly centered */
@@ -99,7 +99,7 @@
   
 
   .buy {
-    position: fixed;  /* Fixes it relative to the viewport */
+    position: absolute; /* Already absolute */
     top: 2.7cm;  /* Temporarily test with 0px to bring it into view */
     left: 52%;        /* Center the logo horizontally */
     transform: translateX(-50%);  /* Adjust position to make it perfectly centered */
@@ -135,7 +135,7 @@
   }
   
   .sellLowerButton {
-    position: fixed;  /* Fixes it relative to the viewport */
+    position: absolute; /* Already absolute */
     top: 17cm;         /* 1 cm from the top */
     left: 70%;        /* Center the logo horizontally */
     transform: translateX(-50%);  /* Adjust position to make it perfectly centered */
@@ -162,7 +162,7 @@
   
 
   .goback {
-    position: fixed;  /* Fixes it relative to the viewport */
+    position: absolute; /* Already absolute */
     top: 16.8cm;         /* 1 cm from the top */
     left: 53%;        /* Center the logo horizontally */
     transform: translateX(-50%);  /* Adjust position to make it perfectly centered */
@@ -192,7 +192,7 @@
     font-weight: bold; /* Optional, makes the text bold */
     margin-bottom: 0.5cm; /* Space below the "Currency" text in centimeters */
     text-align: center; /* Center the text horizontally */
-    position: relative; /* Allows for positioning manipulation */
+    position: absolute; /* Already absolute */
     top: -2.3cm; /* Adjust this value to move it vertically (2cm down) */
     left: 12%; /* Centers it horizontally */
     transform: translateX(-50%); /* Ensures exact centering */
@@ -205,7 +205,7 @@
   font-weight: bold; /* Optional, makes the text bold */
   margin-bottom: 0.5cm; /* Space below the "Currency" text in centimeters */
   text-align: center; /* Center the text horizontally */
-  position: relative; /* Allows for positioning manipulation */
+  position: absolute; /* Already absolute */
   top: -2.3cm; /* Adjust this value to move it vertically (2cm down) */
   left: 18%; /* Centers it horizontally */
   transform: translateX(-50%); /* Ensures exact centering */
@@ -218,8 +218,8 @@
   font-weight: bold;
   text-align: center;
   position: absolute;
-  top: 9.9cm; /* Adjust top position as per your layout */
-  left: 40%; /* Center the label horizontally */
+  top: 9.4cm; /* Adjust top position as per your layout */
+  left: 36%; /* Center the label horizontally */
   transform: translateX(-50%); /* Center it precisely */
   z-index: 2000; /* Ensure it appears on top of the modal */
 }
@@ -230,8 +230,8 @@
   font-weight: bold;
   text-align: center;
   position: absolute;
-  top: 12cm; /* Adjust top position to avoid overlap with other elements */
-  left: 41%; /* Center the label horizontally */
+  top: 11.6cm; /* Adjust top position to avoid overlap with other elements */
+  left: 36.5%; /* Center the label horizontally */
   transform: translateX(-50%); /* Center it precisely */
   z-index: 2000; /* Ensure it appears on top of the modal */
 }
@@ -243,7 +243,7 @@
   text-align: center;
   position: absolute;
   top: 15cm; /* Adjust top position to avoid overlap with other elements */
-  left: 40%; /* Center the label horizontally */
+  left: 36.5%; /* Center the label horizontally */
   transform: translateX(-50%); /* Center it precisely */
   z-index: 2000; /* Ensure it appears on top of the modal */
 }
@@ -252,8 +252,8 @@
 .top-content-box {
   position: absolute; /* Position it at the top of the modal */
   top: 15.5cm; /* Adjust the top positioning as needed */
-  left: 15cm; /* Start 2cm from the left side */
-  right: 12cm; /* Keep 2cm space on the right */
+  left: 13.3cm; /* Start 2cm from the left side */
+  right: 13.3cm; /* Keep 2cm space on the right */
   padding: 10px; /* Add some padding around the content */
   background-color: rgba(192, 213, 218, 0.49); /* Background color for the content box */
   border-radius: 8px; /* Rounded corners for the content box */
@@ -268,9 +268,9 @@
 /* Content box for "You Buy" text input */
 .you-buy-box input {
   position: absolute;
-  top: 10.5cm; /* Adjust the top positioning as needed */
-  left: 15cm; /* Start 2cm from the left side */
-  right: 12cm; /* Keep 2cm space on the right */
+  top: 10cm; /* Adjust the top positioning as needed */
+  left: 13.3cm; /* Start 2cm from the left side */
+  right: 13.3cm; /* Keep 2cm space on the right */
   padding: 10px; /* Add some padding around the content */
   background-color: rgba(192, 213, 218, 0.49); /* Background color for the content box */
   border: none; /* Remove border */
@@ -286,9 +286,9 @@
 /* Content box for "You Receive" text input */
 .you-receive-box input {
   position: absolute;
-  top: 12.5cm; /* Adjust the top positioning as needed */
-  left: 15cm; /* Start 2cm from the left side */
-  right: 12cm; /* Keep 2cm space on the right */
+  top: 12.2cm; /* Adjust the top positioning as needed */
+  left: 13.3cm; /* Start 2cm from the left side */
+  right: 13.3cm; /* Keep 2cm space on the right */
   padding: 10px; /* Add some padding around the content */
   background-color: rgba(192, 213, 218, 0.49); /* Background color for the content box */
   border: none; /* Remove border */
@@ -299,4 +299,21 @@
   box-sizing: border-box; /* Ensure padding is included in width calculation */
   height: 1.2cm; /* Set the height to match the desired size */
   text-align: left; /* Align text to the left */
+}
+.buyChain {
+  position: absolute; /* Already absolute */
+  top: 13cm;  /* Temporarily test with 0px to bring it into view */
+  left: 62%;        /* Center the logo horizontally */
+  transform: translateX(-50%);  /* Adjust position to make it perfectly centered */
+  width: 2.4cm;     /* Set the width to 3.6 cm (3 times bigger) */
+  height: 2.4cm;    /* Set the height to 3.6 cm (3 times bigger) */
+  background-image: url('./src/assets/buyChain.png');  /* Import the logo image */
+  background-size: contain;  /* Ensure the image is contained within the box */
+  background-position: center;  /* Center the image within the element */
+  background-repeat: no-repeat;  /* Avoid repeating the image */
+  z-index: 2000;     /* Set a higher z-index to ensure it appears on top of the modal */
+  border: none; /* Remove default button border */
+  padding: 0; /* Remove any padding */
+  background-color: transparent;  /* Ensure there is no background color */
+
 }

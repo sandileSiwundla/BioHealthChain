@@ -11,8 +11,8 @@
     text-align: center;
     transition: width 0.3s ease;
     position: absolute; /* Change to absolute for precise positioning */
-    top: 7.8cm; /* Position dropdown 1 cm below the progress bar */
-    left: 15.2cm; /* Align with the left of the progress bar */
+    top: 7cm; /* Position dropdown 1 cm below the progress bar */
+    left: 13.3cm; /* Align with the left of the progress bar */
     z-index: 2000; /* Set a higher z-index to ensure it appears on top of the modal */
 }
 
