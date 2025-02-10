@@ -2,14 +2,19 @@ import React, { useState, useEffect } from 'react';
 import './transfer.css';
 import Copy from './copyBox';  
 
+interface TransferProps {
+  onBuyButtonClick: () => void;  // Function to switch to Buy page
+  onSellButtonClick: () => void; // Function to switch to Sell page
+  onGoBackButtonClick: () => void; // Function to go back to the previous step
+}
 
-const Transfer = () => {
+const Transfer: React.FC<TransferProps> = ({ onBuyButtonClick, onSellButtonClick, onGoBackButtonClick }) => {
   const [currentStep, setCurrentStep] = useState(1); // Start at step 1
 
   // Function to handle step progression
   useEffect(() => {
     const interval = setInterval(() => {
-      if (currentStep < 4) {  // Only go up to stage 2
+      if (currentStep < 4) {  // Only go up to stage 4
         setCurrentStep((prevStep) => prevStep + 1);
       }
     }, 1000); // Progress every 1 second
@@ -20,29 +25,33 @@ const Transfer = () => {
 
   // Button click handlers
   const handleBuyButtonClick = () => {
-    alert('Buy button clicked!');
+    onBuyButtonClick(); // Call the function passed from the parent to switch to the Buy page
   };
 
   const handleSellButtonClick = () => {
-    alert('Sell button clicked!');
+    onSellButtonClick(); // Call the function passed from the parent to switch to the Sell page
   };
 
   const handleBackButtonClick = () => {
-    alert('goes back');
+    onGoBackButtonClick(); // Trigger the "Go Back" functionality from the parent
   };
 
   const handleTransferFundsButtonClick = () => {
-    alert('goes back');
+    alert('Transfer Funds clicked');
+    // Optionally, handle transfer logic here
   };
 
   return (
     <div className="modal-overlay">
   
+      {/* Buttons for Buy, Sell, Go Back, Transfer Funds */}
       <button className="buyLowerButton" onClick={handleBuyButtonClick}></button>
       <button className="sellLowerButton" onClick={handleSellButtonClick}></button>
-      <button className="back" onClick={handleBackButtonClick}></button>
+      <button className="back" onClick={handleBackButtonClick}>Go Back</button>
       <button className="transferFunds" onClick={handleTransferFundsButtonClick}></button>
-      <Copy/>
+
+      {/* Display Copy component */}
+      <Copy />
   
       {/* Progress Bar */}
       <div className="modal-content">
@@ -71,7 +80,7 @@ const Transfer = () => {
             <strong>Review details</strong>
           </div>
           <div className="detail-item proceed-transaction">
-          Confirm details and proceed with the transaction
+            Confirm details and proceed with the transaction
           </div>
         </div>
       </div>
