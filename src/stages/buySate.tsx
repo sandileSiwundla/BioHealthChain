@@ -1,15 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import './buy.css';
 import DropDown from './dropDownList';  
-import Chain from './ChainDropDown';  
+import Map from './googleAPI';  
 
 interface BuyProps {
   onBuyButtonClick: () => void;
   onGoBackButtonClick: () => void; 
-  onNextButtonClick: () => void;
+  onNextToPatientIDButtonClick: () => void;
 }
 
-const Buy: React.FC<BuyProps> = ({ onBuyButtonClick, onGoBackButtonClick, onNextButtonClick }) => {
+const Buy: React.FC<BuyProps> = ({ onBuyButtonClick, onGoBackButtonClick, onNextToPatientIDButtonClick }) => {
   const [currentStep, setCurrentStep] = useState(1);
   
   // Function to handle step progression
@@ -37,8 +37,8 @@ const Buy: React.FC<BuyProps> = ({ onBuyButtonClick, onGoBackButtonClick, onNext
   };
 
   // Function to handle Sell Button click (for dynamic content navigation)
-  const handlesBuyChainButtonClick = () => {
-    onNextButtonClick();
+  const handlesNextButtonClick = () => {
+    onNextToPatientIDButtonClick();
     // You can also update the parent state here to trigger the next component if needed.
   };
 
@@ -58,50 +58,45 @@ const Buy: React.FC<BuyProps> = ({ onBuyButtonClick, onGoBackButtonClick, onNext
       <div className="currency-label">Currency</div>
       <div className="Chain-label">Chain</div>
 
+      <div id="nextButton">
+    <button 
+        className="consent-button" 
+      id="nextButton" onClick={handlesNextButtonClick}>NEXT</button>
+</div>
+
       {/* New labels */}
-      <div className="you-buy">You Buy</div>
-      <div className="You-Receive">You Receive</div>
-      <div className="Total-Fee">Total Fee</div>
-      <div className="top-content-box">Enter amount here</div>
+      <div className="healthProvidersName">Healthcare Professional Name</div>
+      <div className="hospitalName">Hospital Name</div>
+
+
+      <div className="HCP-ID">Healthcare Provider ID (HCP-ID)</div>
+      <div className="doctorPick">Pick Profession</div>
+
+
 
       {/* Text Input Fields for "You Buy" and "You Receive" */}
-      <div className="you-buy-box">
-        <input type="text" placeholder="Enter amount" />
-      </div>
-      <div className="you-receive-box">
-        <input type="text" placeholder="Amount you will receive" />
+      <div className="healthProvidersName-box">
+        <input type="text" placeholder="Enter name" />
       </div>
 
-      {/* Existing Dropdown */}
-      <DropDown />
-      {/* <Chain /> */}
+      <div className="HCP-ID-box">
+        <input type="text" placeholder="Enter Healthcare Provider ID" />
+      </div>
+      <div>
+    <div>
+        <DropDown  />
+    </div>
 
-      {/* Existing Buttons */}
-      <button className="buyChain" onClick={handlesBuyChainButtonClick}></button>
-      <button className="sellLowerButton" onClick={handleSellButtonClick}></button>
-      <button className="buyLowerButton" onClick={handleBuyButtonClick}></button>
-      <button className="goback" onClick={onGoBackButtonClick}></button>
-      <button className="buyLogo" onClick={handlesOnBuyLogoButtonClick}></button>
+    <div>
+        <Map />
+    </div>
+</div>
+
+      
 
       <div className="modal-content">
-        <div className="progress-bar">
-          <div className={`step ${currentStep >= 1 ? 'completed' : ''} ${currentStep === 1 ? 'current' : ''}`}>
-            <div className="circle">1</div>
-            <div className="label">Amount</div>
-          </div>
-          <div className={`step ${currentStep >= 2 ? 'completed' : ''} ${currentStep === 2 ? 'current' : ''}`}>
-            <div className="circle">2</div>
-            <div className="label">Wallet</div>
-          </div>
-          <div className={`step ${currentStep >= 3 ? 'completed' : ''} ${currentStep === 3 ? 'current' : ''}`}>
-            <div className="circle">3</div>
-            <div className="label">Verify</div>
-          </div>
-          <div className={`step ${currentStep >= 4 ? 'completed' : ''} ${currentStep === 4 ? 'current' : ''}`}>
-            <div className="circle">4</div>
-            <div className="label">Order</div>
-          </div>
-        </div>
+       
+          
       </div>
     </div>
   );

@@ -1,0 +1,94 @@
+Styling for Terms and Conditions
+.terms-container {
+    background-color: #f9f9f9;
+    padding: 20px;
+    margin: 20px auto;
+    width: 80%;
+    max-width: 800px;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .terms-heading {
+    text-align: center;
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 15px;
+  }
+  
+  .terms-intro {
+    font-size: 16px;
+    margin-bottom: 20px;
+    line-height: 1.5;
+    color: #333;
+  }
+  
+  .terms-section {
+    margin-bottom: 20px;
+  }
+  
+  .terms-section h3 {
+    font-size: 20px;
+    color: #0f100f;
+    margin-bottom: 10px;
+  }
+  
+  .terms-section ul {
+    list-style-type: disc;
+    padding-left: 20px;
+  }
+  
+  .terms-section ul li {
+    font-size: 16px;
+    margin-bottom: 8px;
+    line-height: 1.5;
+  }
+  
+  @media (max-width: 600px) {
+    .terms-container {
+      width: 90%;
+      padding: 15px;
+    }
+  
+    .terms-heading {
+      font-size: 22px;
+    }
+  
+    .terms-intro {
+      font-size: 16px;
+    }
+  
+    .terms-section h3 {
+      font-size: 20px;
+    }
+  
+    .terms-section ul li {
+      font-size: 16x;
+    }
+  }
+  
+  /* Styling for the "I Consent" button */
+  .consent-button {
+    display: block;
+    margin: 30px auto 0;
+    padding: 15px 30px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #2d7f2c;
+    background-color: transparent;
+    border: 2px solid #2d7f2c;
+    border-radius: 25px;
+    transition: background-color 0.3s, color 0.3s;
+    cursor: pointer;
+    outline: none;
+  }
+  
+  .consent-button:hover {
+    background-color: rgba(45, 127, 44, 0.1);
+  }
+  
+  .consent-button:active {
+    background-color: #2d7f2c;
+    color: white;
+  }
+  

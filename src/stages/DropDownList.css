@@ -1,35 +1,36 @@
 /* Styles for the dropdown */
-#country-dropdown {
-    background-color: #039FFF;
+#profession-dropdown {
+    background-color: #1c6593;
     color: white;
     font-size: 14px;
     padding: 5px;
     border: none;
     border-radius: 5px;
-    width: 2.8cm;
-    height: 1cm;
+    width: 300px; /* Adjusted for a more standard width */
+    height: 35px; /* Adjusted for a better visual appearance */
     text-align: center;
     transition: width 0.3s ease;
     position: absolute; /* Change to absolute for precise positioning */
-    top: 7cm; /* Position dropdown 1 cm below the progress bar */
-    left: 13.3cm; /* Align with the left of the progress bar */
-    z-index: 2000; /* Set a higher z-index to ensure it appears on top of the modal */
+    top: 5.5cm; /* Position dropdown 1 cm below the progress bar */
+    left: 23cm; /* Align with the left of the progress bar */
+    z-index: 2000; /* Set a higher z-index to ensure it appears on top of other elements */
 }
 
 /* When the dropdown is focused (expanded) */
-#country-dropdown:focus {
+#profession-dropdown:focus {
     outline: none;
-    width: 2.5cm; /* Expanded width */
+    width: 350px; /* Expanded width */
 }
 
 /* Option styles */
-#country-dropdown option {
-    background-color: #039FFF;
+#profession-dropdown option {
+    background-color: #1c6593;
     color: white;
     font-size: 14px;
     text-align: center;
 }
 
-#country-dropdown option:hover {
-    background-color: #0277BD; /* Darker blue when option is hovered */
+/* Hover effect for options */
+#profession-dropdown option:hover {
+    background-color: #0277BD; /* Darker blue when an option is hovered */
 }

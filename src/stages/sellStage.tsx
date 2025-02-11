@@ -1,5 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import './sell.css'; // Ensure the CSS path is correct
+import './sell.css';
+import Gender from './gender';  
+import Map from './googleAPI';
+import Image from './imageUploa';  
+
+
 interface SellProps {
   onBuyButtonClick: () => void;
   onGoBackButtonClick: () => void; 
@@ -35,30 +40,32 @@ const Sell: React.FC<SellProps>= ({ onBuyButtonClick, onGoBackButtonClick }) => 
     <div className="modal-overlay">
       <div className="sell"></div>
 
-      <button className="buyLowerButton" onClick={handleBuyButtonClick}></button>
-      <button className="sellLowerButton" onClick={handleSellButtonClick}></button>
-      <button className="goback" onClick={onGoBackButtonClick}></button>
+      <div className="patientName-box">
+        <input type="text" placeholder="Enter Name & Surname" />
+      </div>
+
+      <div className="patientName">Name & Surname</div>
+      <div className="flex justify-center items-center h-screen bg-[#1c6593]">
+      <Image />
+    </div>
+
+      <div className="patientAddress">Patience Physical Address</div>
+      <div className="gender">Gender</div>
+      <Gender/>
+
+
+
+      <div className="patientID">Patients South African ID</div>
+      <div className="patientID-box">
+        <input type="text" placeholder="Enter Patient ID" />
+      </div>
+      
+      <Map />
+
 
       {/* Progress Bar */}
       <div className="modal-content">
-        <div className="progress-bar">
-          <div className={`step ${currentStep >= 1 ? 'completed' : ''} ${currentStep === 1 ? 'current' : ''}`}>
-            <div className="circle">1</div>
-            <div className="label">Amount</div>
-          </div>
-          <div className={`step ${currentStep >= 2 ? 'completed' : ''} ${currentStep === 2 ? 'current' : ''}`}>
-            <div className="circle">2</div>
-            <div className="label">Wallet</div>
-          </div>
-          <div className={`step ${currentStep >= 3 ? 'completed' : ''} ${currentStep === 3 ? 'current' : ''}`}>
-            <div className="circle">3</div>
-            <div className="label">Verify</div>
-          </div>
-          <div className={`step ${currentStep >= 4 ? 'completed' : ''} ${currentStep === 4 ? 'current' : ''}`}>
-            <div className="circle">4</div>
-            <div className="label">Order</div>
-          </div>
-        </div>
+
       </div>
     </div>
   );

@@ -1,36 +1,281 @@
-/* Styles for the dropdown */
-#Chain-dropdown {
-    background-color: #039FFF;
-    color: white;
+
+
+.progress-bar {
+    position: absolute;
+    top: 0.8cm;
+    left: 2.5cm;
+    right: 2.5cm;
+    display: flex;
+    justify-content: space-between;
+    width: calc(100% - 5cm);
+    margin-top: 1cm;
+    padding: 10px 0;
+  }
+  
+  .step {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: absolute; /* Already absolute */
+    flex: 1;
+  }
+  
+  .circle {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background-color: transparent;
+    border: 2px solid #ddd;
+    color: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     font-size: 14px;
-    padding: 5px;
-    border: none;
-    border-radius: 5px;
-    width: 2.8cm;
-    height: 1cm;
+    font-weight: bold;
+    transition: background-color 0.3s, border-color 0.3s;
+  }
+  
+  .step.completed .circle {
+    background-color: rgba(104, 190, 255, 0.25);
+    border-color: 1px solid #039FFF;
+  }
+  
+  .step.current .circle {
+    background-color: rgba(104, 190, 255, 0.25);
+    border-color: 1px solid #039FFF;
+  }
+  
+  .buy {
+    top: 2.7cm;  /* Temporarily test with 0px to bring it into view */
+    left: 52%;        /* Center the logo horizontally */
+    transform: translateX(-50%);  /* Adjust position to make it perfectly centered */
+    width: 2.4cm;     /* Set the width to 3.6 cm (3 times bigger) */
+    height: 2.4cm;    /* Set the height to 3.6 cm (3 times bigger) */
+    background-image: url('./src/assets/buy.png');  /* Import the logo image */
+    background-size: contain;  /* Ensure the image is contained within the box */
+    background-position: center;  /* Center the image within the element */
+    background-repeat: no-repeat;  /* Avoid repeating the image */
+    z-index: 2000;     /* Set a higher z-index to ensure it appears on top of the modal */
+  }
+  
+  /* Connecting line between the circles */
+  .step:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    top: 18px;  /* Adjust the position to align with the circles */
+    left:100%;  /* Position it centrally */
+    transform: translateX(-50%);  /* Ensure the line is centered */
+    width: calc(30px + 0.5cm);  /* Extend the width by half a centimeter */
+    height: 2px;
+    background-color: #0f0d0d;
+  }
+  
+    
+    /* Label for each step */
+    .label {
+      margin-top: 8px;
+      font-size: 14px;
+      color: #171414;
+    }
+    
+    .sellLowerButton {
+      position: absolute; /* Already absolute */
+      top: 17cm;         /* 1 cm from the top */
+      left: 70%;        /* Center the logo horizontally */
+      transform: translateX(-50%);  /* Adjust position to make it perfectly centered */
+      width: 2.4cm;     /* Set the width to 3.6 cm (3 times bigger) */
+      height: 2.4cm;    /* Set the height to 3.6 cm (3 times bigger) */
+      background-image: url('./src/assets/sellButton.png');  /* Import the logo image */
+      background-size: contain;  /* Ensure the image is contained within the box */
+      background-position: center;  /* Center the image within the element */
+      background-repeat: no-repeat;  /* Avoid repeating the image */
+      z-index: 2000;     /* Set a higher z-index to ensure it appears on top of the modal */
+      background-color: transparent;  /* Ensure no background color */
+      border: none; /* Remove default button border */
+      padding: 0; /* Remove any padding */
+  
+    }
+  
+    .sellLowerButton:focus {
+      outline: none; /* Remove the outline when focused */
+    }
+    
+    .sellLowerButton:hover {
+      opacity: 0.8; /* Change opacity when hovering for effect */
+    }
+    
+  
+    .goback {
+      position: absolute; /* Already absolute */
+      top: 16.8cm;         /* 1 cm from the top */
+      left: 53%;        /* Center the logo horizontally */
+      transform: translateX(-50%);  /* Adjust position to make it perfectly centered */
+      width: 2.9cm;     /* Set the width to 3.6 cm (3 times bigger) */
+      height: 2.9cm;    /* Set the height to 3.6 cm (3 times bigger) */
+      background-image: url('./src/assets/goback.png');  /* Import the logo image */
+      background-size: contain;  /* Ensure the image is contained within the box */
+      background-position: center;  /* Center the image within the element */
+      background-repeat: no-repeat;  /* Avoid repeating the image */
+      z-index: 2000;     /* Set a higher z-index to ensure it appears on top of the modal */
+      background-color: transparent;  /* Ensure no background color */
+      border: none; /* Remove default button border */
+      padding: 0; /* Remove any padding */
+  
+    }
+  
+    .goback:focus {
+      outline: none; /* Remove the outline when focused */
+    }
+    
+    .goback:hover {
+      opacity: 0.8; /* Change opacity when hovering for effect */
+    }
+    
+    .currency-label {
+      font-size: -1cm;  /* Adjust font size to 1.2cm */
+      font-weight: bold; /* Optional, makes the text bold */
+      margin-bottom: 0.5cm; /* Space below the "Currency" text in centimeters */
+      text-align: center; /* Center the text horizontally */
+      position: absolute; /* Already absolute */
+      top: -2.3cm; /* Adjust this value to move it vertically (2cm down) */
+      left: 12%; /* Centers it horizontally */
+      transform: translateX(-50%); /* Ensures exact centering */
+      z-index: 2000;     /* Set a higher z-index to ensure it appears on top of the modal */
+  
+  }
+  
+  .Chain-label {
+    font-size: -1cm;  /* Adjust font size to 1.2cm */
+    font-weight: bold; /* Optional, makes the text bold */
+    margin-bottom: 0.5cm; /* Space below the "Currency" text in centimeters */
+    text-align: center; /* Center the text horizontally */
+    position: absolute; /* Already absolute */
+    top: -2.3cm; /* Adjust this value to move it vertically (2cm down) */
+    left: 18%; /* Centers it horizontally */
+    transform: translateX(-50%); /* Ensures exact centering */
+    z-index: 2000;     /* Set a higher z-index to ensure it appears on top of the modal */
+  
+  }
+  /* You Buy label */
+  .you-buy {
+    font-size: -1cm; /* Adjust font size */
+    font-weight: bold;
     text-align: center;
-    transition: width 0.3s ease;
-    position: absolute; /* Ensure precise positioning */
-    top: 7.8cm; /* Position dropdown 1 cm below the progress bar */
-    left: 17.2cm; /* Align with the left of the progress bar */
+    position: absolute;
+    top: 9.4cm; /* Adjust top position as per your layout */
+    left: 36%; /* Center the label horizontally */
+    transform: translateX(-50%); /* Center it precisely */
     z-index: 2000; /* Ensure it appears on top of the modal */
-    pointer-events: auto; /* Ensure it’s interactive */
-}
-
-/* When the dropdown is focused (expanded) */
-#Chain-dropdown:focus {
-    outline: none;
-    width: 2.5cm; /* Expanded width */
-}
-
-/* Option styles */
-#Chain-dropdown option {
-    background-color: #039FFF;
-    color: white;
-    font-size: 14px;
+  }
+  
+  /* You Receive label */
+  .You-Receive {
+    font-size: -1cm; /* Adjust font size */
+    font-weight: bold;
     text-align: center;
-}
-
-#Chain-dropdown option:hover {
-    background-color: #0277BD; /* Darker blue when option is hovered */
-}
+    position: absolute;
+    top: 11.6cm; /* Adjust top position to avoid overlap with other elements */
+    left: 36.5%; /* Center the label horizontally */
+    transform: translateX(-50%); /* Center it precisely */
+    z-index: 2000; /* Ensure it appears on top of the modal */
+  }
+  
+  /* You Receive label */
+  .Total-Fee {
+    font-size: -1cm; /* Adjust font size */
+    font-weight: bold;
+    text-align: center;
+    position: absolute;
+    top: 15cm; /* Adjust top position to avoid overlap with other elements */
+    left: 36.5%; /* Center the label horizontally */
+    transform: translateX(-50%); /* Center it precisely */
+    z-index: 2000; /* Ensure it appears on top of the modal */
+  }
+  
+  /* Content box at the top of the modal */
+  .top-content-box {
+    position: absolute; /* Position it at the top of the modal */
+    top: 15.5cm; /* Adjust the top positioning as needed */
+    left: 13.3cm; /* Start 2cm from the left side */
+    right: 13.3cm; /* Keep 2cm space on the right */
+    padding: 10px; /* Add some padding around the content */
+    background-color: rgba(192, 213, 218, 0.49); /* Background color for the content box */
+    border-radius: 8px; /* Rounded corners for the content box */
+    text-align: right; /* Align text to the right */
+    font-size: 14px; /* Adjust the font size */
+    color: #04000080; /* Text color */
+    z-index: 1000; /* Ensure it appears on top */
+    box-sizing: border-box; /* Ensure padding is included in width calculation */
+    height: 1cm; /* Set the height to match the desired size */
+  }
+  
+  /* Content box for "You Buy" text input */
+  .you-buy-box input {
+    position: absolute;
+    top: 10cm; /* Adjust the top positioning as needed */
+    left: 13.3cm; /* Start 2cm from the left side */
+    right: 13.3cm; /* Keep 2cm space on the right */
+    padding: 10px; /* Add some padding around the content */
+    background-color: rgba(192, 213, 218, 0.49); /* Background color for the content box */
+    border: none; /* Remove border */
+    border-radius: 8px; /* Rounded corners for the content box */
+    font-size: 15px; /* Increase the font size */
+    color: #04000080; /* Text color */
+    z-index: 1000; /* Ensure it appears on top */
+    box-sizing: border-box; /* Ensure padding is included in width calculation */
+    height: 1.2cm; /* Set the height to match the desired size */
+    text-align: left; /* Align text to the left */
+  }
+  
+  /* Content box for "You Receive" text input */
+  .you-receive-box input {
+    position: absolute;
+    top: 12.2cm; /* Adjust the top positioning as needed */
+    left: 13.3cm; /* Start 2cm from the left side */
+    right: 13.3cm; /* Keep 2cm space on the right */
+    padding: 10px; /* Add some padding around the content */
+    background-color: rgba(192, 213, 218, 0.49); /* Background color for the content box */
+    border: none; /* Remove border */
+    border-radius: 8px; /* Rounded corners for the content box */
+    font-size: 15px; /* Increase the font size */
+    color: #04000080; /* Text color */
+    z-index: 1000; /* Ensure it appears on top */
+    box-sizing: border-box; /* Ensure padding is included in width calculation */
+    height: 1.2cm; /* Set the height to match the desired size */
+    text-align: left; /* Align text to the left */
+  }
+  .buyChain {
+    position: absolute; /* Already absolute */
+    top: 13cm;  /* Temporarily test with 0px to bring it into view */
+    left: 62%;        /* Center the logo horizontally */
+    transform: translateX(-50%);  /* Adjust position to make it perfectly centered */
+    width: 2.4cm;     /* Set the width to 3.6 cm (3 times bigger) */
+    height: 2.4cm;    /* Set the height to 3.6 cm (3 times bigger) */
+    background-image: url('./src/assets/buyChain.png');  /* Import the logo image */
+    background-size: contain;  /* Ensure the image is contained within the box */
+    background-position: center;  /* Center the image within the element */
+    background-repeat: no-repeat;  /* Avoid repeating the image */
+    z-index: 2000;     /* Set a higher z-index to ensure it appears on top of the modal */
+    border: none; /* Remove default button border */
+    padding: 0; /* Remove any padding */
+    background-color: transparent;  /* Ensure there is no background color */
+  
+  }
+  
+  .buyLogo {
+    position: absolute; /* Already absolute */
+    top: 2.4cm;  /* Temporarily test with 0px to bring it into view */
+    left: 50%;        /* Center the logo horizontally */
+    transform: translateX(-50%);  /* Adjust position to make it perfectly centered */
+    width: 2.4cm;     /* Set the width to 3.6 cm (3 times bigger) */
+    height: 2.4cm;    /* Set the height to 3.6 cm (3 times bigger) */
+    background-image: url('./src/assets/buyButton.png');  /* Import the logo image */
+    background-size: contain;  /* Ensure the image is contained within the box */
+    background-position: center;  /* Center the image within the element */
+    background-repeat: no-repeat;  /* Avoid repeating the image */
+    z-index: 2000;     /* Set a higher z-index to ensure it appears on top of the modal */
+    border: none; /* Remove default button border */
+    padding: 0; /* Remove any padding */
+    background-color: transparent;  /* Ensure there is no background color */
+  
+  }

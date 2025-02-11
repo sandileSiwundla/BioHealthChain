@@ -5,6 +5,8 @@ import Transfer from './transfer';
 import Verify from './verify';  
 import Wallet from './wallet';  
 import VerifyOTP from './verifyOTP'; 
+import Condition from './conditionsAcceptance';
+import Map from './googleAPI'
 
 const DynamicContentLoader = () => {
   const [currentPage, setCurrentPage] = useState(0); // Track the current page
@@ -43,6 +45,10 @@ const DynamicContentLoader = () => {
   // Function to switch to Sell page
   const handleGoToOtherButtonClick = () => {
     setCurrentPage(2); // Set to Sell page (you can adjust the page number)
+  }; // Function to switch to Sell page
+  
+  const handleToPatientIDButtonClick = () => {
+    setCurrentPage(2); // Set to Sell page (you can adjust the page number)
   };
   // Function to handle "Go Back" Button click and move to the previous page
   const handleGoBackButtonClick = () => {
@@ -50,9 +56,13 @@ const DynamicContentLoader = () => {
   };
 
   const contentArray = [
+    <Condition onBuyButtonClick={handleBuyButtonClick}
+    onGoBackButtonClick={handleGoBackButtonClick}
+    onNextButtonClick={handleNextButtonOnBuyClick}/>,
+    
     <Buy onBuyButtonClick={handleBuyButtonClick}
      onGoBackButtonClick={handleGoBackButtonClick}
-     onNextButtonClick={handleNextButtonOnBuyClick}
+     onNextToPatientIDButtonClick={handleToPatientIDButtonClick}
      />,
     <Sell onBuyButtonClick={handleBuyButtonClick} onGoBackButtonClick={handleGoBackButtonClick} />,
     <Transfer 
