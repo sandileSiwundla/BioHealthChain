@@ -1,8 +1,8 @@
 /* Image Upload Container */
 #image-upload-container {
     position: absolute; /* Allows manual positioning */
-    top: 6cm;  /* Adjust the position from the top */
-    left: 20cm; /* Adjust the position from the left */
+    top: 14cm;  /* Adjust the position from the top */
+    left: 7.3cm; /* Adjust the position from the left */
     transform: translate(-50%, -50%); /* Centers the box */
     
     background-color: #1c6593;
@@ -16,7 +16,7 @@
 
 /* Title */
 .upload-title {
-    font-size: 16px;
+    font-size: 10px;
     font-weight: bold;
     margin-bottom: 10px;
 }

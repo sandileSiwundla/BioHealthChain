@@ -25,15 +25,7 @@ const CopyBox = () => {
       <div className="copy-box">
         <div className="box-content" id="copy-text">
           <pre>
-            {`const africanCurrencies = [
-              { code: 'ZAR', name: 'South African Rand' },
-              { code: 'NGN', name: 'Nigerian Naira' },
-              { code: 'KES', name: 'Kenyan Shilling' },
-              { code: 'GHS', name: 'Ghanaian Cedi' },
-              { code: 'EGP', name: 'Egyptian Pound' },
-              { code: 'CFA', name: 'West African CFA Franc' },
-              { code: 'MAD', name: 'Moroccan Dirham' },
-            ];`}
+            {`AA3842`}
           </pre>
         </div>
         <button 

@@ -7,11 +7,11 @@ import Image from './imageUploa';
 
 interface SellProps {
   onBuyButtonClick: () => void;
-  onGoBackButtonClick: () => void; 
+  onGoToMedicalButtonClick: () => void; 
 }
 
 
-const Sell: React.FC<SellProps>= ({ onBuyButtonClick, onGoBackButtonClick }) => {
+const Sell: React.FC<SellProps>= ({ onBuyButtonClick, onGoToMedicalButtonClick }) => {
   const [currentStep, setCurrentStep] = useState(1); // Start at step 1
 
   // Function to handle step progression
@@ -31,8 +31,8 @@ const Sell: React.FC<SellProps>= ({ onBuyButtonClick, onGoBackButtonClick }) => 
     alert('Buy button clicked!');
   };
 
-  const handleSellButtonClick = () => {
-    alert('Sell button clicked!');
+  const handleNextButtonClick = () => {
+    onGoToMedicalButtonClick();
   };
 
 
@@ -45,14 +45,13 @@ const Sell: React.FC<SellProps>= ({ onBuyButtonClick, onGoBackButtonClick }) => 
       </div>
 
       <div className="patientName">Name & Surname</div>
-      <div className="flex justify-center items-center h-screen bg-[#1c6593]">
-      <Image />
-    </div>
+      
 
       <div className="patientAddress">Patience Physical Address</div>
       <div className="gender">Gender</div>
       <Gender/>
 
+      
 
 
       <div className="patientID">Patients South African ID</div>
@@ -65,6 +64,20 @@ const Sell: React.FC<SellProps>= ({ onBuyButtonClick, onGoBackButtonClick }) => 
 
       {/* Progress Bar */}
       <div className="modal-content">
+      <div id="nextButton">
+    <button 
+        className="next-button" 
+        id="nextButton" 
+        onClick={handleNextButtonClick}>
+        LOAD PATIENT DATA
+    </button>
+</div>
+
+
+
+      <div className="flex justify-center items-center h-screen bg-[#1c6593]">
+      <Image />
+    </div>
 
       </div>
     </div>

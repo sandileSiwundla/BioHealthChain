@@ -20,55 +20,6 @@
   flex: 1;
 }
 
-.circle {
-  width: 30px;
-  height: 30px;
-  border-radius: 50%;
-  background-color: transparent;
-  border: 2px solid #ddd;
-  color: black;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 14px;
-  font-weight: bold;
-  transition: background-color 0.3s, border-color 0.3s;
-}
-
-.step.completed .circle {
-  background-color: rgba(104, 190, 255, 0.25);
-  border-color: 1px solid #039FFF;
-}
-
-.step.current .circle {
-  background-color: rgba(104, 190, 255, 0.25);
-  border-color: 1px solid #039FFF;
-}
-
-.buy {
-  top: 2.7cm;  /* Temporarily test with 0px to bring it into view */
-  left: 52%;        /* Center the logo horizontally */
-  transform: translateX(-50%);  /* Adjust position to make it perfectly centered */
-  width: 2.4cm;     /* Set the width to 3.6 cm (3 times bigger) */
-  height: 2.4cm;    /* Set the height to 3.6 cm (3 times bigger) */
-  background-image: url('./src/assets/buy.png');  /* Import the logo image */
-  background-size: contain;  /* Ensure the image is contained within the box */
-  background-position: center;  /* Center the image within the element */
-  background-repeat: no-repeat;  /* Avoid repeating the image */
-  z-index: 2000;     /* Set a higher z-index to ensure it appears on top of the modal */
-}
-
-/* Connecting line between the circles */
-.step:not(:last-child)::after {
-  content: '';
-  position: absolute;
-  top: 18px;  /* Adjust the position to align with the circles */
-  left:100%;  /* Position it centrally */
-  transform: translateX(-50%);  /* Ensure the line is centered */
-  width: calc(30px + 0.5cm);  /* Extend the width by half a centimeter */
-  height: 2px;
-  background-color: #0f0d0d;
-}
 
   
   /* Label for each step */
@@ -77,72 +28,8 @@
     font-size: 14px;
     color: #171414;
   }
-  
-  .sellLowerButton {
-    position: absolute; /* Already absolute */
-    top: 17cm;         /* 1 cm from the top */
-    left: 70%;        /* Center the logo horizontally */
-    transform: translateX(-50%);  /* Adjust position to make it perfectly centered */
-    width: 2.4cm;     /* Set the width to 3.6 cm (3 times bigger) */
-    height: 2.4cm;    /* Set the height to 3.6 cm (3 times bigger) */
-    background-image: url('./src/assets/sellButton.png');  /* Import the logo image */
-    background-size: contain;  /* Ensure the image is contained within the box */
-    background-position: center;  /* Center the image within the element */
-    background-repeat: no-repeat;  /* Avoid repeating the image */
-    z-index: 2000;     /* Set a higher z-index to ensure it appears on top of the modal */
-    background-color: transparent;  /* Ensure no background color */
-    border: none; /* Remove default button border */
-    padding: 0; /* Remove any padding */
 
-  }
 
-  .sellLowerButton:focus {
-    outline: none; /* Remove the outline when focused */
-  }
-  
-  .sellLowerButton:hover {
-    opacity: 0.8; /* Change opacity when hovering for effect */
-  }
-  
-
-  .goback {
-    position: absolute; /* Already absolute */
-    top: 16.8cm;         /* 1 cm from the top */
-    left: 53%;        /* Center the logo horizontally */
-    transform: translateX(-50%);  /* Adjust position to make it perfectly centered */
-    width: 2.9cm;     /* Set the width to 3.6 cm (3 times bigger) */
-    height: 2.9cm;    /* Set the height to 3.6 cm (3 times bigger) */
-    background-image: url('./src/assets/goback.png');  /* Import the logo image */
-    background-size: contain;  /* Ensure the image is contained within the box */
-    background-position: center;  /* Center the image within the element */
-    background-repeat: no-repeat;  /* Avoid repeating the image */
-    z-index: 2000;     /* Set a higher z-index to ensure it appears on top of the modal */
-    background-color: transparent;  /* Ensure no background color */
-    border: none; /* Remove default button border */
-    padding: 0; /* Remove any padding */
-
-  }
-
-  .goback:focus {
-    outline: none; /* Remove the outline when focused */
-  }
-  
-  .goback:hover {
-    opacity: 0.8; /* Change opacity when hovering for effect */
-  }
-  
-  .currency-label {
-    font-size: -1cm;  /* Adjust font size to 1.2cm */
-    font-weight: bold; /* Optional, makes the text bold */
-    margin-bottom: 0.5cm; /* Space below the "Currency" text in centimeters */
-    text-align: center; /* Center the text horizontally */
-    position: absolute; /* Already absolute */
-    top: -2.3cm; /* Adjust this value to move it vertically (2cm down) */
-    left: 12%; /* Centers it horizontally */
-    transform: translateX(-50%); /* Ensures exact centering */
-    z-index: 2000;     /* Set a higher z-index to ensure it appears on top of the modal */
-
-}
 
 
 /* You Buy label */
@@ -234,25 +121,30 @@
 
 
 .next-button {
- display: block;
- margin: 30px auto 0;
- padding: 15px 30px;
- font-size: 16px;
- font-weight: bold;
- color: #2d7f2c;
- background-color: transparent;
- border: 2px solid #2d7f2c;
- border-radius: 25px;
- transition: background-color 0.3s, color 0.3s;
- cursor: pointer;
- outline: none;
-}
-
-.next-button:hover {
- background-color: rgba(45, 127, 44, 0.1);
-}
-
-.next-button:active {
- background-color: #2d7f2c;
- color: white;
-}
+  display: block;
+  margin: 30px auto 0;
+  padding: 15px 30px;
+  font-size: 16px;
+  font-weight: bold;
+  color: #121312;
+  background-color: transparent;
+  border: 2px solid #0c0e0c;
+  border-radius: 25px;
+  transition: background-color 0.3s, color 0.3s;
+  cursor: pointer;
+  outline: none;
+  position: fixed;
+  bottom: 90px;
+  left: 10cm;
+  transform: translateX(-50%);
+ }
+ 
+ .next-button:hover {
+  background-color: rgba(45, 127, 44, 0.1);
+ }
+ 
+ .next-button:active {
+  background-color: #2d7f2c;
+  color: white;
+ }
+ 

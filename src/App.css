@@ -27,61 +27,7 @@
   }
   
 
-  /* Progress bar container */
-  .progress-bar {
-    position: absolute;
-    top: 1cm;  /* Position 1 cm below the top of the modal */
-    left: 2.5cm;  /* 2.5 cm from the left edge */
-    right: 2.5cm; /* 2.5 cm from the right edge */
-    display: flex;
-    justify-content: space-between;
-    width: calc(100% - 5cm);  /* Ensure it’s centered with left and right padding */
-    margin-top: 1cm;  /* Adds space between the top of the modal and the progress bar */
-    padding: 10px 0;
-  }
-  
-  /* Each step */
-  .step {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    position: relative;
-    flex: 1;
-    /* Ensuring the steps do not overlap */
-    padding: 0 5px;
-    width: 100%;
-    justify-content: space-evenly;
-  }
-  
-  /* The circle (adjusted size, transparency, and line spacing) */
-  .circle {
-    width: 30px; /* Smaller circle size */
-    height: 30px; /* Smaller circle size */
-    border-radius: 50%;
-    background-color: transparent; /* Make the circle transparent */
-    border: 2px solid #ddd; /* Light border for visibility */
-    color: black; /* Change text color to black */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 14px; /* Adjust font size */
-    font-weight: bold;
-    transition: background-color 0.3s, border-color 0.3s; /* Transition for color changes */
-  }
 
-  /* Step completed style */
-  .step.completed .circle {
-    background-color: rgba(104, 190, 255, 0.25); /* Blue color for completed step */
-    border-color: #039FFF; /* Blue border for completed step */
-    color: black; /* Keep the number black */
-  }
-  
-  /* Current step style */
-  .step.current .circle {
-    background-color: rgba(104, 190, 255, 0.25); /* Light blue color for the current step */
-    border-color: #039FFF; /* Light blue border for current step */
-    color: black; /* Keep the number black */
-  }
 
   /* Logo as background image at the bottom right */
 .logo {

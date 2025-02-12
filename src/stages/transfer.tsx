@@ -55,36 +55,9 @@ const Transfer: React.FC<TransferProps> = ({ onBuyButtonClick, onSellButtonClick
   
       {/* Progress Bar */}
       <div className="modal-content">
-        <div className="progress-bar">
-          <div className={`step ${currentStep >= 1 ? 'completed' : ''} ${currentStep === 1 ? 'current' : ''}`}>
-            <div className="circle">1</div>
-            <div className="label">Amount</div>
-          </div>
-          <div className={`step ${currentStep >= 2 ? 'completed' : ''} ${currentStep === 2 ? 'current' : ''}`}>
-            <div className="circle">2</div>
-            <div className="label">Wallet</div>
-          </div>
-          <div className={`step ${currentStep >= 3 ? 'completed' : ''} ${currentStep === 3 ? 'current' : ''}`}>
-            <div className="circle">3</div>
-            <div className="label">Verify</div>
-          </div>
-          <div className={`step ${currentStep >= 4 ? 'completed' : ''} ${currentStep === 4 ? 'current' : ''}`}>
-            <div className="circle">4</div>
-            <div className="label">Order</div>
-          </div>
-        </div>
-  
-        {/* Additional Details Section */}
-        <div className="details-container">
-          <div className="detail-item review-details">
-            <strong>Review details</strong>
-          </div>
-          <div className="detail-item proceed-transaction">
-            Confirm details and proceed with the transaction
-          </div>
+
         </div>
       </div>
-    </div>
   );
 };
 

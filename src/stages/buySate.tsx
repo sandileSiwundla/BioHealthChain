@@ -55,15 +55,8 @@ const Buy: React.FC<BuyProps> = ({ onBuyButtonClick, onGoBackButtonClick, onNext
     <div className="modal-overlay">
 
       {/* Existing Currency and Chain labels */}
-      <div className="currency-label">Currency</div>
-      <div className="Chain-label">Chain</div>
 
-      <div id="nextButton">
-    <button 
-        className="consent-button" 
-      id="nextButton" onClick={handlesNextButtonClick}>NEXT</button>
-</div>
-
+      
       {/* New labels */}
       <div className="healthProvidersName">Healthcare Professional Name</div>
       <div className="hospitalName">Hospital Name</div>
@@ -95,6 +88,16 @@ const Buy: React.FC<BuyProps> = ({ onBuyButtonClick, onGoBackButtonClick, onNext
       
 
       <div className="modal-content">
+
+      <div id="nextButton">
+    <button 
+        className="next-button" 
+        id="nextButton" 
+        onClick={handlesNextButtonClick}>
+        NEXT
+    </button>
+</div>
+
        
           
       </div>

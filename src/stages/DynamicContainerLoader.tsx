@@ -16,6 +16,9 @@ const DynamicContentLoader = () => {
     setCurrentPage(1); // Set to Buy page (you can adjust the page number)
   };
 
+  const handleGoToMedicalButtonClick = () => {
+    setCurrentPage(3); // Set to Buy page (you can adjust the page number)
+  };
   // Function to switch to Sell page
   const handleSellButtonClick = () => {
     setCurrentPage(2); // Set to Sell page (you can adjust the page number)
@@ -64,7 +67,8 @@ const DynamicContentLoader = () => {
      onGoBackButtonClick={handleGoBackButtonClick}
      onNextToPatientIDButtonClick={handleToPatientIDButtonClick}
      />,
-    <Sell onBuyButtonClick={handleBuyButtonClick} onGoBackButtonClick={handleGoBackButtonClick} />,
+    <Sell onBuyButtonClick={handleBuyButtonClick} 
+    onGoToMedicalButtonClick={handleGoToMedicalButtonClick} />,
     <Transfer 
       onBuyButtonClick={handleBuyButtonClick} 
       onSellButtonClick={handleSellButtonClick} 
