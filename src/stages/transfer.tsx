@@ -43,18 +43,54 @@ const Transfer: React.FC<TransferProps> = ({ onBuyButtonClick, onSellButtonClick
 
   return (
     <div className="modal-overlay">
-  
-      {/* Buttons for Buy, Sell, Go Back, Transfer Funds */}
-      <button className="buyLowerButton" onClick={onBuyButtonClick}></button>
-      <button className="sellLowerButton" onClick={onSellButtonClick}></button>
-      <button className="back" onClick={handleBackButtonClick}></button>
-      <button className="transferFunds" onClick={handleTransferFundsButtonClick}></button>
+
 
       {/* Display Copy component */}
-      <Copy />
   
       {/* Progress Bar */}
       <div className="modal-content">
+      <div className="welcome-container">
+        <h2>Welcome to BioHealthChain</h2>
+        <p>
+          Congratulations! Your registration is complete, and you are now part of a secure,
+          decentralized healthcare network designed for seamless data access and privacy.
+        </p>
+
+        <Copy />
+
+        <p>
+          Please copy and save this code. It serves as your <strong>unique identifier</strong> across all
+          participating hospitals and pharmacies.
+        </p>
+
+        <h3>How to Use Your Code</h3>
+        <ul className="info-list">
+          <li>
+            <strong>Hospitals:</strong> Provide your unique code along with your full name when visiting any
+            participating hospital. This grants authorized healthcare providers secure access to your medical
+            history.
+          </li>
+          <li>
+            <strong>Pharmacies:</strong> If you receive prescription medication, simply share your code with a
+            participating pharmacy, and they will retrieve and process your prescription securely.
+          </li>
+        </ul>
+
+        <h3>Optional Insurance Information</h3>
+        <p>
+          You have the option to securely add your <strong>insurance details</strong> to your profile. This can
+          help facilitate emergency care and streamline medical billing when needed.
+        </p>
+
+        <p>
+          Thank you for choosing <strong>BioHealthChain</strong> for your healthcare data security.
+        </p>
+
+        <button className="next-button" onClick={() => alert("Redirecting to file upload...")}>
+          Next: Upload File Information
+        </button>
+      </div>
+
 
         </div>
       </div>

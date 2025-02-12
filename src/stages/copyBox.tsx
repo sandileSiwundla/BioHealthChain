@@ -25,7 +25,7 @@ const CopyBox = () => {
       <div className="copy-box">
         <div className="box-content" id="copy-text">
           <pre>
-            {`AA3842`}
+            {`P4D2V8R1X`}
           </pre>
         </div>
         <button 

@@ -2,8 +2,8 @@
   /* CopyBox styles */
   .copy-box-container {
     position: absolute;  /* Positioned relative to the modal */
-    top: 45%;  /* Move it below the progress bar, adjust as needed */
-    left: 50%;  /* Center horizontally within the modal */
+    top: 78%;  /* Move it below the progress bar, adjust as needed */
+    left: 30%;  /* Center horizontally within the modal */
     transform: translateX(-50%);  /* Adjust to perfectly center the box */
     z-index: 100;  /* Ensure it appears above modal content */
     width: calc(35% - 1cm);  /* Take up almost all available width, leaving 0.5cm on each side */
@@ -40,7 +40,7 @@
     overflow-x: auto;
     white-space: pre-wrap;  /* Ensure content wraps within the box */
     margin-bottom: 10px;
-    text-align: left;  /* Align content to the left */
+    text-align: center;  /* Align content to the left */
   }
   
   /* Copy button styles */
