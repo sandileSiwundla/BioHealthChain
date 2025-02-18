@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import './healthcareLoginPatientSide.css';
 import DropDown from './dropDownList';  
 import Map from './googleAPI';  
+import { Link } from "react-router-dom";
+
 
 interface BuyProps {
   onBuyButtonClick: () => void;
@@ -90,12 +92,11 @@ const Buy: React.FC<BuyProps> = ({ onBuyButtonClick, onGoBackButtonClick, onNext
       <div className="modal-content">
 
       <div id="nextButton">
-    <button 
-        className="next-button" 
-        id="nextButton" 
-        onClick={handlesNextButtonClick}>
+    <Link to="/patientDataIntake">
+        <button className="next-button" id="nextButton">
         NEXT
-    </button>
+        </button>
+      </Link>
 </div>
 
        
