@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import './sell.css';
+import './patientDataIntake.css';
 import Gender from './gender';  
 import Map from './googleAPI';
 import Image from './imageUploa';  

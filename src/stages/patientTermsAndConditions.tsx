@@ -1,54 +1,21 @@
 import React, { useState, useEffect } from 'react';
-import './conditionAcceptance.css';
+import { Link } from "react-router-dom";
+
+import './patientTermsAndConditions.css';
 
 
-interface BuyProps {
-  onBuyButtonClick: () => void;
-  onGoBackButtonClick: () => void; 
+interface PatientSignUpPros {
   onNextButtonClick: () => void;
 }
 
-const Buy: React.FC<BuyProps> = ({ onBuyButtonClick, onGoBackButtonClick, onNextButtonClick }) => {
-  const [currentStep, setCurrentStep] = useState(1);
+const PatientSignUp: React.FC<PatientSignUpPros> = ({  onNextButtonClick }) => {  
+
   
-  // Function to handle step progression
-  useEffect(() => {
-    const interval = setInterval(() => {
-      if (currentStep < 1) {
-        setCurrentStep((prevStep) => prevStep + 1);
-      }
-    }, 1); // Progress every 1 second
-
-    // Cleanup the interval on component unmount
-    return () => clearInterval(interval);
-  }, [currentStep]);
-  
-
-  // Function to handle Buy Button click
-  const handlesOnConsentButtonClick = () => {
-    // Here, you can trigger the state update from the parent component
-    onBuyButtonClick(); // Calling the passed function from DynamicContentLoader
-  };
-
-  // Function to handle Sell Button click (for dynamic content navigation)
-  const handleSellButtonClick = () => {
-    alert('Sell button clicked!');
-    // You can also update the parent state here to trigger the next component if needed.
-  };
 
   // Function to handle Sell Button click (for dynamic content navigation)
   const handlesBuyChainButtonClick = () => {
     onNextButtonClick();
-    // You can also update the parent state here to trigger the next component if needed.
   };
-
-  // Function to handle Sell Button click (for dynamic content navigation)
-  const handlesOnBuyLogoButtonClick = () => {
-    alert('Already on Buy page');
-    // You can also update the parent state here to trigger the next component if needed.
-  };
-
-  
 
 
   return (
@@ -58,7 +25,7 @@ const Buy: React.FC<BuyProps> = ({ onBuyButtonClick, onGoBackButtonClick, onNext
   <div className="terms-container">
     <h2 className="terms-heading">BioHealthChain Terms and Conditions</h2>
     <p className="terms-intro">
-      Welcome to BioHealthChain! By using the BioHealthChain platform, you are agreeing to the following terms and conditions. BioHealthChain is a decentralized blockchain-based healthcare platform designed to give patients full control over their medical data, ensuring it is secure, transparent, and interoperable.
+      By using the BioHealthChain platform, you are agreeing to the following terms and conditions. BioHealthChain is a decentralized blockchain-based healthcare platform designed to give patients full control over their medical data, ensuring it is secure, transparent, and interoperable.
     </p>
   
     <div className="terms-section">
@@ -105,9 +72,11 @@ const Buy: React.FC<BuyProps> = ({ onBuyButtonClick, onGoBackButtonClick, onNext
       </ul>
     </div>
   
-    <button 
-        className="consent-button" 
-        id="consentButton" onClick={handlesOnConsentButtonClick}>I Consent</button>  
+      <Link to="/patientSideDrLogin">
+    <button className="consent-button" id="consentButton">
+    I Consent
+    </button>
+  </Link>
 
   </div>
      </div>
@@ -116,4 +85,4 @@ const Buy: React.FC<BuyProps> = ({ onBuyButtonClick, onGoBackButtonClick, onNext
   );
 };
 
-export default Buy;
+export default PatientSignUp;

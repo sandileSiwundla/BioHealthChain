@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import './buy.css';
+import './healthcareLoginPatientSide.css';
 import DropDown from './dropDownList';  
 import Map from './googleAPI';  
 

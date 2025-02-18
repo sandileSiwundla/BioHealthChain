@@ -1,19 +1,18 @@
 import React, { useState } from 'react';
-import Buy from './buySate'; 
-import Sell from './sellStage';  
+import Buy from './healthcareLoginPatientSide'; 
+import Sell from './patientDataIntake';  
 import Transfer from './transfer';  
 import Verify from './verify';  
 import Wallet from './wallet';  
 import VerifyOTP from './verifyOTP'; 
-import Condition from './conditionsAcceptance';
-import Map from './googleAPI'
+import PatientSignUp from './patientTermsAndConditions';
 
 const DynamicContentLoader = () => {
   const [currentPage, setCurrentPage] = useState(0); // Track the current page
 
   // Function to switch to Buy page
   const handleBuyButtonClick = () => {
-    setCurrentPage(1); // Set to Buy page (you can adjust the page number)
+    setCurrentPage(4); // Set to Buy page (you can adjust the page number)
   };
 
   const handleGoToMedicalButtonClick = () => {
@@ -59,9 +58,10 @@ const DynamicContentLoader = () => {
   };
 
   const contentArray = [
-    <Condition onBuyButtonClick={handleBuyButtonClick}
-    onGoBackButtonClick={handleGoBackButtonClick}
-    onNextButtonClick={handleNextButtonOnBuyClick}/>,
+    <PatientSignUp 
+    onNextButtonClick={handleBuyButtonClick}
+/>,
+
     
     <Buy onBuyButtonClick={handleBuyButtonClick}
      onGoBackButtonClick={handleGoBackButtonClick}
