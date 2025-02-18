@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from "react-router-dom";
+
 import './patientDataIntake.css';
 import Gender from './gender';  
 import Map from './googleAPI';
@@ -65,12 +67,11 @@ const Sell: React.FC<SellProps>= ({ onBuyButtonClick, onGoToMedicalButtonClick }
       {/* Progress Bar */}
       <div className="modal-content">
       <div id="nextButton">
-    <button 
-        className="next-button" 
-        id="nextButton" 
-        onClick={handleNextButtonClick}>
+      <Link to="/uniqueCode">
+        <button className="next-button" id="nextButton">
         LOAD PATIENT DATA
-    </button>
+        </button>
+      </Link>
 </div>
 
 

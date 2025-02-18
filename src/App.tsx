@@ -5,6 +5,8 @@ import Patient from "./pages/PatientSide";
 import PatientSignUp from "./stages/patientTermsAndConditions";
 import DoctorLoginPatientSide from './stages/healthcareLoginPatientSide'
 import LoadPatientData from './stages/patientDataIntake'
+import UniqueCode from './stages/uniqueCode'
+
 import DynamicContainerLoader from './stages/DynamicContainerLoader'; // Import the dynamic loader component
 
 
@@ -27,6 +29,8 @@ const App: React.FC = () => {
           <Route path="/patientSignUp" element={<PatientSignUp />} />
           <Route path="/patientSideDrLogin" element={<DoctorLoginPatientSide />} />
           <Route path="/patientDataIntake" element={<LoadPatientData />} />
+          <Route path="/uniqueCode" element={<UniqueCode />} />
+
 
         </Routes>
       </div>

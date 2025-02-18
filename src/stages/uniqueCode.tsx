@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import './transfer.css';
+import './uniqueCode.css';
 import Copy from './copyBox';  
 
 interface TransferProps {

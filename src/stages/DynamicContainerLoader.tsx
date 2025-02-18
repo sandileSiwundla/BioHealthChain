@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Buy from './healthcareLoginPatientSide'; 
 import Sell from './patientDataIntake';  
-import Transfer from './transfer';  
+import Transfer from './uniqueCode';  
 import Verify from './verify';  
 import Wallet from './wallet';  
 import VerifyOTP from './verifyOTP'; 
