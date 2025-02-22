@@ -53,9 +53,6 @@ const Sell: React.FC<SellProps>= ({ onBuyButtonClick, onGoToMedicalButtonClick }
       <div className="gender">Gender</div>
       <Gender/>
 
-      
-
-
       <div className="patientID">Patients South African ID</div>
       <div className="patientID-box">
         <input type="text" placeholder="Enter Patient ID" />

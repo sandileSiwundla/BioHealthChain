@@ -1,138 +1,123 @@
-/* General Page Styling */
-.min-h-screen {
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-  }
-  
-  /* Navbar */
-  .navbar {
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-  }
-  
-  /* Headline Section */
-  .headline-section {
-    flex: 1;
-    background-color: #779da6;
-    display: flex;
-    align-items: center;
-  }
-  
-  .headline-container {
-    text-align: center;
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 40px;
-  }
-  
-  .headline-title,
-  .headline-text {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  
-  /* About Section */
-  .about-section {
-    background-color: #779da6;
-    padding: 80px 20px;
-    text-align: center;
-  }
-  
-  .about-text {
-    color: #4a4a4a;
-    max-width: 800px;
-    margin: 0 auto;
-  }
-  
-  /* Features Section */
-  .features-section {
-    background-color: #779da6;
-    padding: 80px 20px;
-    text-align: center;
-  }
-  
-  .feature-box {
-    background-color: white;
-    padding: 24px;
-    border-radius: 8px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-  }
-  
-  /* Team Section */
-  .team-section {
-    background-color: #779da6;
-    padding: 80px 20px;
-    text-align: center;
-  }
-  
-  .team-member {
-    background-color: #779da6;
-    border-radius: 12px;
-    padding: 20px;
-    display: flex;
-    align-items: center;
-    text-align: left;
-  }
-  
-  .team-member img {
-    width: 100px;
-    height: 100px;
-    border-radius: 50%;
-    object-fit: cover;
-  }
-  
-  .team-info {
-    padding: 20px;
-  }
-  
-  .team-name {
-    color: cyan;
-    font-weight: bold;
-  }
-  
-  .team-role {
-    color: gray;
-  }
-  
-  .social-links {
-    display: flex;
-    justify-content: flex-end;
-    gap: 16px;
-  }
-  
-  .social-links img {
-    width: 32px;
-    height: 32px;
-  }
-  
-  /* Contact Section */
-  .contact-section {
-    background-color: #f9f7f4;
-    color: #003366;
-    padding: 80px 20px;
-    text-align: center;
-  }
-  
-  .contact-button {
-    background-color: white;
-    color: #003366;
-    padding: 12px 24px;
-    border-radius: 8px;
-    transition: background 0.3s ease;
-  }
-  
-  .contact-button:hover {
-    background-color: #e0e0e0;
-  }
-  
-  /* Footer */
-  .footer {
-    background-color: #333;
-    color: white;
-    text-align: center;
-    padding: 16px;
-  }
-  
+/* Add this to your Home CSS file */
+
+/* Ensure sections don't overlap */
+#home, 
+#features, 
+#team, 
+#contact {
+  margin-bottom: 50px !important; /* Add space between sections */
+}
+
+/* Make sections take up full width */
+#home, 
+#features, 
+#team, 
+#contact {
+  width: 100vw !important; /* Ensure full viewport width */
+}
+
+/* Make sections display as blocks */
+#home, 
+#features, 
+#team, 
+#contact {
+  display: block !important; /* Ensure sections display as blocks */
+}
+
+/* Headline Section */
+.headline-section {
+  width: 100vw; /* Ensure full viewport width */
+  background-color: #779da6;
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* Spreads content across */
+  padding: 10px 0; /* Adjust for top/bottom padding */
+  box-sizing: border-box;
+  margin-top: 270px; /* Adjust based on navbar height */
+  position: relative;
+  left: 0;
+}
+
+/* Headline Content */
+.headline-container {
+  flex: 1; /* Makes it take up the available space */
+  display: flex;
+  flex-direction: row; /* Aligns content in a row */
+  justify-content: space-between; /* Spreads content out */
+  align-items: center;
+  width: 100%;
+  padding: 0 5%; /* Adds the side padding */
+}
+
+/* Left side - Title and Text */
+.headline-text-container {
+  max-width: 50%;
+}
+
+.headline-title {
+  font-size: 2.5rem;
+  color: white;
+  margin-bottom: 10px;
+}
+
+.headline-text {
+  font-size: 1.5rem;
+  color: #f0f0f0;
+}
+
+/* Right side - Add an image or other content */
+.headline-image {
+  max-width: 40%;
+}
+
+.headline-image img {
+  width: 100%;
+  height: auto;
+}
+
+/* Prevent horizontal scrolling */
+body, html {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  overflow-x: hidden;
+}
+
+/* Features Section */
+.features-section {
+  padding: 40px 0; /* Adjust the padding around the section */
+  background-color: #779da6; /* Light background color */
+  margin-top: 50px; /* Add space above the section to move it down */
+}
+
+/* Style for each feature box */
+.feature-box {
+  background-color: #779da6; /* White background for each feature */
+  border-radius: 20px; /* Rounded corners for the island effect */
+  padding: 20px; /* Add some space inside the box */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Soft shadow around the box */
+  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth transition */
+  display: flex;
+  flex-direction: column; /* Stack the title and content */
+  justify-content: space-between;
+  border: 1px solid rgb(50, 43, 43); /* Visible black border around the feature box */
+}
+
+/* Hover effect: grow and add shadow */
+.feature-box:hover {
+  transform: scale(1.05); /* Slightly enlarge the box */
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); /* Add a stronger shadow when hovering */
+}
+
+/* Title styling */
+.feature-box h4 {
+  font-size: 1.25rem;
+  color: #333;
+}
+
+/* Paragraph styling */
+.feature-box p {
+  color: #555;
+  font-size: 1rem;
+  line-height: 1.5;
+}

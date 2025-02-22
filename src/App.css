@@ -1,82 +1,19 @@
-/* Main container styling */
+/* Styling for the app */
 .app {
-    text-align: center;
-    padding: 50px;
-    height: 100vh;  /* Full viewport height */
-    background-image: url('./assets/background.png'); /* Add your background image here */
-    background-size: cover;  /* Ensure it covers the whole background */
-    background-position: center;  /* Center the image */
-    background-repeat: no-repeat; /* Avoid repeating the image */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  
-  /* Modal overlay (background that darkens the page) */
-  .modal-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;  /* Full width of the viewport */
-    height: 100vh; /* Full height of the viewport */
-    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 1000;  /* Ensure it's on top of other content */
-  }
-  
+  background-color: #779da6;
 
+}
 
-
-  /* Logo as background image at the bottom right */
+/* Logo as background image at the bottom right */
 .logo {
-    position: fixed;  /* Position it relative to the viewport */
-    bottom: 1cm;     /* 2.5 cm from the bottom */
-    right: 1cm;      /* 2.5 cm from the right edge */
-    width: 3cm;      /* Set the width to 2.5 cm */
-    height: 3cm;     /* Set the height to 2.5 cm to maintain aspect ratio */
-    background-image: url('./assets/logo.jpg');  /* Import the logo image */
-    background-size: cover;  /* Ensure it covers the space */
-    background-position: center;  /* Center the image within the element */
-    background-repeat: no-repeat;  /* Avoid repeating the image */
-  }
-
-
-  /* Ensure the body and HTML elements fill the viewport and prevent overflow */
-html, body {
-  height: 100%;      /* Ensure full height of the screen */
-  margin: 0;         /* Remove default margins */
-  padding: 0;        /* Remove default padding */
-  overflow: hidden;  /* Prevent the page from overflowing */
+  position: fixed;  /* Position it relative to the viewport */
+  bottom: 1cm;      /* 1 cm from the bottom */
+  right: 1cm;       /* 1 cm from the right edge */
+  width: 2.8cm;       /* Adjusted to a size that works */
+  height: 2.8cm;      /* Adjusted height */
+  background-image: url('./assets/logo.jpg');  /* Import the logo image */
+  background-size: cover;  /* Ensure it covers the space */
+  background-position: center;  /* Center the image within the element */
+  background-repeat: no-repeat;  /* Avoid repeating the image */
+  border-radius: 50%;  /* Round the image */
 }
-
-/* Modal overlay to cover the entire screen */
-.modal-overlay {
-  position: fixed;
-  top: 10 !important;
-  left: 10 !important;
-  width: 100vw;
-  height: 100vh;     /* Full height of the viewport */
-  background-color: rgba(0, 0, 0, 0.5);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 1000;
-}
-
-/* Modal content to stay within bounds of the screen */
-.modal-content {
-    width: 1200px !important;
-    height: calc(90%) !important;  /* Increase height by 10% */
-    background: rgba(3, 159, 255, 0.25) !important;
-    border: 1px solid #020c13 !important;
-    border-radius: 20px !important;
-    backdrop-filter: blur(12px);
-    padding: 20px;
-    box-sizing: border-box;
-    text-align: center;
-    position: relative;
-    overflow-y: auto; 
-  }
-  

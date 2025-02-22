@@ -1,76 +1,47 @@
-/* Navbar.css */
-
 .sticky-navbar {
-    position: sticky;
-    top: 0;
-    z-index: 10;
-    width: 100%;
-    padding: 16px 32px;
-    background-color: #F9F7F4;
-    margin-top: 1cm;
-  }
-  
-  .navbar-container {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    width: 100%;
-    color: #1E293B; /* blue-gray-900 */
-  }
-  
-  .navbar-logo {
-    height: 64px;
-    width: 64px;
-    border-radius: 50%;
-  }
-  
-  .navbar-links {
-    display: flex;
-    align-items: center;
-    gap: 16px;
-  }
-  
-  /* Fixing the nav list */
-  .nav-list {
-    display: flex;  /* Make links align horizontally */
-    flex-direction: row;  /* Explicitly state row layout */
-    align-items: center;
-    gap: 16px; /* Add spacing between links */
-    list-style: none;
-    padding: 0;
-    margin: 0;
-  }
-  
-  .nav-list li {
-    padding: 8px;
-    font-size: 16px;
-    font-weight: 500;
-    border-radius: 8px;
-    transition: all 0.3s ease-in-out;
-  }
-  
-  .nav-list li:hover {
-    background-color: #7DD3FC; /* sky-300 */
-    color: white;
-  }
-  
-  .auth-buttons {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-  }
-  
-  .icon-button {
-    height: 24px;
-    width: 24px;
-    background: none;
-    border: none;
-    cursor: pointer;
-  }
-  
-  .mobile-nav {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-  }
-  
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: #779da6;
+  z-index: 1000;
+  padding: 10px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.navbar-container {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.logo-container {
+  flex: 1;
+}
+
+.navbar-logo {
+  height: 50px;
+}
+
+.navbar-links {
+  display: flex;
+  flex: 2;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.nav-list {
+  display: flex;
+  list-style: none;
+  gap: 20px;
+}
+
+.auth-buttons {
+  display: flex;
+  gap: 10px;
+  margin-left: 20px;
+}

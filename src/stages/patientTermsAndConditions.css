@@ -141,7 +141,6 @@ html, body {
 height: 100%;      /* Ensure full height of the screen */
 margin: 0;         /* Remove default margins */
 padding: 0;        /* Remove default padding */
-overflow: hidden;  /* Prevent the page from overflowing */
 }
 
 /* Modal overlay to cover the entire screen */

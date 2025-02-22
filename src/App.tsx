@@ -6,6 +6,7 @@ import PatientSignUp from "./stages/patientTermsAndConditions";
 import DoctorLoginPatientSide from './stages/healthcareLoginPatientSide'
 import LoadPatientData from './stages/patientDataIntake'
 import UniqueCode from './stages/uniqueCode'
+import './App.css'
 
 import DynamicContainerLoader from './stages/DynamicContainerLoader'; // Import the dynamic loader component
 
