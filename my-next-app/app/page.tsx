@@ -3,6 +3,7 @@
 import Navbar from '@/components/Navbar';
 import Features from '@/components/features';
 import Team from '@/components/teams';
+import Pictures from '@/components/links';
 import React from "react";
 
 const Home = () => {
@@ -31,6 +32,7 @@ const Home = () => {
       </div>
 
       <Features />
+      <Pictures/>
       <Team/>
     </div>
   );
