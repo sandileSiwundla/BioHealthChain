@@ -24,9 +24,7 @@ const Home: React.FC = () => {
           </div>
         </section>
 
-        <div>
-      <Link to="/patient">Enter As Patient</Link>
-    </div>
+
   
         {/* Features Section */}
         <section id="features" className="features-section">
@@ -46,14 +44,7 @@ const Home: React.FC = () => {
             </div>
           </div>
         </section>
-
-<div>
-  <Pictures />
-</div>
-{/* <div>
-  <Team />
-</div> */}
-          
+   
         
       </div>
     );
