@@ -68,11 +68,12 @@ const Buy: React.FC = () => {
 
         {/* Next Button */}
         <div id="nextButton" className="text-center mt-8">
-          <Link href="/patientDataIntake">
+          <Link href="/patientSIgnUp">
             <button className="bg-teal-800 hover:bg-teal-600 text-white py-3 px-8 rounded-md cursor-pointer transition duration-300">
               NEXT
             </button>
           </Link>
+          
         </div>
 
       </div>
