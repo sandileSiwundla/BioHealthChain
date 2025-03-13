@@ -63,7 +63,7 @@ const Buy: React.FC = () => {
         {/* Map with Absolute Positioning */}
         <div className="w-full text-center mb-8">
           <div className="text-xl font-semibold mb-2">Location</div>
-          <Map className="w-full h-[300px]" />
+          <Map />
         </div>
 
         {/* Next Button */}
