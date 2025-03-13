@@ -5,8 +5,6 @@ import DropDown from "@/components/dropdownList";
 import Map from '@/components/googleAPI';
 import Link from 'next/link'; // Use Link from Next.js for routing
 
-
-
 const Buy: React.FC = () => {
   const [currentStep, setCurrentStep] = useState(1);
 
@@ -26,27 +24,47 @@ const Buy: React.FC = () => {
     <div className="fixed inset-0 bg-teal-600 bg-opacity-40 flex justify-center items-center z-50">
       <div className="bg-teal-700 bg-opacity-60 p-12 rounded-3xl max-w-5xl w-full h-full max-h-[80vh] overflow-y-auto text-white shadow-2xl flex flex-col justify-center items-center">
         
-        {/* Healthcare Provider Labels */}
-        <div className="healthProvidersName text-center text-xl font-semibold mb-4">Healthcare Professional Name</div>
-        <div className="hospitalName text-center text-xl font-semibold mb-4">Hospital Name</div>
-        <div className="HCP-ID text-center text-xl font-semibold mb-4">Healthcare Provider ID (HCP-ID)</div>
-        <div className="doctorPick text-center text-xl font-semibold mb-4">Pick Profession</div>
+        {/* Labels and Input Fields */}
+        <div className="flex flex-wrap justify-center w-full space-y-4">
+          {/* First Column with Absolute Positioning */}
+          <div className="w-full sm:w-1/3 text-center mb-4 relative">
+            <div className="text-xl font-semibold mb-2 absolute top-[-60] left-0">Healthcare Professional Name</div>
+            <input 
+              type="text" 
+              placeholder="Enter name" 
+              className="p-3 rounded-md w-[300px] h-[45px] bg-teal-800 text-white focus:outline-none focus:ring-2 focus:ring-teal-500 absolute top-[-25px] left-0" 
+            />
+          </div>
 
-        {/* Text Input Fields */}
-        <div className="healthProvidersName-box mb-4">
-          <input type="text" placeholder="Enter name" className="p-2 rounded-md w-full" />
+          {/* Second Column with Absolute Positioning */}
+          <div className="w-full sm:w-1/3 text-center mb-4 relative">
+            <div className="text-xl font-semibold mb-2 absolute top-[-60] left-80">Hospital Name</div>
+            <input 
+              type="text" 
+              placeholder="Enter hospital name" 
+              className="p-3 rounded-md w-[300px] h-[45px] bg-teal-800 text-white focus:outline-none focus:ring-2 focus:ring-teal-500 absolute top-[50px] left-0" 
+            />
+          </div>
+
+          {/* Third Column with Absolute Positioning */}
+          <div className="w-full sm:w-1/3 text-center mb-4 relative">
+            <div className="text-xl font-semibold mb-2 absolute top-100 left-0">Healthcare Provider ID (HCP-ID)</div>
+            <input 
+              type="text" 
+              placeholder="Enter Healthcare Provider ID" 
+              className="p-3 rounded-md w-[300px] h-[45px] bg-teal-800 text-white focus:outline-none focus:ring-2 focus:ring-teal-500 absolute top-[50px] left-100" 
+            />
+          </div>
         </div>
 
-        <div className="HCP-ID-box mb-4">
-          <input type="text" placeholder="Enter Healthcare Provider ID" className="p-2 rounded-md w-full" />
-        </div>
-
-        {/* Dropdown and Map Components */}
-        <div className="mb-4 w-full text-center">
+        {/* Profession Dropdown */}
+        <div className="w-full text-center mb-4 relative">
+          <div className="text-xl font-semibold mb-2 absolute top-100 left-0">Pick Profession</div>
           <DropDown />
         </div>
 
-        <div className="mb-8 w-full text-center">
+        {/* Map */}
+        <div className="w-full text-center mb-8 relative">
           <Map />
         </div>
 
