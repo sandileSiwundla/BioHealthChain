@@ -57,7 +57,7 @@ const PatientSignUp: React.FC = () => {
             </ul>
           </div>
 
-          <Link href="/patientSideDrLogin">
+          <Link href="/patientDoctorLogin">
             <button className="bg-teal-800 hover:bg-teal-600 text-white py-3 px-8 rounded-md cursor-pointer transition duration-300 mt-8">
               I Consent
             </button>
