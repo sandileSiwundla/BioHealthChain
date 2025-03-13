@@ -86,7 +86,7 @@ const Sell: React.FC = () => {
 
         {/* Next Button */}
         <div className="w-full text-center mt-8"> {/* Increased margin-top */}
-          <Link href="/patientSignUp">
+          <Link href="/submitData">
             <button
               className="bg-teal-800 hover:bg-teal-600 text-white font-semibold py-3 px-8 rounded-lg cursor-pointer transition-all duration-300 transform hover:scale-105 active:scale-95 focus:outline-none focus:ring-2 focus:ring-teal-500 focus:ring-offset-2"
             >
