@@ -1,21 +1,13 @@
-import React, { useState, useEffect } from 'react';
 import { Link } from "react-router-dom";
 
 import './patientTermsAndConditions.css';
 
 
-interface PatientSignUpPros {
-  onNextButtonClick: () => void;
-}
 
-const PatientSignUp: React.FC<PatientSignUpPros> = ({  onNextButtonClick }) => {  
+const PatientSignUp: React.FC<PatientSignUpPros> = ({  }) => {  
 
   
 
-  // Function to handle Sell Button click (for dynamic content navigation)
-  const handlesBuyChainButtonClick = () => {
-    onNextButtonClick();
-  };
 
 
   return (

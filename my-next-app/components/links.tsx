@@ -1,3 +1,5 @@
+"client-only";
+
 import React from 'react';
 import Link from 'next/link';
 
@@ -9,7 +11,7 @@ const DashboardButtons: React.FC = () => {
           <img src="/links/doctor.jpg" alt="Doctor Dashboard" style={dashboardImageStyle} />
         </div>
       </Link>
-      <Link href="/patient-dashboard" passHref>
+      <Link href="/patientLandingPage" passHref>
         <div style={dashboardButtonStyle}>
           <img src="/links/patient.jpg" alt="Patient Dashboard" style={dashboardImageStyle} />
         </div>
