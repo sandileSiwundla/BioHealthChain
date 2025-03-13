@@ -70,7 +70,7 @@ const Patient: React.FC = () => {
       </div>
 
       <div>
-        <Link href="/patientSignUp">
+        <Link href="/patientTerm&Cons">
             <button className="consent-button" id="consentButton">
               Get Started
             </button>

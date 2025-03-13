@@ -26,31 +26,6 @@ const Buy: React.FC<BuyProps> = ({ onBuyButtonClick, onGoBackButtonClick, onNext
     return () => clearInterval(interval);
   }, [currentStep]);
 
-  // Function to handle Buy Button click
-  const handleBuyButtonClick = () => {
-    // Here, you can trigger the state update from the parent component
-    onBuyButtonClick(); // Calling the passed function from DynamicContentLoader
-  };
-
-  // Function to handle Sell Button click (for dynamic content navigation)
-  const handleSellButtonClick = () => {
-    alert('Sell button clicked!');
-    // You can also update the parent state here to trigger the next component if needed.
-  };
-
-  // Function to handle Sell Button click (for dynamic content navigation)
-  const handlesNextButtonClick = () => {
-    onNextToPatientIDButtonClick();
-    // You can also update the parent state here to trigger the next component if needed.
-  };
-
-  // Function to handle Sell Button click (for dynamic content navigation)
-  const handlesOnBuyLogoButtonClick = () => {
-    alert('Already on Buy page');
-    // You can also update the parent state here to trigger the next component if needed.
-  };
-
-  
 
 
   return (
