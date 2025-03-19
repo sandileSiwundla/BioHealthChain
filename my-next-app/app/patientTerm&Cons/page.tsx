@@ -1,4 +1,4 @@
-'use client'; // Ensure the component is treated as a client component in Next.js
+'use client'; 
 
 import React from "react";
 import Link from "next/link"; // Use Link from next/router in a Next.js app
