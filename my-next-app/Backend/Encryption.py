@@ -27,3 +27,5 @@ encrypted = fernet.encrypt(original)
 # writing the encrypted data
 with open('A.json', 'wb') as encrypted_file:
 	encrypted_file.write(encrypted)
+
+
