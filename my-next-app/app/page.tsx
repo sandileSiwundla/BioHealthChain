@@ -4,10 +4,32 @@ import Navbar from '@/components/Navbar';
 import Features from '@/components/features';
 import Team from '@/components/teams';
 import Pictures from '@/components/links';
-import React from "react";
+import React, { useEffect, useState } from "react";
+import axios from 'axios';
 
 const Home = () => {
+  // State variables to manage IPFS data, loading, and error
+  const [data, setData] = useState(null);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
 
+  const ipfsHash = 'QmRDbihs4fCWvRaf7DXGYte9C9RdqXm2eDyviV6cxJptk7';
+
+  const fetchDataFromIPFS = async () => {
+    setLoading(true);
+    setError(null);
+  
+    try {
+      const ipfsNodeGateway = "http://127.0.0.1:8080/ipfs/"; // Update if using a remote node
+      const response = await axios.get(`${ipfsNodeGateway}${ipfsHash}`);
+      
+      setData(response.data);
+    } catch (err) {
+      setError('Error fetching data from your IPFS node');
+    } finally {
+      setLoading(false);
+    }
+  };
   return (
     <div className="bg-blue-100 min-h-screen">
       {/* Navbar */}
@@ -31,11 +53,36 @@ const Home = () => {
         </div>
       </div>
 
+      {/* Button to fetch IPFS data */}
+      <div className="text-center pt-10">
+        <button 
+          onClick={fetchDataFromIPFS}
+          className="bg-blue-500 text-black px-6 py-2 rounded-md hover:bg-blue-600"
+        >
+          Fetch Data from IPFS
+        </button>
+      </div>
+
+      {/* Loading State */}
+      {loading && <div className="text-center mt-4">Loading data...</div>}
+
+      {/* Error State */}
+      {error && <div className="text-center text-black mt-4 text-red-500">{error}</div>}
+
+      {/* Display Fetched Data */}
+      {data && (
+        <div className="text-center mt-8 text-black">
+          <h3 className="text-xl font-semibold">IPFS Data:</h3>
+          <pre className="bg-gray-200 p-4 rounded-md">{JSON.stringify(data, null, 2)}</pre>
+        </div>
+      )}
+
+      {/* Other components */}
       <Features />
-      <Pictures/>
-      <Team/>
+      <Pictures />
+      <Team />
     </div>
   );
-}
+};
 
 export default Home;

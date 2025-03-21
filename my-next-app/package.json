@@ -2,6 +2,7 @@
   "name": "my-next-app",
   "version": "0.1.0",
   "private": true,
+  "type": "module",
   "scripts": {
     "dev": "next dev --turbopack",
     "build": "next build",
@@ -9,8 +10,9 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "axios": "^1.8.3",
+    "axios": "^1.8.4",
     "classnames": "^2.5.1",
+    "ipfs-http-client": "^60.0.1",
     "lucide-react": "^0.477.0",
     "next": "15.2.1",
     "pinata": "^2.1.0",
