@@ -4,7 +4,8 @@ import Navbar from '@/components/Navbar';
 import Features from '@/components/features';
 import Team from '@/components/teams';
 import Pictures from '@/components/links';
-import React, { useEffect, useState } from "react";
+import SaveButoon from '@/components/saveButton';
+import React, {  useState } from "react";
 import axios from 'axios';
 
 const Home = () => {
@@ -76,7 +77,7 @@ const Home = () => {
           <pre className="bg-gray-200 p-4 rounded-md">{JSON.stringify(data, null, 2)}</pre>
         </div>
       )}
-
+      <SaveButoon/>
       {/* Other components */}
       <Features />
       <Pictures />
