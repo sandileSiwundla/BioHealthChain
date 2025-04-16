@@ -3,7 +3,6 @@ from cryptography.fernet import Fernet
 import time
 import json
 import os
-from uploadToIpfs import uploadToIPFS
 
 key = Fernet.generate_key()
 cipher = Fernet(key)

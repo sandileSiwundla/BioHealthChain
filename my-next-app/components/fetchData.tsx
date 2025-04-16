@@ -9,6 +9,8 @@ const FetchButton = () => {
 
   const ipfsHash = "QmQJK5y945soGWvorzsMSxvUjzX5QgcudYwManTbqZdP3S";
 
+  
+
   const fetchDataFromIPFS = async () => {
     setLoading(true);
     setError(null);
@@ -17,13 +19,22 @@ const FetchButton = () => {
       const ipfsNodeGateway = "http://127.0.0.1:8080/ipfs/";
       const response = await axios.get(`${ipfsNodeGateway}${ipfsHash}`);
 
-      console.log("Fetched Data:", response.data); // Logs data, can be stored in state if needed
+      console.log("Fetched Data:", response.data); 
+      const leavingData = response.data
     } catch (err) {
       setError("Error fetching data from your IPFS node");
     } finally {
       setLoading(false);
     }
+    saveData()
+
   };
+
+  const saveData = async () => {
+    await fetch("/api/save-data", {
+    method: "SHOW",
+    })
+    ;
 
   return (
     <button
@@ -42,5 +53,5 @@ const FetchButton = () => {
     </button>
   );
 };
-
+}
 export default FetchButton;
