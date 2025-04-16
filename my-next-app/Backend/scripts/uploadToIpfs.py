@@ -7,3 +7,4 @@ def uploadToIPFS():
     os.system('ipfs add --pin(add file name)')
     os.wait()
     os.system('ipfs shutdown')
+   
