@@ -1,6 +1,6 @@
 'use client'; // Marking this component as a Client Component
 
-import React from 'react';
+import * as React from "react";
 
 interface ButtonProps {
   label?: string;
