@@ -5,11 +5,9 @@ import axios from "axios";
 
 const FetchButton = () => {
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(null);
+  const [error, setError] = useState<string | null>(null);
 
   const ipfsHash = "QmQJK5y945soGWvorzsMSxvUjzX5QgcudYwManTbqZdP3S";
-
-  
 
   const fetchDataFromIPFS = async () => {
     setLoading(true);
@@ -20,38 +18,41 @@ const FetchButton = () => {
       const response = await axios.get(`${ipfsNodeGateway}${ipfsHash}`);
 
       console.log("Fetched Data:", response.data); 
-      const leavingData = response.data
+      // You can handle response.data as needed here
     } catch (err) {
       setError("Error fetching data from your IPFS node");
     } finally {
       setLoading(false);
     }
-    saveData()
 
+    await saveData();
   };
 
   const saveData = async () => {
     await fetch("/api/save-data", {
-    method: "SHOW",
-    })
-    ;
+      method: "POST", // Probably should be POST, not SHOW
+    });
+  };
 
   return (
-    <button
-      onClick={fetchDataFromIPFS}
-      disabled={loading}
-      style={{
-        padding: "10px 20px",
-        backgroundColor: loading ? "#888" : "#007bff",
-        color: "#fff",
-        border: "none",
-        borderRadius: "5px",
-        cursor: loading ? "not-allowed" : "pointer",
-      }}
-    >
-      {loading ? "Fetching..." : "Fetch from IPFS"}
-    </button>
+    <div className="my-4">
+      <button
+        onClick={fetchDataFromIPFS}
+        disabled={loading}
+        style={{
+          padding: "10px 20px",
+          backgroundColor: loading ? "#888" : "#007bff",
+          color: "#fff",
+          border: "none",
+          borderRadius: "5px",
+          cursor: loading ? "not-allowed" : "pointer",
+        }}
+      >
+        {loading ? "Fetching..." : "Fetch from IPFS"}
+      </button>
+      {error && <p style={{ color: "red", marginTop: "10px" }}>{error}</p>}
+    </div>
   );
 };
-}
+
 export default FetchButton;
