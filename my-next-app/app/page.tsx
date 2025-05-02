@@ -6,7 +6,7 @@ import Team from '@/components/teams';
 import Pictures from '@/components/links';
 import SaveButoon from '@/components/saveButton';
 import FetchButton from '@/components/fetchData';
-import React from "react";
+import * as React from "react";
 
 const Home = () => {
   return (
