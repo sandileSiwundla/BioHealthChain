@@ -1,4 +1,4 @@
-import React from "react";
+import * as React from "react";
 import Button from "@/components/ui/Button"; // Import the custom Button component
 import Image from "next/image"; // Import Image component for Next.js
 
