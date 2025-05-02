@@ -1,11 +1,11 @@
-'use client';
+'use client'; // Ensure the component is treated as a client component in Next.js
 
-import React, { useState } from 'react';
+import * as React from 'react';
 import { Copy } from 'lucide-react'; // Importing the Copy icon from Lucide React
 
 const CopyBox = () => {
-  const [copySuccess, setCopySuccess] = useState('');
-  const [isPulsing, setIsPulsing] = useState(false);  // Define isPulsing state
+  const [copySuccess, setCopySuccess] = React.useState('');
+  const [isPulsing, setIsPulsing] = React.useState(false);  // Define isPulsing state
 
   const handleCopy = () => {
     // Trigger pulse animation
