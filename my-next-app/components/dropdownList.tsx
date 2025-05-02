@@ -1,10 +1,10 @@
 'use client'; // Ensure the component is treated as a client component in Next.js
 
-import React, { useState } from 'react';
+import * as React from 'react';
 import classNames from 'classnames'; // Import classnames library
 
 const CurrencyDropdown = () => {
-  const [selectedProfession, setSelectedProfession] = useState('');
+  const [selectedProfession, setSelectedProfession] = React.useState('');
 
   const medicalProfessions = [
     { profession: 'Doctor (General Physician)' },
@@ -42,10 +42,10 @@ const CurrencyDropdown = () => {
     { profession: 'Pharmacist' },
     { profession: 'Medical Laboratory Technician' },
     { profession: 'Radiologic Technologist' },
-    { profession: 'Dietitian' }
+    { profession: 'Dietitian' },
   ];
 
-  const handleSelect = (event) => {
+  const handleSelect = (event: React.ChangeEvent<HTMLSelectElement>) => {
     setSelectedProfession(event.target.value);
   };
 
@@ -60,7 +60,7 @@ const CurrencyDropdown = () => {
           'bg-[#1c6593] text-white text-sm p-2 rounded-md w-[300px] h-[35px] text-center transition-all duration-300',
           'focus:outline-none focus:w-[350px]',
           'absolute top-[5.5cm] left-[23cm] z-[2000]',
-          'hover:bg-[#0277BD]', // Hover effect for options
+          'hover:bg-[#0277BD]' // Hover effect for options
         )}
       >
         {medicalProfessions.map((profession, index) => (
