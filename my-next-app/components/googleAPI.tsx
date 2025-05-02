@@ -1,17 +1,17 @@
 'use client'; // Ensure the component is treated as a client component in Next.js
 
-import React, { useState, useEffect, useRef } from 'react';
+import * as React from 'react';
 import axios from 'axios';
 import classNames from 'classnames'; // Import classnames library
 
 const HospitalLocator = () => {
-  const [hospitalName, setHospitalName] = useState('');
-  const [suggestions, setSuggestions] = useState([]);
-  const [location, setLocation] = useState({ lat: null, lon: null });
-  const dropdownRef = useRef(null); // Ref for the dropdown
+  const [hospitalName, setHospitalName] = React.useState('');
+  const [suggestions, setSuggestions] = React.useState([]);
+  const [location, setLocation] = React.useState<{ lat: number | null; lon: number | null }>({ lat: null, lon: null });
+  const dropdownRef = React.useRef<HTMLUListElement | null>(null); // Ref for the dropdown
 
   // Function to handle input change
-  const handleChange = async (event) => {
+  const handleChange = async (event: React.ChangeEvent<HTMLInputElement>) => {
     const value = event.target.value;
     setHospitalName(value);
 
@@ -19,7 +19,7 @@ const HospitalLocator = () => {
       // Make request to Nominatim API after the user types more than 2 characters
       try {
         const response = await axios.get(
-          `https://nominatim.openstreetmap.org/search`,
+          'https://nominatim.openstreetmap.org/search',
           {
             params: {
               q: value,
@@ -39,7 +39,7 @@ const HospitalLocator = () => {
   };
 
   // Function to handle suggestion click and save location
-  const handleSelect = (suggestion) => {
+  const handleSelect = (suggestion: any) => {
     setHospitalName(suggestion.display_name);
     setLocation({
       lat: parseFloat(suggestion.lat),
@@ -49,9 +49,9 @@ const HospitalLocator = () => {
   };
 
   // Close dropdown when clicking outside
-  useEffect(() => {
-    const handleClickOutside = (event) => {
-      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+  React.useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
         setSuggestions([]); // Close the dropdown
       }
     };
@@ -86,11 +86,11 @@ const HospitalLocator = () => {
           ref={dropdownRef} // Attach ref to the dropdown
           className="absolute bg-white w-[300px] mt-1 border border-gray-300 rounded-md z-20 top-[60px] left-10"
         >
-          {suggestions.map((suggestion) => (
+          {suggestions.map((suggestion: any) => (
             <li
               key={suggestion.place_id}
               onClick={() => handleSelect(suggestion)}
-              className="p-2 cursor-pointer hover:bg-gray-100 text-gray-800" // Explicitly set text color
+              className="p-2 cursor-pointer hover:bg-gray-100 text-gray-800"
             >
               {suggestion.display_name}
             </li>
