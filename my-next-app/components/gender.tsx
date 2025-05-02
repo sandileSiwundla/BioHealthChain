@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import * as React from 'react';
 
 const CurrencyDropdown = () => {
-  const [selectedProfession, setSelectedProfession] = useState('');
+  const [selectedProfession, setSelectedProfession] = React.useState('');
 
   const genders = [
     { gender: 'Male' },
@@ -11,7 +11,7 @@ const CurrencyDropdown = () => {
     { gender: 'Prefer not to say' },
   ];
 
-  const handleSelect = (event) => {
+  const handleSelect = (event: React.ChangeEvent<HTMLSelectElement>) => {
     setSelectedProfession(event.target.value);
   };
 
@@ -22,9 +22,9 @@ const CurrencyDropdown = () => {
         name="profession"
         value={selectedProfession}
         onChange={handleSelect}
-        className=" w-50px p-3 bg-teal-700 text-black rounded-lg border-2 focus:outline-none focus:ring-2 focus:ring-teal-700 focus:border-teal-700 transition-all duration-300"
+        className="w-50px p-3 bg-teal-700 text-black rounded-lg border-2 focus:outline-none focus:ring-2 focus:ring-teal-700 focus:border-teal-700 transition-all duration-300"
       >
-        <option value="" disabled>Select Gender</option> 
+        <option value="" disabled>Select Gender</option>
         {genders.map((profession, index) => (
           <option key={index} value={profession.gender} className="bg-teal-700 text-black">
             {profession.gender}
