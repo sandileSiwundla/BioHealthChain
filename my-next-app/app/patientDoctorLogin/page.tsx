@@ -1,5 +1,7 @@
-'use client'; 
-import React, { useState } from 'react';
+'use client'; // Ensure the component is treated as a client component in Next.js
+
+import * as React from 'react';
+import { useState } from 'react';
 import DropDown from "@/components/dropdownList";
 import Map from '@/components/googleAPI';
 import Link from 'next/link';
