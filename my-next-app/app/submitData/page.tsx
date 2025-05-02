@@ -1,6 +1,7 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import * as React from 'react';
+import { useState, useEffect } from 'react';
 import Copy from '@/components/copy';
 
 const Transfer: React.FC = () => {
@@ -12,7 +13,7 @@ const Transfer: React.FC = () => {
       if (currentStep < 4) {  // Only go up to stage 4
         setCurrentStep((prevStep) => prevStep + 1);
       }
-    }, 1); // Progress every 1 second
+    }, 1000); // Progress every 1 second
 
     // Cleanup the interval on component unmount
     return () => clearInterval(interval);
