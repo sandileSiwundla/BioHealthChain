@@ -1,6 +1,7 @@
 'use client'; // Ensure the component is treated as a client component in Next.js
 
-import React, { useState, useEffect } from 'react';
+import * as React from 'react';
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Gender from '@/components/gender';
 import Map from '@/components/googleAPI';
