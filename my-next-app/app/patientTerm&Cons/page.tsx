@@ -1,6 +1,6 @@
 'use client'; 
 
-import React from "react";
+import * as React from "react";
 import Link from "next/link"; // Use Link from next/router in a Next.js app
 
 const PatientSignUp: React.FC = () => {
