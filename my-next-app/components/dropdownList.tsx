@@ -1,9 +1,14 @@
-'use client'; // Ensure the component is treated as a client component in Next.js
+// CurrencyDropdown.tsx
+'use client';
 
 import * as React from 'react';
-import classNames from 'classnames'; // Import classnames library
+import classNames from 'classnames';
 
-const CurrencyDropdown = () => {
+interface CurrencyDropdownProps {
+  onSelectProfession: (profession: string) => void;
+}
+
+const CurrencyDropdown: React.FC<CurrencyDropdownProps> = ({ onSelectProfession }) => {
   const [selectedProfession, setSelectedProfession] = React.useState('');
 
   const medicalProfessions = [
@@ -46,7 +51,9 @@ const CurrencyDropdown = () => {
   ];
 
   const handleSelect = (event: React.ChangeEvent<HTMLSelectElement>) => {
-    setSelectedProfession(event.target.value);
+    const selected = event.target.value;
+    setSelectedProfession(selected);
+    onSelectProfession(selected);
   };
 
   return (
@@ -59,16 +66,12 @@ const CurrencyDropdown = () => {
         className={classNames(
           'bg-[#1c6593] text-white text-sm p-2 rounded-md w-[300px] h-[35px] text-center transition-all duration-300',
           'focus:outline-none focus:w-[350px]',
-          'absolute top-[5.5cm] left-[23cm] z-[2000]',
-          'hover:bg-[#0277BD]' // Hover effect for options
+          'hover:bg-[#0277BD]'
         )}
       >
+        <option value="" disabled>Select a profession</option>
         {medicalProfessions.map((profession, index) => (
-          <option
-            key={index}
-            value={profession.profession}
-            className="bg-[#1c6593] text-white text-center"
-          >
+          <option key={index} value={profession.profession}>
             {profession.profession}
           </option>
         ))}

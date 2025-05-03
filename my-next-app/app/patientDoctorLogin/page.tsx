@@ -1,12 +1,11 @@
-'use client'; // Ensure the component is treated as a client component in Next.js
+'use client';
 
-import * as React from 'react';
-import { useState } from 'react';
+import React, { useState } from 'react';
 import DropDown from "@/components/dropdownList";
 import Map from '@/components/googleAPI';
 import Link from 'next/link';
 
-const Buy: React.FC = () => {
+const Buy = () => {
   const [name, setName] = useState('');
   const [hcpId, setHcpId] = useState('');
   const [profession, setProfession] = useState('');
@@ -16,16 +15,14 @@ const Buy: React.FC = () => {
     const formData = {
       healthcareProfessionalName: name,
       healthcareProviderId: hcpId,
-      profession: profession,
-      location: location,
+      profession,
+      location,
     };
 
     try {
       const response = await fetch('http://localhost:5000/api/generateJson', {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formData),
       });
 
@@ -40,7 +37,6 @@ const Buy: React.FC = () => {
     <div className="fixed inset-0 bg-teal-600 bg-opacity-40 flex justify-center items-center z-50">
       <div className="bg-teal-700 bg-opacity-60 p-12 rounded-3xl max-w-5xl w-full h-full max-h-[80vh] overflow-y-auto text-white shadow-2xl flex flex-col justify-center items-center space-y-8">
         
-        {/* Labels and Input Fields */}
         <div className="w-full flex flex-wrap justify-between space-x-4">
           <div className="w-full sm:w-1/3 text-center mb-4">
             <div className="text-xl font-semibold mb-2">Healthcare Professional Name</div>
@@ -57,7 +53,7 @@ const Buy: React.FC = () => {
             <div className="text-xl font-semibold mb-2">Healthcare Provider ID (HCP-ID)</div>
             <input 
               type="text" 
-              placeholder="Enter Healthcare Provider ID" 
+              placeholder="Enter HCP ID" 
               value={hcpId}
               onChange={(e) => setHcpId(e.target.value)}
               className="p-3 rounded-md w-[300px] h-[45px] bg-teal-800 text-white focus:outline-none focus:ring-2 focus:ring-teal-500" 
@@ -65,30 +61,27 @@ const Buy: React.FC = () => {
           </div>
         </div>
 
-        {/* Profession Dropdown */}
         <div className="w-full text-center mb-4">
           <div className="text-xl font-semibold mb-2">Pick Profession</div>
-          <DropDown onSelectProfession={(selectedProfession) => setProfession(selectedProfession)} />
+          <DropDown onSelectProfession={setProfession} />
         </div>
 
-        {/* Map with Absolute Positioning */}
         <div className="w-full text-center mb-4">
           <div className="text-xl font-semibold mb-2">Hospital Name</div>
-          <Map onLocationSelect={(selectedLocation) => setLocation(selectedLocation)} />
+          <Map onLocationSelect={setLocation} />
         </div>
 
-        {/* Next Button */}
-        <div id="nextButton" className="text-center mt-8">
+        <div className="text-center mt-8">
           <Link href="/patientSIgnUp">
             <button 
-              className="bg-teal-800 hover:bg-teal-600 text-white py-3 px-8 rounded-md cursor-pointer transition duration-300"
+              type="button"
               onClick={handleNext}
+              className="bg-teal-800 hover:bg-teal-600 text-white py-3 px-8 rounded-md cursor-pointer transition duration-300"
             >
               NEXT
             </button>
           </Link>
         </div>
-
       </div>
     </div>
   );
