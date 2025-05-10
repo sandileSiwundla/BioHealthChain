@@ -54,7 +54,7 @@ const Team = () => {
                 “{member.quote}”
               </blockquote>
               <figcaption>
-                <div className="text-xl  text-gray-800">{member.name}</div>
+                <div className="text-xl font-semibold text-gray-800">{member.name}</div>
                 <div className="text-sm text-gray-500 mb-4">{member.role}</div>
               </figcaption>
 
