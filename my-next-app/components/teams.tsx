@@ -22,7 +22,7 @@ const Team = () => {
           { 
             name: "Tshepang Mokone",
             role: "Chief Technology Officer",
-            image: "/Tshepang.jpg", // Reference image from public
+            image: "/Tshepang.jpg", 
             linkedin: "https://www.linkedin.com/in/tshepang-mokone-b44b72310/", 
             github: "https://github.com/mike5t", 
             quote: "Blockchain Innovator and Software Craftsman with 3 years of systems engineering experience. Specializes in secure systems using smart contracts and zk-SNARKs, leveraging the latest tech for scalable blockchain solutions. Passionate about decentralized applications and cryptographic advancements."
@@ -30,7 +30,7 @@ const Team = () => {
           { 
             name: "Lwazi Mashiya",
             role: "Chief Executive Officer", 
-            image: "/lwazi.jpg", // Reference image from public
+            image: "/lwazi.jpg", 
             linkedin: "https://www.linkedin.com/in/lwazi-mashiya-23a057255", 
             github: "https://github.com/MashiyaL", 
             quote: "I’m a blockchain developer with 3 years of experience in computer science and a passion for building secure smart contracts and scalable Dapps. From DeFi to decentralized storage, I create Web3 solutions that are efficient, reliable, and future-proof."
@@ -54,7 +54,7 @@ const Team = () => {
                 “{member.quote}”
               </blockquote>
               <figcaption>
-                <div className="text-xl font-semibold text-gray-800">{member.name}</div>
+                <div className="text-xl  text-gray-800">{member.name}</div>
                 <div className="text-sm text-gray-500 mb-4">{member.role}</div>
               </figcaption>
 
