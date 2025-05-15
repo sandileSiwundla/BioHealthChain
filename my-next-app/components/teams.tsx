@@ -3,10 +3,10 @@ import { Github, Linkedin } from "lucide-react";
 
 const Team = () => {
   return (
-    <div className="bg-blue-100 min-h-screen">
+    <div className="bg-blue-50 min-h-screen">
       {/* Team Section */}
-      <section className="bg-blue-100 py-10 px-5">
-        <h3 className="text-3xl font-bold text-center text-gray-800 mb-10">
+      <section className="bg-blue-50 py-10 px-5">
+        <h3 className="text-3xl font-bold text-center text-gray-700 mb-10">
           Meet the Team
         </h3>
 
@@ -44,17 +44,17 @@ const Team = () => {
             quote: "Building decentralized applications for the future of secure digital transactions."
           }
         ].map((member, index) => (
-          <figure key={index} className="mb-10 flex items-center bg-blue-100 p-8 rounded-lg shadow-lg">
+          <figure key={index} className="mb-10 flex items-center bg-blue-50 border border-gray-200 p-8 rounded-lg shadow-md">
             {/* Profile Image on the Left */}
             <img src={member.image} alt={member.name} className="w-36 h-36 object-cover rounded-full mr-6" />
 
             {/* Text Section on the Right */}
             <div className="text-left">
-              <blockquote className="italic text-gray-600 text-lg mb-4">
+              <blockquote className="italic text-gray-700 text-lg mb-4">
                 “{member.quote}”
               </blockquote>
               <figcaption>
-                <div className="text-xl font-semibold text-gray-800">{member.name}</div>
+                <div className="text-xl font-semibold text-gray-700">{member.name}</div>
                 <div className="text-sm text-gray-500 mb-4">{member.role}</div>
               </figcaption>
 
@@ -64,7 +64,7 @@ const Team = () => {
                   <Linkedin className="w-6 h-6 text-blue-700 transition-transform duration-300 transform hover:scale-110" />
                 </a>
                 <a href={member.github} target="_blank" rel="noopener noreferrer">
-                  <Github className="w-6 h-6 text-gray-800 transition-transform duration-300 transform hover:scale-110" />
+                  <Github className="w-6 h-6 text-gray-700 transition-transform duration-300 transform hover:scale-110" />
                 </a>
               </div>
             </div>
