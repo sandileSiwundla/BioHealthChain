@@ -36,11 +36,11 @@ const Team = () => {
             quote: "I’m a blockchain developer with 3 years of experience in computer science and a passion for building secure smart contracts and scalable Dapps. From DeFi to decentralized storage, I create Web3 solutions that are efficient, reliable, and future-proof."
           },
           { 
-            name: "Sandile Siwundla", 
-            role: "Blockchain Developer", 
+            name: "Sandile Siwundla",
+            role: "Blockchain Developer",
             image: "/sandile.jpeg", // Reference image from public
-            linkedin: "https://www.linkedin.com/in/lwazi-mashiya-23a057255", 
-            github: "https://github.com/MashiyaL", 
+            linkedin: "https://www.linkedin.com/in/sandile-siwundla-b78143298",
+            github: "https://github.com/MashiyaL",
             quote: "Building decentralized applications for the future of secure digital transactions."
           }
         ].map((member, index) => (
