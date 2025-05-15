@@ -46,7 +46,7 @@ const Team = () => {
         ].map((member, index) => (
           <figure key={index} className="mb-10 flex items-center bg-blue-50 border border-gray-200 p-8 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300">
             {/* Profile Image on the Left */}
-            <img src={member.image} alt={member.name} className="w-36 h-36 object-cover rounded-full mr-6 shadow-sm" />
+            <img src={member.image} alt={member.name} className="w-36 h-36 object-cover rounded-full mr-6 shadow-sm hover:scale-110 transition-transform duration-300" />
 
             {/* Text Section on the Right */}
             <div className="text-left">
