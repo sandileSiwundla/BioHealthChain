@@ -44,13 +44,13 @@ const Team = () => {
             quote: "Building decentralized applications for the future of secure digital transactions."
           }
         ].map((member, index) => (
-          <figure key={index} className="mb-10 flex items-center bg-blue-50 border border-gray-200 p-8 rounded-lg shadow-md">
+          <figure key={index} className="mb-10 flex items-center bg-blue-50 border border-gray-200 p-8 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300">
             {/* Profile Image on the Left */}
-            <img src={member.image} alt={member.name} className="w-36 h-36 object-cover rounded-full mr-6" />
+            <img src={member.image} alt={member.name} className="w-36 h-36 object-cover rounded-full mr-6 shadow-sm" />
 
             {/* Text Section on the Right */}
             <div className="text-left">
-              <blockquote className="italic text-gray-700 text-lg mb-4">
+              <blockquote className="italic text-gray-700 text-lg mb-4 font-serif">
                 “{member.quote}”
               </blockquote>
               <figcaption>
@@ -59,7 +59,7 @@ const Team = () => {
               </figcaption>
 
               {/* Social Links in the Bottom Right */}
-              <div className="flex justify-end gap-4 mt-4">
+              <div className="flex justify-center gap-4 mt-4">
                 <a href={member.linkedin} target="_blank" rel="noopener noreferrer">
                   <Linkedin className="w-6 h-6 text-blue-700 transition-transform duration-300 transform hover:scale-110" />
                 </a>
