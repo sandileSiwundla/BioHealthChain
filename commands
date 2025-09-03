@@ -1,0 +1,6 @@
+>>>start ipfs node
+ipfs daemon
+Upload to ipfs
+>>>pfs add output.json
+check on terminal if added to ipfs
+>>>ipfs cat <CID>

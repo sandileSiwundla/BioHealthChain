@@ -1,0 +1,29 @@
+{
+  "patients": [
+    {
+      "id": "P001",
+      "name": "John Doe",
+      "age": 45,
+      "diagnosis": "Hypertension",
+      "lastVisit": "2025-03-20"
+    },
+    {
+      "id": "P002",
+      "name": "Jane Smith",
+      "age": 38,
+      "diagnosis": "Diabetes Type 2",
+      "lastVisit": "2025-03-18"
+    },
+    {
+      "id": "P003",
+      "name": "Alice Johnson",
+      "age": 50,
+      "diagnosis": "Asthma",
+      "lastVisit": "2025-03-15"
+    }
+  ],
+  "metadata": {
+    "createdBy": "Next.js API",
+    "timestamp": "2025-03-21T18:02:43.675Z"
+  }
+}
