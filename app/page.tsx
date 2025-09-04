@@ -1,17 +1,17 @@
 "use client";
 
-import Navbar from '@/components/Navbar';
-import Features from '@/components/features';
-import Team from '@/components/teams';
-import Pictures from '@/components/links';
-import SaveButoon from '@/components/saveButton';
-import FetchButton from '@/components/fetchData';
+// import Navbar from '@/components/Navbar';
+// import Features from '@/components/features';
+// import Team from '@/components/teams';
+// import Pictures from '@/components/links';
+// import SaveButoon from '@/components/saveButton';
+// import FetchButton from '@/components/fetchData';
 
 const Home = () => {
   return (
     <div className="bg-blue-100 min-h-screen">
       {/* Navbar */}
-      <Navbar />
+      {/* <Navbar /> */}
 
       <div className="flex justify-center items-center pt-16">
         {/* Modal with width and height in cm */}
@@ -30,12 +30,12 @@ const Home = () => {
           </div>
         </div>
       </div>
-      <FetchButton/>
-      <SaveButoon/>
+      {/* <FetchButton/>
+      <SaveButoon/> */}
       {/* Other components */}
-      <Features />
+      {/* <Features />
       <Pictures />
-      <Team />
+      <Team /> */}
     </div>
   );
 };
