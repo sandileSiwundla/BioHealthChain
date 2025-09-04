@@ -60,3 +60,8 @@
 //       console.log("Python script output:", stdout);
 //     });
 // }
+// app/api/save-data/route.ts
+
+export async function POST() {
+  return new Response("Not implemented", { status: 501 });
+}
