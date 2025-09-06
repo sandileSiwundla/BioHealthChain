@@ -24,7 +24,7 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="bg-primary fixed left-0 top-0 h-screen w-60 p-5 text-primary-foreground flex flex-col items-start space-y-6 shadow-lg">
+    <nav className="bg-primary fixed left-0 top-0 h-screen w-60 p-5 text-primary-foreground flex flex-col items-start space-y-6">
       {/* Logo + title */}
       <div className="flex flex-col items-center space-y-5">
         <Image 
@@ -38,7 +38,7 @@ const Navbar = () => {
       </div>
 
       {/* Dynamic nav buttons */}
-      <div className="flex flex-col space-y-4 w-full  items-start">
+      <div className="flex flex-col space-y-4 w-full items-start">
         {activeParent
           ? // Show children buttons if a parent is active
             navStructure[activeParent]?.map((child) => (
@@ -46,7 +46,7 @@ const Navbar = () => {
                 key={child}
                 variant="link"
                 size="sm"
-                className="!text-black !hover:text-red-600"
+                className="!text-black items-start w-full text-left"
                 onClick={() => handleChildClick(child)}
               >
                 {child}
@@ -58,7 +58,7 @@ const Navbar = () => {
                 key={parent}
                 variant="link"
                 size="sm"
-                className="!text-black !hover:text-red-600"
+                className="!text-black items-start w-full text-left"
                 onClick={() => handleParentClick(parent)}
               >
                 {parent}
@@ -71,7 +71,7 @@ const Navbar = () => {
         <Button
           variant="link"
           size="sm"
-          className="!text-gray-500 !hover:text-gray-700 mt-4"
+          className="!text-gray-500 !hover:text-gray-700 mt-4  w-full text-left"
           onClick={() => setActiveParent(null)}
         >
           ← Back
