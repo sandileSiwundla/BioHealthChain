@@ -3,14 +3,30 @@ import Button from "@/components/ui/Button";
 import Image from "next/image";
 
 const Navbar = () => {
-  const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
-    alert("Button clicked!");
+  // Tracks which parent button is currently active
+  const [activeParent, setActiveParent] = React.useState<string | null>(null);
+
+  // Button structure: parent -> children
+  const navStructure: Record<string, string[] | null> = {
+    About: ["Vlogs", "Vision", "Brand"],
+    Services: ["Appointments", "Medical Records", "Consultation"],
+    Contact: null,
+    Dashboard: ["Patients", "Doctors", "Reports"],
+    Help: ["FAQ", "Support", "Tutorials"],
+  };
+
+  const handleParentClick = (parent: string) => {
+    setActiveParent(parent);
+  };
+
+  const handleChildClick = (child: string) => {
+    alert(`Clicked ${child}`);
   };
 
   return (
-    <nav className="bg-primary fixed left-0 top-0 h-screen w-55 p-5 text-primary-foreground flex flex-col items-start space-y-6 shadow-lg">
+    <nav className="bg-primary fixed left-0 top-0 h-screen w-60 p-5 text-primary-foreground flex flex-col items-start space-y-6 shadow-lg">
       {/* Logo + title */}
-      <div className="flex flex-col items-start space-y-2">
+      <div className="flex flex-col items-center space-y-5">
         <Image 
           src="/logo.png" 
           alt="Company Logo"
@@ -21,18 +37,46 @@ const Navbar = () => {
         <div className="text-2xl font-bold text-black">BioHealthChain</div>
       </div>
 
-      {/* Vertical nav links */}
-      <div className="flex flex-col space-y-4 w-44 ">
-        <Button variant="link" size="sm" className=" !hover:text-red-600 !text-black" onClick={handleClick}>
-          About
-        </Button>
-        <Button variant="link" size="sm" className="!text-black" onClick={handleClick}>
-          Services
-        </Button>
-        <Button variant="link" size="sm" className="!text-black" onClick={handleClick}>
-          Contact
-        </Button>
+      {/* Dynamic nav buttons */}
+      <div className="flex flex-col space-y-4 w-full  items-start">
+        {activeParent
+          ? // Show children buttons if a parent is active
+            navStructure[activeParent]?.map((child) => (
+              <Button
+                key={child}
+                variant="link"
+                size="sm"
+                className="!text-black !hover:text-red-600"
+                onClick={() => handleChildClick(child)}
+              >
+                {child}
+              </Button>
+            ))
+          : // Show main parent buttons
+            Object.keys(navStructure).map((parent) => (
+              <Button
+                key={parent}
+                variant="link"
+                size="sm"
+                className="!text-black !hover:text-red-600"
+                onClick={() => handleParentClick(parent)}
+              >
+                {parent}
+              </Button>
+            ))}
       </div>
+
+      {/* Back button to return to main menu */}
+      {activeParent && (
+        <Button
+          variant="link"
+          size="sm"
+          className="!text-gray-500 !hover:text-gray-700 mt-4"
+          onClick={() => setActiveParent(null)}
+        >
+          ← Back
+        </Button>
+      )}
     </nav>
   );
 };

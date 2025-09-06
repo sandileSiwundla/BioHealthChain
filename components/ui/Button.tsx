@@ -14,9 +14,9 @@ interface ButtonProps {
 const Button = ({ label, onClick, className, children, variant = 'primary', size = 'md' }: ButtonProps) => {
   // Determine the button classes based on variant and size
   const buttonClasses = `
-    ${variant === 'link' ? 'text-red-500 underline' : 'bg-blue-red text-black py-2 px-4 rounded-md'}
+    ${variant === 'link' ? 'text-red-500 ' : 'bg-blue-red text-black py-2 px-4 rounded-md'}
     ${size === 'sm' ? 'text-sm py-1 px-3' : size === 'lg' ? 'text-lg py-3 px-6' : 'text-base'}
-    transition-all hover:bg-blue-200 focus:outline-none
+    transition-all hover:bg-blue-300 focus:outline-none
     ${className}
   `;
 
