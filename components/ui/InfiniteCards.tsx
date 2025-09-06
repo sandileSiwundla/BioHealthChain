@@ -77,7 +77,7 @@ export const InfiniteMovingCards = ({
           <li
             key={idx}
             className={cn(
-              "w-[45vw] max-w-full relative rounded-2xl border border-blue-400 p-5 md:p-12 md:w-[30vw] bg-blue-300/90 backdrop-blur-2xl flex-shrink-0",
+              "w-[45vw] max-w-full relative rounded-2xl border border-[#7BAFD4] p-5 md:p-12 md:w-[30vw] bg-[#8AB6D6] backdrop-blur-2xl flex-shrink-0",
               pauseOnHover && "hover:[animation-play-state:paused]"
             )}
             style={{
@@ -97,14 +97,14 @@ export const InfiniteMovingCards = ({
 
               {/* text */}
               <div className="flex flex-col gap-1">
-                <span className="text-xl font-bold text-slate-700">{item.name}</span>
-                <span className="text-sm text-slate-700">{item.title}</span>
+                <span className="text-xl font-bold text-white">{item.name}</span>
+                <span className="text-sm text-white">{item.title}</span>
                 <div className="flex gap-3 mt-1">
                   <a href={item.linkedin} target="_blank" rel="noopener noreferrer">
-                    <Linkedin className="w-5 h-5 text-slate-700/80 hover:text-white" />
+                    <Linkedin className="w-5 h-5 text-white/80 hover:text-white" />
                   </a>
                   <a href={item.github} target="_blank" rel="noopener noreferrer">
-                    <Github className="w-5 h-5 text-slate-700/80 hover:text-white" />
+                    <Github className="w-5 h-5 text-white/80 hover:text-white" />
                   </a>
                 </div>
               </div>

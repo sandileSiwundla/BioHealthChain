@@ -30,11 +30,11 @@ const Navbar = () => {
         <Image 
           src="/logo.png" 
           alt="Company Logo"
-          width={80}
-          height={80}
+          width={120}
+          height={120}
           className="rounded-full"
         />
-        <div className="text-2xl font-bold text-black">BioHealthChain</div>
+        <div className="text-2xl font-bold text-white">BioHealthChain</div>
       </div>
 
       {/* Dynamic nav buttons */}
@@ -58,7 +58,7 @@ const Navbar = () => {
                 key={parent}
                 variant="link"
                 size="sm"
-                className="!text-black items-start w-full text-left"
+                className="!text-white items-start w-full text-left"
                 onClick={() => handleParentClick(parent)}
               >
                 {parent}
@@ -71,7 +71,7 @@ const Navbar = () => {
         <Button
           variant="link"
           size="sm"
-          className="!text-gray-500 !hover:text-gray-700 mt-4  w-full text-left"
+          className="!text-white-500 !hover:text-white-700 mt-4  w-full text-left"
           onClick={() => setActiveParent(null)}
         >
           ← Back

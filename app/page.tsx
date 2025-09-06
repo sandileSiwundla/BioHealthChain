@@ -7,7 +7,7 @@ import Stars from '@/components/ui/stars';
 
 const Home = () => {
   return (
-    <div className="bg-blue-100 min-h-screen relative overflow-hidden">
+    <div className="bg-[#1d2951] min-h-screen relative overflow-hidden">
       <div className="relative w-full h-[800px]">
         <Navbar />
         <Stars/>
@@ -18,12 +18,13 @@ const Home = () => {
           className="bg-transparent p-8 relative animate-float"
           style={{ width: '20cm', height: '4cm' }}
         >
-          <h2 
-            className="text-6xl font-extrabold text-gray-800 drop-shadow-2xl"
-            style={{ fontFamily: "'Poppins', sans-serif" }}
-          >
-            Your Health, Your Data, Your Control — Securely on Chain.
-          </h2>
+         <h2
+          className="text-6xl font-extrabold text-white drop-shadow-2xl"
+          style={{ fontFamily: "'Montserrat', sans-serif" }}
+        >
+          Your Health, Your Data, Your Control — Securely on Chain.
+        </h2>
+
         </div>
       </div>
         <div style={{
