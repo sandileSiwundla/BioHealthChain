@@ -1,6 +1,6 @@
 "use client";
 
-// import Navbar from '@/components/Navbar';
+import Navbar from '@/components/Navbar';
 // import Features from '@/components/features';
 // import Team from '@/components/teams';
 // import Pictures from '@/components/links';
@@ -9,11 +9,10 @@
 
 const Home = () => {
   return (
-    <div className="bg-blue-100 min-h-screen">
-      {/* Navbar */}
-      {/* <Navbar /> */}
+    <div className="bg-blue-100 min-h-screen ">
+      <Navbar />
 
-      <div className="flex justify-center items-center pt-16">
+      <div className=" pt-16 ml-56 p-8 w-full">
         {/* Modal with width and height in cm */}
         <div 
           className="border border-gray-300 bg-transparent p-8 rounded-lg shadow-md"
