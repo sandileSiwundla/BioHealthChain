@@ -1,40 +1,38 @@
 "use client";
 
 import Navbar from '@/components/Navbar';
-// import Features from '@/components/features';
-// import Team from '@/components/teams';
-// import Pictures from '@/components/links';
-// import SaveButoon from '@/components/saveButton';
-// import FetchButton from '@/components/fetchData';
+import FloatingElements from '@/components/FloatingElement';
 
 const Home = () => {
   return (
-    <div className="bg-blue-100 min-h-screen ">
+    <div className="bg-blue-100 min-h-screen relative overflow-hidden">
+      
       <Navbar />
+      <FloatingElements />
 
-      <div className=" pt-16 ml-56 p-8 w-full">
-        {/* Modal with width and height in cm */}
+      <div className="pt-16 ml-56 p-7 w-full flex items-start">
         <div 
-          className="border border-gray-300 bg-transparent p-8 rounded-lg shadow-md"
-          style={{ width: '31cm', height: '5cm' }} // Set width and height in cm
+          className="bg-transparent p-8 relative animate-float"
+          style={{ width: '20cm', height: '4cm' }}
         >
-          {/* Headline Section */}
-          <div className="headline-container text-center">
-            <h2 className="headline-title text-3xl font-semibold text-gray-800">
-              Welcome to BioHealthChain
-            </h2>
-            <p className="headline-text text-lg text-gray-600 mt-4">
-              Putting your health records in your hands like never before.
-            </p>
-          </div>
+          <h2 
+            className="text-6xl font-extrabold text-gray-800 drop-shadow-2xl"
+            style={{ fontFamily: "'Poppins', sans-serif" }}
+          >
+            Your Health, Your Data, Your Control — Securely on Chain.
+          </h2>
         </div>
       </div>
-      {/* <FetchButton/>
-      <SaveButoon/> */}
-      {/* Other components */}
-      {/* <Features />
-      <Pictures />
-      <Team /> */}
+
+      <style jsx>{`
+        @keyframes float {
+          0%, 50% { transform: translateX(0px); }
+          25% { transform: translateX(-15px); }
+        }
+        .animate-float {
+          animation: float 3s ease-in-out infinite;
+        }
+      `}</style>
     </div>
   );
 };
