@@ -3,12 +3,16 @@
 import Navbar from '@/components/Navbar';
 import FloatingElements from '@/components/FloatingElement';
 import Team from '@/components/teams';
+import Stars from '@/components/ui/stars';
 
 const Home = () => {
   return (
     <div className="bg-blue-100 min-h-screen relative overflow-hidden">
-      <Navbar />
       <div className="relative w-full h-[800px]">
+        <Navbar />
+        <Stars/>
+
+
         <div className="pt-16 ml-56 p-7 w-full flex items-start">
         <div 
           className="bg-transparent p-8 relative animate-float"
@@ -34,10 +38,8 @@ const Home = () => {
         </div>
       </div>
 
-      
-
           <Team/>
-
+          
 
       <style jsx>{`
   @keyframes floatPulse {
