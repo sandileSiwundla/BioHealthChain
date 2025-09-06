@@ -2,24 +2,14 @@
 
 import Navbar from '@/components/Navbar';
 import FloatingElements from '@/components/FloatingElement';
+import Team from '@/components/teams';
 
 const Home = () => {
   return (
     <div className="bg-blue-100 min-h-screen relative overflow-hidden">
-      
       <Navbar />
-      <div style={{
-      position: "absolute", // or relative/fixed
-      top: "120px",         // distance from top
-      left: "80%",          // horizontal center
-      transform: "translateX(-50%)", // center horizontally
-      width: "1600px",       // set width
-      height: "800px",      // set height
-    }}>
-      <FloatingElements />
-    </div>
-
-      <div className="pt-16 ml-56 p-7 w-full flex items-start">
+      <div className="relative w-full h-[800px]">
+        <div className="pt-16 ml-56 p-7 w-full flex items-start">
         <div 
           className="bg-transparent p-8 relative animate-float"
           style={{ width: '20cm', height: '4cm' }}
@@ -32,6 +22,22 @@ const Home = () => {
           </h2>
         </div>
       </div>
+        <div style={{
+          position: "absolute",
+          top: "100px",
+          left: "80%",
+          transform: "translateX(-50%)",
+          width: "1600px",
+          height: "800px",
+        }}>
+          <FloatingElements />
+        </div>
+      </div>
+
+      
+
+          <Team/>
+
 
       <style jsx>{`
   @keyframes floatPulse {

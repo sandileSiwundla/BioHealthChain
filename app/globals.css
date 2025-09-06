@@ -24,3 +24,15 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+/* DO NOT REMOVE key for team carousel animation */
+  @keyframes scrollLeft {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+
+  .animate-scroll {
+    animation: scrollLeft var(--animation-duration, 40s) linear infinite;
+    animation-direction: var(--animation-direction, forwards);
+  }
+

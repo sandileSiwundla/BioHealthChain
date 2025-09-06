@@ -10,6 +10,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@sglara/cn": "^1.0.0",
     "axios": "^1.8.4",
     "classnames": "^2.5.1",
     "ipfs-http-client": "^60.0.1",
