@@ -22,8 +22,8 @@ const Navbar = () => {
       </div>
 
       {/* Vertical nav links */}
-      <div className="flex flex-col space-y-4">
-        <Button variant="link" size="sm" className="!text-black" onClick={handleClick}>
+      <div className="flex flex-col space-y-4 w-44 ">
+        <Button variant="link" size="sm" className=" !hover:text-red-600 !text-black" onClick={handleClick}>
           About
         </Button>
         <Button variant="link" size="sm" className="!text-black" onClick={handleClick}>
