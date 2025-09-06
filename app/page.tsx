@@ -34,14 +34,29 @@ const Home = () => {
       </div>
 
       <style jsx>{`
-        @keyframes float {
-          0%, 50% { transform: translateX(0px); }
-          25% { transform: translateX(-15px); }
-        }
-        .animate-float {
-          animation: float 3s ease-in-out infinite;
-        }
-      `}</style>
+  @keyframes floatPulse {
+    0% {
+      transform: translateY(0px) scale(1);
+    }
+    25% {
+      transform: translateY(-5px) scale(1.02);
+    }
+    50% {
+      transform: translateY(0px) scale(1);
+    }
+    75% {
+      transform: translateY(5px) scale(0.98);
+    }
+    100% {
+      transform: translateY(0px) scale(1);
+    }
+  }
+
+  .animate-floatPulse {
+    animation: floatPulse 4s ease-in-out infinite;
+  }
+`}</style>
+
     </div>
   );
 };
