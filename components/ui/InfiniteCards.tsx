@@ -70,37 +70,41 @@ export const InfiniteMovingCards = ({
         ref={scrollerRef}
         className={cn(
           "flex min-w-full shrink-0 gap-16 py-4 w-max flex-nowrap",
-          start && "animate-scroll",
-          pauseOnHover && "hover:[animation-play-state:paused]"
+          start && "animate-scroll"
         )}
       >
         {items.map((item, idx) => (
           <li
             key={idx}
-            className="w-[45vw] max-w-full relative rounded-2xl border border-slate-800 p-5 md:p-16 md:w-[30vw] bg-slate-800 backdrop-blur-2xl flex-shrink-0"
+            className={cn(
+              "w-[45vw] max-w-full relative rounded-2xl border border-blue-400 p-5 md:p-12 md:w-[30vw] bg-blue-300/90 backdrop-blur-2xl flex-shrink-0",
+              pauseOnHover && "hover:[animation-play-state:paused]"
+            )}
+            style={{
+              marginTop: "4rem",
+              marginLeft: "4rem",
+            }}
           >
-            <div className="relative z-20 mt-6 flex flex-row items-center gap-4">
+            <div className="relative z-20 mt-6 flex flex-row items-center gap-8">
               {/* profile img */}
               <div>
                 <img
                   src={item.img}
                   alt={item.name}
-                  className="w-16 h-16 rounded-full border border-white/20"
+                  className="w-16 h-16 md:w-20 md:h-20 rounded-full border border-white/20"
                 />
               </div>
+
+              {/* text */}
               <div className="flex flex-col gap-1">
-                <span className="text-xl font-bold text-white">{item.name}</span>
-                <span className="text-sm text-white/70">{item.title}</span>
+                <span className="text-xl font-bold text-slate-700">{item.name}</span>
+                <span className="text-sm text-slate-700">{item.title}</span>
                 <div className="flex gap-3 mt-1">
-                  <a
-                    href={item.linkedin}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    <Linkedin className="w-5 h-5 text-white/80 hover:text-white" />
+                  <a href={item.linkedin} target="_blank" rel="noopener noreferrer">
+                    <Linkedin className="w-5 h-5 text-slate-700/80 hover:text-white" />
                   </a>
                   <a href={item.github} target="_blank" rel="noopener noreferrer">
-                    <Github className="w-5 h-5 text-white/80 hover:text-white" />
+                    <Github className="w-5 h-5 text-slate-700/80 hover:text-white" />
                   </a>
                 </div>
               </div>
@@ -110,4 +114,4 @@ export const InfiniteMovingCards = ({
       </ul>
     </div>
   );
-}
+};
