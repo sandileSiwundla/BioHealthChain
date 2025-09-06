@@ -8,7 +8,16 @@ const Home = () => {
     <div className="bg-blue-100 min-h-screen relative overflow-hidden">
       
       <Navbar />
+      <div style={{
+      position: "absolute", // or relative/fixed
+      top: "120px",         // distance from top
+      left: "80%",          // horizontal center
+      transform: "translateX(-50%)", // center horizontally
+      width: "1600px",       // set width
+      height: "800px",      // set height
+    }}>
       <FloatingElements />
+    </div>
 
       <div className="pt-16 ml-56 p-7 w-full flex items-start">
         <div 

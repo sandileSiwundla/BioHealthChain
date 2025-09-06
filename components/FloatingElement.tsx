@@ -13,7 +13,7 @@ const SphericalWeb = () => {
     canvas.height = window.innerHeight;
 
     const points: { x: number; y: number; z: number }[] = [];
-    const totalPoints = 150;
+    const totalPoints = 180;
     const radius = 300;
 
     for (let i = 0; i < totalPoints; i++) {
@@ -47,12 +47,12 @@ const SphericalWeb = () => {
         });
       }
 
-      // draw connections
       ctx.strokeStyle = "black";
       ctx.lineWidth = 1.5;
 
       for (let i = 0; i < projected.length; i++) {
         for (let j = i + 1; j < projected.length; j++) {
+          // connect only if points are close enough to reduce clutter
           const dx = projected[i].x - projected[j].x;
           const dy = projected[i].y - projected[j].y;
           if (Math.sqrt(dx * dx + dy * dy) < 120) {
@@ -64,13 +64,6 @@ const SphericalWeb = () => {
         }
       }
 
-      // draw large bold text at the center
-      ctx.font = "bold 140px Arial"; // adjust size as needed
-      ctx.fillStyle = "black";
-      ctx.textAlign = "center";
-      ctx.textBaseline = "middle";
-      ctx.fillText("HELLO", 0, 0);
-
       ctx.restore();
       angle += 0.002;
       requestAnimationFrame(animate);
@@ -79,13 +72,7 @@ const SphericalWeb = () => {
     animate();
   }, []);
 
-  return (
-    <canvas
-      ref={canvasRef}
-      className="w-full h-full"
-      style={{ background: "transparent" }}
-    />
-  );
+  return <canvas ref={canvasRef} className="w-full h-full" style={{ background: "transparent" }} />;
 };
 
 export default SphericalWeb;
