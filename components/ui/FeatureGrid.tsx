@@ -43,8 +43,13 @@ const Home = () => {
 
   return (
     <div className="bg-[#1d2951] min-h-screen relative overflow-hidden">
+      {/* Blur overlay */}
+      <div className={`fixed inset-0  bg-opacity-30 backdrop-blur-sm transition-opacity duration-500 z-20 ${
+        selectedCard !== null ? 'opacity-100' : 'opacity-0 pointer-events-none'
+      }`} />
+      
       {/* Feature Cards Section */}
-      <div className="relative z-10 px-8 pb-16 pt-12">
+      <div className="relative z-30 px-8 pb-16 pt-12">
         <div className="max-w-6xl mx-auto">
           <h3 className="text-4xl font-bold text-center mb-12 text-white">
             Explore Our Healthcare Portals
@@ -54,7 +59,11 @@ const Home = () => {
             {features.map((feature) => (
               <div 
                 key={feature.id}
-                className={`bg-[#003F5C] rounded-xl p-8 cursor-pointer transition-all duration-500 ease-in-out transform hover:-translate-y-2 border-t-4 ${
+                className={`bg-[#2F4B7C] rounded-xl p-8 cursor-pointer transition-all duration-500 ease-in-out transform ${
+                  selectedCard === feature.id ? '-translate-y-2 scale-105 z-30' : ''
+                } ${
+                  selectedCard !== null && selectedCard !== feature.id ? 'opacity-70' : ''
+                } border-t-4 ${
                   feature.color === 'blue' ? 'border-blue-500' : 
                   feature.color === 'green' ? 'border-green-500' : 'border-purple-500'
                 }`}
@@ -63,16 +72,13 @@ const Home = () => {
               >
                 <div className="flex min-h-[120px]">
                   {/* Left side - Title and icon */}
-                  <div className={`w-1/2 pr-6 border-r border-gray-200 flex flex-col justify-center transition-all duration-500 ease-in-out ${
+                  <div className={`w-1/2 pr-6 border-r border-gray-400 flex flex-col justify-center transition-all duration-500 ease-in-out ${
                     selectedCard === feature.id ? 'items-start' : 'items-center'
                   }`}>
                     <div className="flex flex-col items-center transition-all duration-500 ease-in-out">
                       <h4 className={`font-bold transition-all duration-500 ease-in-out ${
                         selectedCard === feature.id ? 'text-3xl text-left' : 'text-4xl text-center'
-                      } ${
-                        feature.color === 'blue' ? 'text-blue-700' : 
-                        feature.color === 'green' ? 'text-green-700' : 'text-purple-700'
-                      }`}>
+                      } text-white`}>
                         {feature.title}
                       </h4>
                       
