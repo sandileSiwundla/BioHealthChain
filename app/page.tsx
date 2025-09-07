@@ -5,6 +5,7 @@ import FloatingElements from '@/components/FloatingElement';
 import Team from '@/components/teams';
 import Stars from '@/components/ui/stars';
 import TitleCards from '@/components/FeatureGrid';
+import Cards from "@/components/ui/Card";
 
 
 const features = [
@@ -45,9 +46,11 @@ const Home = () => {
         </div>
       </div>
         <TitleCards/>
+        <Cards/>
 
 
         <Team/>
+
           
 
       <style jsx>{`
