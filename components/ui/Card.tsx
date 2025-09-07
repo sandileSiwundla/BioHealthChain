@@ -54,7 +54,7 @@ const Home = () => {
             {features.map((feature) => (
               <div 
                 key={feature.id}
-                className={`bg-white rounded-xl p-8 cursor-pointer transition-all duration-500 ease-in-out transform hover:-translate-y-2 border-t-4 ${
+                className={`bg-[#003F5C] rounded-xl p-8 cursor-pointer transition-all duration-500 ease-in-out transform hover:-translate-y-2 border-t-4 ${
                   feature.color === 'blue' ? 'border-blue-500' : 
                   feature.color === 'green' ? 'border-green-500' : 'border-purple-500'
                 }`}
@@ -88,7 +88,7 @@ const Home = () => {
                   <div className={`w-1/2 pl-6 overflow-hidden transition-all duration-500 ease-in-out flex items-center ${
                     selectedCard === feature.id ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
                   }`}>
-                    <p className="text-gray-700 text-lg leading-relaxed">
+                    <p className="text-white text-lg leading-relaxed">
                       {feature.description}
                     </p>
                   </div>
