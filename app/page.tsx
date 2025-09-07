@@ -4,14 +4,20 @@ import Navbar from '@/components/Navbar';
 import FloatingElements from '@/components/FloatingElement';
 import Team from '@/components/teams';
 import Stars from '@/components/ui/stars';
+import TitleCards from '@/components/FeatureGrid';
 
+
+const features = [
+  { id: 1, title: "Analytics", description: "View your stats in real-time" },
+  { id: 2, title: "Reports", description: "Generate detailed reports" },
+  { id: 3, title: "Settings", description: "Customize your preferences" },
+];
 const Home = () => {
   return (
     <div className="bg-[#1d2951] min-h-screen relative overflow-hidden">
       <div className="relative w-full h-[800px]">
         <Navbar />
         <Stars/>
-
 
         <div className="pt-16 ml-56 p-7 w-full flex items-start">
         <div 
@@ -38,8 +44,10 @@ const Home = () => {
           <FloatingElements />
         </div>
       </div>
+        <TitleCards/>
 
-          <Team/>
+
+        <Team/>
           
 
       <style jsx>{`
