@@ -28,7 +28,7 @@ const Navbar = () => {
       {/* Logo + title */}
       <div className="flex flex-col items-center space-y-5">
         <Image 
-          src="/logo.png" 
+          src="/logoPhoto.jpg" 
           alt="Company Logo"
           width={120}
           height={120}
