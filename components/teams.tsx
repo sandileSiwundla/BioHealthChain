@@ -13,7 +13,7 @@ const Clients = () => {
           
         >
           <h2 className="text-4xl md:text-5xl font-extrabold text-white mb-5 tracking-wide">
-          Meet the team
+          Meet The <span className="text-blue-400">Team</span>
           </h2>
           
           <InfiniteMovingCards

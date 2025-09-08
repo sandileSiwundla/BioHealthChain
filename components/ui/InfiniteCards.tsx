@@ -118,7 +118,7 @@ export const InfiniteMovingCards = ({
                     href={item.linkedin}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="p-2 bg-white/20 rounded-full hover:bg-white/30 transition-colors"
+                    className="p-2 bg-white/20 rounded-full hover:bg-black transition-colors"
                   >
                     <Linkedin className="w-4 h-4 md:w-5 md:h-5 text-white" />
                   </a>
@@ -126,7 +126,7 @@ export const InfiniteMovingCards = ({
                     href={item.github}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="p-2 bg-white/20 rounded-full hover:bg-white/30 transition-colors"
+                    className="p-2 bg-white/20 rounded-full hover:bg-black transition-colors"
                   >
                     <Github className="w-4 h-4 md:w-5 md:h-5 text-white" />
                   </a>
