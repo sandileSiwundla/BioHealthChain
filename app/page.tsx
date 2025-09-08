@@ -13,6 +13,7 @@ const Home = () => {
     <div className="bg-[#1d2951] min-h-screen relative overflow-hidden">
       <div className="fixed top-0 left-0 w-full z-50">
         <Navbar />
+        
       </div>
    
       <div className="relative w-full h-[800px]">

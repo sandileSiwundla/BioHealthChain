@@ -15,7 +15,9 @@ const Home = () => {
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
         </svg>
       ),
-      color: "blue"
+      color: "blue",
+      gradient: "from-blue-500 to-blue-700",
+      buttonText: "Access Records"
     },
     {
       id: 2,
@@ -26,7 +28,9 @@ const Home = () => {
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
         </svg>
       ),
-      color: "green"
+      color: "green",
+      gradient: "from-green-500 to-green-700",
+      buttonText: "Provider Login"
     },
     {
       id: 3,
@@ -37,70 +41,104 @@ const Home = () => {
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
         </svg>
       ),
-      color: "purple"
+      color: "purple",
+      gradient: "from-purple-500 to-purple-700",
+      buttonText: "Manage Prescriptions"
     }
   ];
 
   return (
-    <div className="bg-[#1d2951] min-h-screen relative overflow-hidden">
+    <div className="min-h-screen  relative overflow-hidden">
+      {/* Animated background elements */}
+      <div className="absolute top-0 left-0 right-0 h-96 bg-gradient-to-b from-blue-900/20 to-transparent"></div>
+      <div className="absolute -top-24 -right-24 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl"></div>
+      <div className="absolute -bottom-24 -left-24 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl"></div>
+      
       {/* Blur overlay */}
-      <div className={`fixed inset-0  bg-opacity-30 backdrop-blur-sm transition-opacity duration-500 z-20 ${
+      <div className={`fixed inset-0 bg-black bg-opacity-50 backdrop-blur-sm transition-opacity duration-500 z-20 ${
         selectedCard !== null ? 'opacity-100' : 'opacity-0 pointer-events-none'
       }`} />
       
-      {/* Feature Cards Section */}
-      <div className="relative z-30 px-8 pb-16 pt-12">
+      {/* Main content */}
+      <div className="relative z-30 px-4 py-12 sm:px-8 lg:py-24">
         <div className="max-w-6xl mx-auto">
-          <h3 className="text-4xl font-bold text-center mb-12 text-white">
+          <div className="text-center mb-16">
+            <h1 className="text-4xl md:text-5xl font-bold text-white mb-4">
+              BioHealth<span className="text-blue-400">Chain</span>
+            </h1>
+            <p className="text-xl text-blue-100 max-w-2xl mx-auto">
+              Secure, decentralized healthcare data management for patients and providers
+            </p>
+          </div>
+          
+          <h3 className="text-3xl font-bold text-center mb-12 text-white">
             Explore Our Healthcare Portals
           </h3>
           
-          <div className="space-y-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {features.map((feature) => (
               <div 
                 key={feature.id}
-                className={`bg-[#2F4B7C] rounded-xl p-8 cursor-pointer transition-all duration-500 ease-in-out transform ${
-                  selectedCard === feature.id ? '-translate-y-2 scale-105 z-30' : ''
-                } ${
-                  selectedCard !== null && selectedCard !== feature.id ? 'opacity-70' : ''
-                } border-t-4 ${
-                  feature.color === 'blue' ? 'border-blue-500' : 
-                  feature.color === 'green' ? 'border-green-500' : 'border-purple-500'
-                }`}
+                className={`relative bg-gradient-to-br ${feature.gradient} rounded-2xl p-6 cursor-pointer transition-all duration-500 ease-in-out transform ${
+                  selectedCard === feature.id ? 
+                  '-translate-y-4 scale-105 z-30 shadow-2xl' : 
+                  'hover:-translate-y-2 opacity-90 hover:opacity-100 shadow-lg'
+                } border-t-8 ${
+                  feature.color === 'blue' ? 'border-blue-400' : 
+                  feature.color === 'green' ? 'border-green-400' : 'border-purple-400'
+                } h-full flex flex-col`}
                 onMouseEnter={() => setSelectedCard(feature.id)}
                 onMouseLeave={() => setSelectedCard(null)}
               >
-                <div className="flex min-h-[120px]">
-                  {/* Left side - Title and icon */}
-                  <div className={`w-1/2 pr-6 border-r border-gray-400 flex flex-col justify-center transition-all duration-500 ease-in-out ${
-                    selectedCard === feature.id ? 'items-start' : 'items-center'
-                  }`}>
-                    <div className="flex flex-col items-center transition-all duration-500 ease-in-out">
-                      <h4 className={`font-bold transition-all duration-500 ease-in-out ${
-                        selectedCard === feature.id ? 'text-3xl text-left' : 'text-4xl text-center'
-                      } text-white`}>
-                        {feature.title}
-                      </h4>
-                      
-                      <div className={`transition-all duration-500 ease-in-out flex justify-center mt-4 ${
-                        selectedCard === feature.id ? 'opacity-100' : 'opacity-0 h-0 mt-0'
-                      }`}>
-                        {feature.icon}
-                      </div>
-                    </div>
+                {/* Icon container */}
+                <div className={`mb-6 p-3 rounded-xl bg-white/10 w-fit transition-all duration-500 ${
+                  selectedCard === feature.id ? 'rotate-12' : ''
+                }`}>
+                  <div className="text-white">
+                    {feature.icon}
                   </div>
+                </div>
+                
+                {/* Title */}
+                <h4 className={`font-bold mb-4 transition-all duration-500 ${
+                  selectedCard === feature.id ? 'text-2xl' : 'text-xl'
+                } text-white`}>
+                  {feature.title}
+                </h4>
+                
+                {/* Description */}
+                <div className={`overflow-hidden transition-all duration-500 flex-grow ${
+                  selectedCard === feature.id ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
+                }`}>
+                  <p className="text-blue-100 text-sm leading-relaxed mb-6">
+                    {feature.description}
+                  </p>
                   
-                  {/* Right side - Description */}
-                  <div className={`w-1/2 pl-6 overflow-hidden transition-all duration-500 ease-in-out flex items-center ${
-                    selectedCard === feature.id ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
+                  {/* CTA Button */}
+                  <button className={`w-full py-3 rounded-lg font-semibold transition-all duration-300 ${
+                    selectedCard === feature.id ? 
+                    'bg-white text-blue-800 hover:bg-blue-50' : 
+                    'bg-white/20 text-white hover:bg-white/30'
                   }`}>
-                    <p className="text-white text-lg leading-relaxed">
-                      {feature.description}
-                    </p>
-                  </div>
+                    {feature.buttonText}
+                  </button>
+                </div>
+                
+                {/* Expand hint */}
+                <div className={`mt-4 text-center transition-all duration-500 ${
+                  selectedCard === feature.id ? 'opacity-0 h-0' : 'opacity-70 h-auto'
+                }`}>
+                  <span className="text-white text-xs">Hover to explore</span>
                 </div>
               </div>
             ))}
+          </div>
+          
+          {/* Footer */}
+          <div className="mt-16 text-center">
+            <p className="text-blue-200">
+              Secure • Private • HIPAA Compliant
+            </p>
           </div>
         </div>
       </div>
