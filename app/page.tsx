@@ -5,6 +5,7 @@ import FloatingElements from '@/components/FloatingElement';
 import Team from '@/components/teams';
 import Stars from '@/components/ui/stars';
 import Cards from "@/components/ui/FeatureGrid";
+import Footer from "@/components/footer";
 
 
 const Home = () => {
@@ -45,6 +46,7 @@ const Home = () => {
 
         <Cards/>
         <Team/>
+        <Footer/>
 
           
 
