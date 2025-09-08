@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
 
 const Home = () => {
   const [selectedCard, setSelectedCard] = useState<number | null>(null);
@@ -11,13 +12,14 @@ const Home = () => {
       title: "Patients Portal",
       description: "Access your personal medical records securely on BioHealthChain. Apply for access to your health data, view all documents, track your treatment history, and maintain full control over who can access your information.",
       icon: (
-        <svg xmlns="http://www.w3.org/2000/svg" className="h-12 w-12" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <svg xmlns="/patients" className="h-12 w-12" fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
         </svg>
       ),
       color: "blue",
       gradient: "from-blue-500 to-blue-700",
-      buttonText: "Access Records"
+      buttonText: "Access Records",
+      Link: "/patients"
     },
     {
       id: 2,
@@ -30,7 +32,9 @@ const Home = () => {
       ),
       color: "green",
       gradient: "from-green-500 to-green-700",
-      buttonText: "Provider Login"
+      buttonText: "Provider Login",
+      Link: "/patients"
+
     },
     {
       id: 3,
@@ -43,7 +47,9 @@ const Home = () => {
       ),
       color: "purple",
       gradient: "from-purple-500 to-purple-700",
-      buttonText: "Manage Prescriptions"
+      buttonText: "Manage Prescriptions",
+      Link: "/patients"
+
     }
   ];
 
@@ -115,6 +121,7 @@ const Home = () => {
                   </p>
                   
                   {/* CTA Button */}
+                  <Link href={feature.Link}>
                   <button className={`w-full py-3 rounded-lg font-semibold transition-all duration-300 ${
                     selectedCard === feature.id ? 
                     'bg-white text-blue-800 hover:bg-blue-50' : 
@@ -122,6 +129,7 @@ const Home = () => {
                   }`}>
                     {feature.buttonText}
                   </button>
+                  </Link>
                 </div>
                 
                 {/* Expand hint */}
