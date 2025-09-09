@@ -1,5 +1,5 @@
 import * as React from "react";
-import Button from "@/components/ui/Button";
+import { Button } from "@/components/ui/button";
 import Image from "next/image";
 
 const Navbar = () => {
@@ -44,9 +44,9 @@ const Navbar = () => {
             navStructure[activeParent]?.map((child) => (
               <Button
                 key={child}
-                variant="link"
+                  variant="ghost"
                 size="sm"
-                className="!text-black items-start w-full text-left"
+                className="justify-start text-white items-start w-full text-left"
                 onClick={() => handleChildClick(child)}
               >
                 {child}
@@ -55,23 +55,23 @@ const Navbar = () => {
           : // Show main parent buttons
             Object.keys(navStructure).map((parent) => (
               <Button
-                key={parent}
-                variant="link"
-                size="sm"
-                className="!text-white items-start w-full text-left"
-                onClick={() => handleParentClick(parent)}
-              >
-                {parent}
-              </Button>
+  key={parent}
+  variant="ghost"
+  size="sm"
+  className="justify-start text-white hover:text-blue-300 w-full"
+  onClick={() => handleParentClick(parent)}
+>
+  {parent}
+</Button>
             ))}
       </div>
 
       {/* Back button to return to main menu */}
       {activeParent && (
         <Button
-          variant="link"
+          variant="ghost"
           size="sm"
-          className="!text-white-500 !hover:text-white-700 mt-4  w-full text-left"
+          className="justify-start text-red-500 !hover:text-white-700 mt-4  w-full text-left"
           onClick={() => setActiveParent(null)}
         >
           ← Back
