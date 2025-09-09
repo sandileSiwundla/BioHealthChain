@@ -20,19 +20,19 @@ export function DatePicker({ onChange }: { onChange: (date: Date | undefined) =>
       <PopoverTrigger asChild>
         <Button
           variant="outline"
-          className="w-full justify-between text-left font-normal"
+          className="w-full justify-between text-left font-normal text-black"
         >
           {date ? format(date, "PPP") : <span>Select your birthdate</span>}
           <CalendarIcon className="ml-2 h-4 w-4 opacity-50" />
         </Button>
       </PopoverTrigger>
-      <PopoverContent className="w-auto p-0 bg-white">
+      <PopoverContent className="w-auto p-0 bg-black">
         <Calendar
           mode="single"
           selected={date}
           onSelect={handleSelect}
           initialFocus
-          captionLayout="dropdown" // ✅ lets you click Month + Year
+          captionLayout="dropdown"
           fromYear={1900}
           toYear={new Date().getFullYear()}
         />

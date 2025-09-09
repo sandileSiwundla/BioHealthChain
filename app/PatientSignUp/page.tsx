@@ -17,7 +17,7 @@ const DatePicker = ({ onChange }: { onChange: (date: Date) => void }) => {
       type="date"
       value={selectedDate.toISOString().split('T')[0]}
       onChange={handleDateChange}
-      className="w-full rounded-lg border border-gray-300 p-3 focus:outline-none focus:ring-2 focus:ring-[#1d2951]"
+      className="w-full rounded-lg border border-gray-300 p-3 focus:outline-none focus:ring-2 focus:ring-[#1d2951] text-black"
     />
   );
 };
@@ -64,7 +64,7 @@ export default function SignUp() {
 
   return (
     <div className="flex items-center justify-center min-h-screen bg-gradient-to-br from-[#1d2951] to-[#0f1a38] p-4">
-      <div className="w-full max-w-2xl  bg-gray-100 rounded-xl shadow-2xl overflow-hidden">
+      <div className="w-full max-w-2xl bg-gray-100 rounded-xl shadow-2xl overflow-hidden">
         {/* Header with theme color */}
         <div className="bg-[#1d2951] text-white p-6">
           <h1 className="text-2xl font-bold text-center">BioHealthChain – Patient Registration</h1>
@@ -84,12 +84,12 @@ export default function SignUp() {
                 value={formData.name}
                 onChange={handleChange}
                 required
-                className="w-full rounded-lg border border-gray-300 p-3 focus:outline-none focus:ring-2 focus:ring-[#1d2951] placeholder-gray-600"
-                placeholder="Enter your first name" 
+                className="w-full rounded-lg border border-gray-300 p-3 focus:outline-none focus:ring-2 focus:ring-[#1d2951] text-black placeholder-gray-600"
+                placeholder="Enter your first name"
               />
             </div>
             <div>
-              <label htmlFor="surname" className="block text-sm font-medium mb-2 text-gray-700">
+              <label htmlFor="surname" className="block text-sm font-medium mb-2 text-black">
                 Surname *
               </label>
               <input
@@ -98,7 +98,7 @@ export default function SignUp() {
                 value={formData.surname}
                 onChange={handleChange}
                 required
-                className="w-full rounded-lg border border-gray-300 p-3 focus:outline-none focus:ring-2 focus:ring-[#1d2951] placeholder-gray-600"
+                className="w-full rounded-lg border border-gray-300 p-3 focus:outline-none focus:ring-2 focus:ring-[#1d2951] text-black placeholder-gray-600"
                 placeholder="Enter your last name"
               />
             </div>
@@ -106,18 +106,18 @@ export default function SignUp() {
 
           {/* Date of Birth */}
           <div className="mb-4">
-            <label className="block text-sm font-medium mb-2 text-gray-700">Date of Birth *</label>
+            <label className="block text-sm font-medium mb-2 text-black">Date of Birth *</label>
             <DatePicker onChange={setBirthdate} />
             {birthdate && (
-              <p className="mt-2 text-gray-600 text-sm">
-                Age: <span className="font-semibold text-[#1d2951]">{calculateAge(birthdate)}</span> years
+              <p className="mt-2 text-black text-sm">
+                Age: <span className="font-semibold text-black">{calculateAge(birthdate)}</span> years
               </p>
             )}
           </div>
 
           {/* Picture */}
           <div>
-            <label htmlFor="picture" className="block text-sm font-medium mb-2 text-gray-700">
+            <label htmlFor="picture" className="block text-sm font-medium mb-2 text-black">
               Profile Picture (Optional)
             </label>
             <div className="flex items-center justify-center w-full">
@@ -136,7 +136,7 @@ export default function SignUp() {
 
           {/* Consent */}
           <div>
-            <label htmlFor="consent" className="block text-sm font-medium mb-2 text-gray-700">
+            <label htmlFor="consent" className="block text-sm font-medium mb-2 text-black">
               Consent to Access & Display Medical Data *
             </label>
             <textarea
@@ -146,13 +146,13 @@ export default function SignUp() {
               onChange={handleChange}
               placeholder="I hereby consent to BioHealthChain storing and processing my medical data for treatment purposes..."
               required
-              className="w-full rounded-lg border border-gray-300 p-3 h-24 focus:outline-none focus:ring-2 focus:ring-[#1d2951]"
+              className="w-full rounded-lg border border-gray-300 p-3 h-24 focus:outline-none focus:ring-2 focus:ring-[#1d2951] text-black"
             />
           </div>
 
           {/* Help Representative */}
           <div>
-            <label htmlFor="helpRepresentative" className="block text-sm font-medium mb-2 text-gray-700">
+            <label htmlFor="helpRepresentative" className="block text-sm font-medium mb-2 text-black">
               Help Representative / Doctor *
             </label>
             <input
@@ -161,14 +161,14 @@ export default function SignUp() {
               value={formData.helpRepresentative}
               onChange={handleChange}
               required
-              className="w-full rounded-lg border border-gray-300 p-3 focus:outline-none focus:ring-2 focus:ring-[#1d2951]"
+              className="w-full rounded-lg border border-gray-300 p-3 focus:outline-none focus:ring-2 focus:ring-[#1d2951] text-black"
               placeholder="Dr. Smith"
             />
           </div>
 
           {/* Hospital */}
           <div>
-            <label htmlFor="hospital" className="block text-sm font-medium mb-2 text-gray-700">
+            <label htmlFor="hospital" className="block text-sm font-medium mb-2 text-black">
               Hospital *
             </label>
             <input
@@ -177,14 +177,14 @@ export default function SignUp() {
               value={formData.hospital}
               onChange={handleChange}
               required
-              className="w-full rounded-lg border border-gray-300 p-3 focus:outline-none focus:ring-2 focus:ring-[#1d2951]"
+              className="w-full rounded-lg border border-gray-300 p-3 focus:outline-none focus:ring-2 focus:ring-[#1d2951] text-black"
               placeholder="General Hospital"
             />
           </div>
 
           {/* Residence */}
           <div>
-            <label htmlFor="residence" className="block text-sm font-medium mb-2 text-gray-700">
+            <label htmlFor="residence" className="block text-sm font-medium mb-2 text-black">
               Current Place of Residence *
             </label>
             <input
@@ -193,14 +193,14 @@ export default function SignUp() {
               value={formData.residence}
               onChange={handleChange}
               required
-              className="w-full rounded-lg border border-gray-300 p-3 focus:outline-none focus:ring-2 focus:ring-[#1d2951]"
+              className="w-full rounded-lg border border-gray-300 p-3 focus:outline-none focus:ring-2 focus:ring-[#1d2951] text-black"
               placeholder="123 Main St, City, State"
             />
           </div>
 
           {/* Medical Aid */}
           <div>
-            <label htmlFor="medicalAid" className="block text-sm font-medium mb-2 text-gray-700">
+            <label htmlFor="medicalAid" className="block text-sm font-medium mb-2 text-black">
               Medical Aid Name
             </label>
             <input
@@ -208,14 +208,14 @@ export default function SignUp() {
               name="medicalAid"
               value={formData.medicalAid}
               onChange={handleChange}
-              className="w-full rounded-lg border border-gray-300 p-3 focus:outline-none focus:ring-2 focus:ring-[#1d2951]"
+              className="w-full rounded-lg border border-gray-300 p-3 focus:outline-none focus:ring-2 focus:ring-[#1d2951] text-black"
               placeholder="HealthCare Inc."
             />
           </div>
 
           {/* Medical Aid Info */}
           <div>
-            <label htmlFor="medicalAidInfo" className="block text-sm font-medium mb-2 text-gray-700">
+            <label htmlFor="medicalAidInfo" className="block text-sm font-medium mb-2 text-black">
               Accompanying Information (Optional)
             </label>
             <textarea
@@ -224,7 +224,7 @@ export default function SignUp() {
               value={formData.medicalAidInfo}
               onChange={handleChange}
               placeholder="Policy number, group ID, or other relevant information..."
-              className="w-full rounded-lg border border-gray-300 p-3 h-20 focus:outline-none focus:ring-2 focus:ring-[#1d2951]"
+              className="w-full rounded-lg border border-gray-300 p-3 h-20 focus:outline-none focus:ring-2 focus:ring-[#1d2951] text-black"
             />
           </div>
 
@@ -238,7 +238,7 @@ export default function SignUp() {
         </form>
 
         {/* Footer */}
-        <div className="bg-gray-100 p-4 text-center text-xs text-gray-500">
+        <div className="bg-gray-100 p-4 text-center text-xs text-black">
           <p>Your information is protected by HIPAA compliance standards</p>
           <p className="mt-1">© {new Date().getFullYear()} BioHealthChain. All rights reserved.</p>
         </div>
