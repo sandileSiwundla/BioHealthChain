@@ -1,7 +1,26 @@
 "use client";
 
 import { useState } from "react";
-import { DatePicker } from "@/components/DataPicker";
+
+// Mock DatePicker component (you would replace with your actual implementation)
+const DatePicker = ({ onChange }: { onChange: (date: Date) => void }) => {
+  const [selectedDate, setSelectedDate] = useState<Date>(new Date());
+  
+  const handleDateChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const newDate = new Date(e.target.value);
+    setSelectedDate(newDate);
+    onChange(newDate);
+  };
+
+  return (
+    <input
+      type="date"
+      value={selectedDate.toISOString().split('T')[0]}
+      onChange={handleDateChange}
+      className="w-full rounded-lg border border-gray-300 p-3 focus:outline-none focus:ring-2 focus:ring-[#1d2951]"
+    />
+  );
+};
 
 export default function SignUp() {
   const [formData, setFormData] = useState({
@@ -44,18 +63,20 @@ export default function SignUp() {
   };
 
   return (
-    <div className="flex items-center justify-center min-h-screen bg-blue-900">
-      <div className="w-full max-w-2xl bg-blue-800 rounded-2xl shadow-lg p-8">
-        <h1 className="text-2xl font-bold text-center mb-6 text-slate-800">
-          BioHealthChain – Patient Sign Up
-        </h1>
+    <div className="flex items-center justify-center min-h-screen bg-gradient-to-br from-[#1d2951] to-[#0f1a38] p-4">
+      <div className="w-full max-w-2xl  bg-gray-100 rounded-xl shadow-2xl overflow-hidden">
+        {/* Header with theme color */}
+        <div className="bg-[#1d2951] text-white p-6">
+          <h1 className="text-2xl font-bold text-center">BioHealthChain – Patient Registration</h1>
+          <p className="text-center text-blue-100 mt-2">Secure medical data management</p>
+        </div>
 
-        <form onSubmit={handleSubmit} className="grid gap-6">
+        <form onSubmit={handleSubmit} className="p-6 md:p-8 grid gap-6">
           {/* Name + Surname */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div>
-              <label htmlFor="name" className="block text-sm font-medium mb-1">
-                Name
+              <label htmlFor="name" className="block text-sm font-medium mb-2 text-black">
+                Name *
               </label>
               <input
                 id="name"
@@ -63,12 +84,13 @@ export default function SignUp() {
                 value={formData.name}
                 onChange={handleChange}
                 required
-                className="w-full rounded-lg border border-gray-300 p-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-full rounded-lg border border-gray-300 p-3 focus:outline-none focus:ring-2 focus:ring-[#1d2951] placeholder-gray-600"
+                placeholder="Enter your first name" 
               />
             </div>
             <div>
-              <label htmlFor="surname" className="block text-sm font-medium mb-1">
-                Surname
+              <label htmlFor="surname" className="block text-sm font-medium mb-2 text-gray-700">
+                Surname *
               </label>
               <input
                 id="surname"
@@ -76,57 +98,62 @@ export default function SignUp() {
                 value={formData.surname}
                 onChange={handleChange}
                 required
-                className="w-full rounded-lg border border-gray-300 p-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-full rounded-lg border border-gray-300 p-3 focus:outline-none focus:ring-2 focus:ring-[#1d2951] placeholder-gray-600"
+                placeholder="Enter your last name"
               />
             </div>
           </div>
 
-          {/* Age */}
-           <div className="mb-6">
-        <label className="block text-sm font-medium mb-2">Date of Birth</label>
-        <DatePicker onChange={setBirthdate} />
-        {birthdate && (
-          <p className="mt-2 text-gray-600 text-sm">
-            Age: <span className="font-semibold">{calculateAge(birthdate)}</span> years
-          </p>
-        )}
-      </div>
+          {/* Date of Birth */}
+          <div className="mb-4">
+            <label className="block text-sm font-medium mb-2 text-gray-700">Date of Birth *</label>
+            <DatePicker onChange={setBirthdate} />
+            {birthdate && (
+              <p className="mt-2 text-gray-600 text-sm">
+                Age: <span className="font-semibold text-[#1d2951]">{calculateAge(birthdate)}</span> years
+              </p>
+            )}
+          </div>
 
           {/* Picture */}
           <div>
-            <label htmlFor="picture" className="block text-sm font-medium mb-1">
+            <label htmlFor="picture" className="block text-sm font-medium mb-2 text-gray-700">
               Profile Picture (Optional)
             </label>
-            <input
-              id="picture"
-              name="picture"
-              type="file"
-              accept="image/*"
-              onChange={handleChange}
-              className="w-full"
-            />
+            <div className="flex items-center justify-center w-full">
+              <label className="flex flex-col items-center justify-center w-full h-32 border-2 border-dashed border-gray-300 rounded-lg cursor-pointer hover:bg-gray-50">
+                <div className="flex flex-col items-center justify-center pt-5 pb-6">
+                  <svg className="w-8 h-8 mb-4 text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 16">
+                    <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 13h3a3 3 0 0 0 0-6h-.025A5.56 5.56 0 0 0 16 6.5 5.5 5.5 0 0 0 5.207 5.021C5.137 5.017 5.071 5 5 5a4 4 0 0 0 0 8h2.167M10 15V6m0 0L8 8m2-2 2 2"/>
+                  </svg>
+                  <p className="mb-2 text-sm text-gray-500"><span className="font-semibold">Click to upload</span> or drag and drop</p>
+                  <p className="text-xs text-gray-500">PNG, JPG (MAX. 5MB)</p>
+                </div>
+                <input id="picture" name="picture" type="file" accept="image/*" onChange={handleChange} className="hidden" />
+              </label>
+            </div>
           </div>
 
           {/* Consent */}
           <div>
-            <label htmlFor="consent" className="block text-sm font-medium mb-1">
-              Consent to Access & Display Medical Data
+            <label htmlFor="consent" className="block text-sm font-medium mb-2 text-gray-700">
+              Consent to Access & Display Medical Data *
             </label>
             <textarea
               id="consent"
               name="consent"
               value={formData.consent}
               onChange={handleChange}
-              placeholder="Write your consent statement here..."
+              placeholder="I hereby consent to BioHealthChain storing and processing my medical data for treatment purposes..."
               required
-              className="w-full rounded-lg border border-gray-300 p-2 h-24 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full rounded-lg border border-gray-300 p-3 h-24 focus:outline-none focus:ring-2 focus:ring-[#1d2951]"
             />
           </div>
 
           {/* Help Representative */}
           <div>
-            <label htmlFor="helpRepresentative" className="block text-sm font-medium mb-1">
-              Help Representative / Doctor
+            <label htmlFor="helpRepresentative" className="block text-sm font-medium mb-2 text-gray-700">
+              Help Representative / Doctor *
             </label>
             <input
               id="helpRepresentative"
@@ -134,14 +161,15 @@ export default function SignUp() {
               value={formData.helpRepresentative}
               onChange={handleChange}
               required
-              className="w-full rounded-lg border border-gray-300 p-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full rounded-lg border border-gray-300 p-3 focus:outline-none focus:ring-2 focus:ring-[#1d2951]"
+              placeholder="Dr. Smith"
             />
           </div>
 
           {/* Hospital */}
           <div>
-            <label htmlFor="hospital" className="block text-sm font-medium mb-1">
-              Hospital
+            <label htmlFor="hospital" className="block text-sm font-medium mb-2 text-gray-700">
+              Hospital *
             </label>
             <input
               id="hospital"
@@ -149,14 +177,15 @@ export default function SignUp() {
               value={formData.hospital}
               onChange={handleChange}
               required
-              className="w-full rounded-lg border border-gray-300 p-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full rounded-lg border border-gray-300 p-3 focus:outline-none focus:ring-2 focus:ring-[#1d2951]"
+              placeholder="General Hospital"
             />
           </div>
 
           {/* Residence */}
           <div>
-            <label htmlFor="residence" className="block text-sm font-medium mb-1">
-              Current Place of Residence
+            <label htmlFor="residence" className="block text-sm font-medium mb-2 text-gray-700">
+              Current Place of Residence *
             </label>
             <input
               id="residence"
@@ -164,13 +193,14 @@ export default function SignUp() {
               value={formData.residence}
               onChange={handleChange}
               required
-              className="w-full rounded-lg border border-gray-300 p-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full rounded-lg border border-gray-300 p-3 focus:outline-none focus:ring-2 focus:ring-[#1d2951]"
+              placeholder="123 Main St, City, State"
             />
           </div>
 
           {/* Medical Aid */}
           <div>
-            <label htmlFor="medicalAid" className="block text-sm font-medium mb-1">
+            <label htmlFor="medicalAid" className="block text-sm font-medium mb-2 text-gray-700">
               Medical Aid Name
             </label>
             <input
@@ -178,14 +208,14 @@ export default function SignUp() {
               name="medicalAid"
               value={formData.medicalAid}
               onChange={handleChange}
-              required
-              className="w-full rounded-lg border border-gray-300 p-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full rounded-lg border border-gray-300 p-3 focus:outline-none focus:ring-2 focus:ring-[#1d2951]"
+              placeholder="HealthCare Inc."
             />
           </div>
 
           {/* Medical Aid Info */}
           <div>
-            <label htmlFor="medicalAidInfo" className="block text-sm font-medium mb-1">
+            <label htmlFor="medicalAidInfo" className="block text-sm font-medium mb-2 text-gray-700">
               Accompanying Information (Optional)
             </label>
             <textarea
@@ -193,19 +223,25 @@ export default function SignUp() {
               name="medicalAidInfo"
               value={formData.medicalAidInfo}
               onChange={handleChange}
-              placeholder="Extra medical aid details if applicable..."
-              className="w-full rounded-lg border border-gray-300 p-2 h-20 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              placeholder="Policy number, group ID, or other relevant information..."
+              className="w-full rounded-lg border border-gray-300 p-3 h-20 focus:outline-none focus:ring-2 focus:ring-[#1d2951]"
             />
           </div>
 
           {/* Submit */}
           <button
             type="submit"
-            className="w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 transition"
+            className="w-full bg-[#1d2951] text-white py-3 rounded-lg hover:bg-[#2a3a6a] transition font-semibold shadow-md"
           >
-            Sign Up
+            Complete Registration
           </button>
         </form>
+
+        {/* Footer */}
+        <div className="bg-gray-100 p-4 text-center text-xs text-gray-500">
+          <p>Your information is protected by HIPAA compliance standards</p>
+          <p className="mt-1">© {new Date().getFullYear()} BioHealthChain. All rights reserved.</p>
+        </div>
       </div>
     </div>
   );
