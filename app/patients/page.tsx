@@ -2,7 +2,6 @@
 
 import React, { useState } from "react";
 import Link from "next/link";
-import SignUp from "@/app/PatientSignUp/page";
 
 const LoginPage: React.FC = () => {
   const [password, setPassword] = useState("");

@@ -24,7 +24,7 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="bg-primary fixed left-0 top-0 h-screen w-60 p-5 text-primary-foreground flex flex-col items-start space-y-6">
+    <nav className="bg-primary bg-transparent fixed left-0 top-0 h-screen w-60 p-5 text-primary-foreground flex flex-col items-start space-y-6">
       {/* Logo + title */}
       <div className="flex flex-col items-center space-y-5">
         <Image 
