@@ -2,6 +2,7 @@
 
 import React, { useState } from "react";
 import Link from "next/link";
+import SignUp from "@/app/PatientSignUp/page";
 
 const LoginPage: React.FC = () => {
   const [password, setPassword] = useState("");
@@ -30,7 +31,7 @@ const LoginPage: React.FC = () => {
               required
             />
           </div>
-          <Link href={"/components/PatientFiles/PatientHome.tsx"}> 
+          <Link href={"/components/PatientFiles/SignUp"}> 
           <button
             type="submit"
             className="w-full py-3 mt-4 bg-blue-600 rounded-lg font-semibold hover:bg-blue-700 transition"
@@ -40,7 +41,7 @@ const LoginPage: React.FC = () => {
           </Link>
         </form>
         <p className="mt-6 text-center text-gray-300">
-          Don't have an account? <a href="/components/PatientFiles/SignUp.tsx" className="text-blue-400 hover:underline">Sign Up</a>
+          Don't have an account? <a href="/PatientSignUp" className="text-blue-400 hover:underline">Sign Up</a>
         </p>
       </div>
     </div>
