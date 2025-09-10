@@ -48,7 +48,7 @@ const Home = () => {
       color: "purple",
       gradient: "from-purple-500 to-purple-700",
       buttonText: "Manage Prescriptions",
-      Link: "/patients"
+      Link: "/Pharmacy"
 
     }
   ];
