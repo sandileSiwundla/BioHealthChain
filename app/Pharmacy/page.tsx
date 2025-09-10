@@ -80,11 +80,11 @@ export default function Pharmacy() {
               {medicines.map((med, idx) => (
                 <li 
                   key={idx} 
-                  className="border p-4 rounded-lg bg-white shadow-sm flex flex-col gap-2"
+                  className="border p-4 rounded-lg bg-white shadow-sm flex flex-col gap-2 text-black"
                 >
                   <div className="flex justify-between items-center">
-                    <div>
-                      <p><strong>{med.name}</strong></p>
+                    <div className="text-black">
+                      <p className="font-semibold">{med.name}</p>
                       <p>Dosage: {med.dosage}</p>
                       <p>Period: {med.period}</p>
                       {med.notes && <p>Notes: {med.notes}</p>}
@@ -104,7 +104,7 @@ export default function Pharmacy() {
                     </button>
                   )}
                   {med.status === 'claimed' && (
-                    <p className="text-sm text-gray-600">
+                    <p className="text-sm text-black">
                       Claimed at: {med.claimedTime} | Pharmacy: {med.pharmacyLocation}
                     </p>
                   )}
