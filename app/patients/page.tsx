@@ -30,7 +30,7 @@ const LoginPage: React.FC = () => {
               required
             />
           </div>
-          <Link href={"/components/patients/PatientFiles/SignUp"}> 
+          <Link href={"/patients/patientDashboard"}> 
           <button
             type="submit"
             className="w-full py-3 mt-4 bg-blue-600 rounded-lg font-semibold hover:bg-blue-700 transition"
