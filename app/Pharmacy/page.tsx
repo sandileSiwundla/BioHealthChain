@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import Link from 'next/link';
 
 interface Medicine {
   name: string;
@@ -51,8 +52,20 @@ export default function Pharmacy() {
   };
 
   return (
-    <div className="flex justify-center items-center min-h-screen bg-gradient-to-br from-[#1d2951] to-[#0f1a38] p-4">
-      <div className="w-full max-w-lg bg-gray-100 rounded-xl shadow-2xl p-6">
+    <div className="flex justify-center items-center min-h-screen bg-gradient-to-br from-[#1d2951] to-[#0f1a38] p-4 relative">
+      {/* Beta Access Banner */}
+      <div className="absolute top-0 left-0 right-0 bg-gradient-to-r from-green-400 to-teal-500 text-black text-center py-3 px-4 z-10 shadow-md">
+        <div className="flex items-center justify-center space-x-3">
+          <span className="font-bold text-lg">🧪</span>
+          <p className="font-semibold text-sm">
+            BETA ACCESS: Use code <span className="bg-black text-green-300 px-2 py-1 rounded-md mx-1 font-mono">123</span> 
+            for quick access or <Link href="/patients/PatientSignUp" className="underline font-bold hover:text-blue-800">create your account</Link>
+          </p>
+          <span className="font-bold text-lg">⚕️</span>
+        </div>
+      </div>
+
+      <div className="w-full max-w-lg bg-gray-100 rounded-xl shadow-2xl p-6 mt-16">
         <h1 className="text-2xl font-bold text-center text-[#1d2951] mb-6">Pharmacy Portal</h1>
 
         <form onSubmit={handleSubmit} className="mb-6">
