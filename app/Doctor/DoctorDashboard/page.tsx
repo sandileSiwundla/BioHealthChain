@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 // Interfaces for our data structures
 interface MedicalFile {
@@ -39,16 +39,6 @@ interface Medication {
   prescriber: string;
   lastFilled?: Date;
   nextRefill?: Date;
-}
-
-interface Appointment {
-  id: string;
-  date: Date;
-  doctor: string;
-  specialty: string;
-  location: string;
-  reason: string;
-  status: "scheduled" | "completed" | "cancelled";
 }
 
 interface TemplateField {
@@ -141,16 +131,32 @@ const FIELD_TYPES = [
 
 const DoctorDashboard = () => {
   const [activeTab, setActiveTab] = useState("overview");
-  const [medicalFiles, setMedicalFiles] = useState<MedicalFile[]>(mockMedicalFiles);
-  const [vitalSigns, setVitalSigns] = useState<VitalSigns[]>(mockVitalSigns);
-  const [medications, setMedications] = useState<Medication[]>(mockMedications);
+  const [medicalFiles, setMedicalFiles] = useState<MedicalFile[]>([]);
+  const [vitalSigns, setVitalSigns] = useState<VitalSigns[]>([]);
+  const [medications, setMedications] = useState<Medication[]>([]);
   const [editingFile, setEditingFile] = useState<MedicalFile | null>(null);
   const [editingVitals, setEditingVitals] = useState(false);
-  const [currentVitals, setCurrentVitals] = useState<VitalSigns>(mockVitalSigns[0]);
+  const [currentVitals, setCurrentVitals] = useState<VitalSigns>({ date: new Date() });
   const [selectedTemplate, setSelectedTemplate] = useState<string | null>(null);
   const [templateFields, setTemplateFields] = useState<TemplateField[]>([]);
   const [showFieldCreator, setShowFieldCreator] = useState(false);
   const [newField, setNewField] = useState({ label: "", type: "text", options: "" });
+  const [isLoading, setIsLoading] = useState(true);
+
+  // Simulate data loading
+  useEffect(() => {
+    const loadData = async () => {
+      // Simulate API call
+      await new Promise(resolve => setTimeout(resolve, 1000));
+      setMedicalFiles(mockMedicalFiles);
+      setVitalSigns(mockVitalSigns);
+      setMedications(mockMedications);
+      setCurrentVitals(mockVitalSigns[0] || { date: new Date() });
+      setIsLoading(false);
+    };
+
+    loadData();
+  }, []);
 
   // Get latest vital signs
   const latestVitals = vitalSigns.length > 0 ? vitalSigns[0] : null;
@@ -158,8 +164,9 @@ const DoctorDashboard = () => {
   // Handle template selection
   const handleTemplateSelect = (templateKey: string) => {
     setSelectedTemplate(templateKey);
-    // @ts-ignore
-    setTemplateFields(JSON.parse(JSON.stringify(TEMPLATES[templateKey])));
+    // Clone the template fields to avoid mutation
+    const templateFieldsCopy = JSON.parse(JSON.stringify(TEMPLATES[templateKey as keyof typeof TEMPLATES]));
+    setTemplateFields(templateFieldsCopy);
   };
 
   // Handle template field change
@@ -230,9 +237,21 @@ const DoctorDashboard = () => {
 
   // Update vital signs
   const updateVitals = () => {
-    setVitalSigns([currentVitals, ...vitalSigns.slice(1)]);
+    const updatedVitals = { ...currentVitals, date: new Date() };
+    setVitalSigns([updatedVitals, ...vitalSigns.slice(1)]);
     setEditingVitals(false);
   };
+
+  if (isLoading) {
+    return (
+      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
+        <div className="text-center">
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-[#1d2951] mx-auto"></div>
+          <p className="mt-4 text-black">Loading patient data...</p>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen bg-gray-50 p-4">
