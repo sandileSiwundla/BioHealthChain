@@ -86,6 +86,8 @@ const mockMedicalFiles: MedicalFile[] = [
   }
 ];
 
+
+
 const mockVitalSigns: VitalSigns[] = [
   { date: new Date(2023, 9, 15), height: 175, weight: 82, bmi: 26.8, bloodPressure: "138/85", heartRate: 72, temperature: 36.8, oxygenSaturation: 98 }
 ];
@@ -127,7 +129,15 @@ const TEMPLATES = {
     { id: "bodyPart", label: "Body Part", type: "text", value: "" },
     { id: "findings", label: "Findings", type: "text", value: "" },
     { id: "impression", label: "Radiologist Impression", type: "text", value: "" }
-  ]
+  ],
+    prescription: [
+    { id: "medicationName", label: "Medication Name", type: "text", value: "" },
+    { id: "dosage", label: "Dosage", type: "text", value: "" },
+    { id: "frequency", label: "Frequency", type: "select", value: "", options: ["Once daily", "Twice daily", "Three times daily", "Four times daily", "As needed"] },
+    { id: "duration", label: "Duration", type: "text", value: "" },
+    { id: "instructions", label: "Instructions", type: "text", value: "" },
+    { id: "refills", label: "Refills", type: "number", value: 0 }
+  ],
 };
 
 // Available field types for custom creation
@@ -559,6 +569,13 @@ const DoctorDashboard = () => {
                     <div className="text-sm text-black mt-1">X-Ray, MRI, CT scan results</div>
                   </button>
                 </div>
+                <button
+                    onClick={() => handleTemplateSelect("prescription")}
+                    className="p-4 border border-gray-300 rounded-lg hover:bg-gray-50 transition text-center"
+                    >
+                    <div className="font-medium text-black">Prescription</div>
+                    <div className="text-sm text-black mt-1">Medication prescription form</div>
+                    </button>
                 
                 <div className="border-t pt-4 mt-4">
                   <h3 className="text-lg font-medium mb-4 text-black">Create Custom Template</h3>
@@ -706,6 +723,21 @@ const DoctorDashboard = () => {
                           className="w-full p-2 border border-gray-300 rounded-md text-black"
                         />
                       )}
+                      {activeTab === "templates" && !selectedTemplate && (
+                        <div>
+                            <h3 className="text-lg font-medium mb-4 text-black">Select a Template</h3>
+                            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+                            {/* Existing template buttons */}
+                            <button
+                                onClick={() => handleTemplateSelect("prescription")}
+                                className="p-4 border border-gray-300 rounded-lg hover:bg-gray-50 transition text-center"
+                            >
+                                <div className="font-medium text-black">Prescription</div>
+                                <div className="text-sm text-black mt-1">Medication prescription form</div>
+                            </button>
+                            </div>
+                        </div>
+                        )}
                     </div>
                   ))}
                   
