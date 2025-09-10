@@ -6,7 +6,7 @@ import { useState } from "react";
 interface MedicalFile {
   id: string;
   date: Date;
-  type: "visit"  | "imaging" | "prescription" | "note";
+  type: "visit" | "lab" | "imaging" | "prescription" | "note";
   title: string;
   doctor: string;
   specialty?: string;
