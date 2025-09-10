@@ -33,7 +33,7 @@ const Home = () => {
       color: "green",
       gradient: "from-green-500 to-green-700",
       buttonText: "Provider Login",
-      Link: "/patients"
+      Link: "/Doctor"
 
     },
     {

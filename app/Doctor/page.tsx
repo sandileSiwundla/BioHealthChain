@@ -19,7 +19,7 @@ const LoginPage: React.FC = () => {
         <form onSubmit={handleLogin} className="space-y-4">
 
           <div className="flex flex-col">
-            <label htmlFor="password" className="mb-2 font-medium">Patient ID</label>
+            <label htmlFor="password" className="mb-2 font-medium">Healthcare Provider ID (HCP-ID)</label>
             <input
               type="password"
               id="password"
@@ -40,7 +40,7 @@ const LoginPage: React.FC = () => {
           </Link>
         </form>
         <p className="mt-6 text-center text-gray-300">
-          Don't have an account? <a href="/patients/PatientSignUp" className="text-blue-400 hover:underline">Sign Up</a>
+          Obtain a Healthcare Provider ID (HCP-ID) <a href="/Doctor/DoctorSignUp" className="text-blue-400 hover:underline">Sign Up</a>
         </p>
       </div>
     </div>
